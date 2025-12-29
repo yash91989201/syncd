@@ -3,11 +3,11 @@ package com.example.syncd.navigation
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.snapshots.SnapshotStateList
 
-class Navigator(startDestination: Any) {
+class Navigator(startDestination: Screen) {
 
-    val backStack: SnapshotStateList<Any> = mutableStateListOf(startDestination)
+    val backStack: SnapshotStateList<Screen> = mutableStateListOf(startDestination)
 
-    fun navigateTo(destination: Any) {
+    fun navigateTo(destination: Screen) {
         backStack.add(destination)
     }
 
@@ -15,7 +15,7 @@ class Navigator(startDestination: Any) {
         backStack.removeLastOrNull()
     }
 
-    fun setRoot(destination: Any) {
+    fun setRoot(destination: Screen) {
         backStack.clear()
         backStack.add(destination)
     }

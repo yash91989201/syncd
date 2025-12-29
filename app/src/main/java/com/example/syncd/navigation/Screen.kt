@@ -4,21 +4,34 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 sealed class Screen {
-    @Serializable
-    object Welcome
 
     @Serializable
-    object Intro
+    object Initial: Screen()
 
     @Serializable
-    object Login
+    object Welcome: Screen()
 
     @Serializable
-    data class OTP(val phoneNumber: String)
+    object Intro: Screen()
 
     @Serializable
-    object Onboarding
+    object Login:Screen()
 
     @Serializable
-    object Home
+    data class OTP(val phoneNumber: String): Screen()
+
+    @Serializable
+    object Onboarding:Screen()
+
+    @Serializable
+    object Home:Screen()
+
+    @Serializable
+    object Log:Screen()
+
+    @Serializable
+    object TodayGuide:Screen()
+
+    @Serializable
+    object Insights: Screen()
 }
