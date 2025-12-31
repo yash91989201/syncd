@@ -4,7 +4,6 @@ import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
 import com.example.syncd.screen.guide.TodayGuideScreen
 import com.example.syncd.screen.home.HomeScreen
-import com.example.syncd.screen.initial.InitialScreen
 import com.example.syncd.screen.insights.InsightsScreen
 import com.example.syncd.screen.log.LogScreen
 import com.example.syncd.screen.login.LoginScreen
@@ -17,11 +16,7 @@ import org.koin.dsl.navigation3.navigation
 
 @OptIn(KoinExperimentalAPI::class)
 val navigationModule = module {
-    single { Navigator(Screen.Initial) }
-
-    navigation<Screen.Initial>{
-        InitialScreen()
-    }
+    single { Navigator(Screen.Welcome) }
 
     navigation<Screen.Home> {
         HomeScreen()

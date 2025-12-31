@@ -8,6 +8,7 @@ import com.example.syncd.screen.home.HomeViewModel
 import com.example.syncd.screen.insights.InsightsViewModel
 import com.example.syncd.screen.log.LogViewModel
 import com.example.syncd.screen.onboarding.OnboardingViewModel
+import com.example.syncd.screen.onboarding.data.repository.OnboardingRepository
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModel
@@ -16,11 +17,12 @@ import org.koin.dsl.module
 val authModule = module {
     single { UserPreferences(get()) }
     single { AuthRepository(get()) }
-    single { AuthViewModel(get(), get(), get()) }
+    single { OnboardingRepository(get()) }
+    single { AuthViewModel(get(), get(), get(), get()) }
 }
 
 val onboardingModule = module {
-    viewModel { OnboardingViewModel(get()) }
+    viewModel { OnboardingViewModel(get(), get()) }
 }
 
 val logModule = module {
@@ -35,8 +37,8 @@ val insightsModule = module {
     viewModel { InsightsViewModel() }
 }
 
-val homeModule = module{
-    viewModel{
+val homeModule = module {
+    viewModel {
         HomeViewModel(get())
     }
 }
@@ -46,6 +48,15 @@ fun initializeKoin(
 ) {
     startKoin {
         config?.invoke(this)
-        modules(networkModule, authModule, navigationModule, onboardingModule, logModule, guideModule, insightsModule, homeModule)
+        modules(
+            networkModule,
+            authModule,
+            navigationModule,
+            onboardingModule,
+            logModule,
+            guideModule,
+            insightsModule,
+            homeModule
+        )
     }
 }

@@ -7,6 +7,7 @@ import com.example.syncd.auth.data.repository.AuthRepository
 import com.example.syncd.data.UserPreferences
 import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
+import com.example.syncd.screen.onboarding.data.repository.OnboardingRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.StateFlow
@@ -28,7 +29,8 @@ data class AuthUiState(
 class AuthViewModel(
     private val authRepository: AuthRepository,
     private val navigator: Navigator,
-    private val userPreferences: UserPreferences
+    private val userPreferences: UserPreferences,
+    private val onboardingRepository: OnboardingRepository
 ) : ViewModel() {
     
     private val _uiState = MutableStateFlow(AuthUiState())
@@ -39,7 +41,8 @@ class AuthViewModel(
     }
     
     fun updatePhoneNumber(phone: String) {
-        _uiState.update { it.copy(phoneNumber = phone, error = null) }
+        val numericOnly = phone.filter { it.isDigit() }.take(10)
+        _uiState.update { it.copy(phoneNumber = numericOnly, error = null) }
     }
     
     fun updateOtpCode(code: String) {
@@ -128,28 +131,72 @@ class AuthViewModel(
     
     private fun checkSession() {
         viewModelScope.launch {
-            val hasCompletedOnboarding = userPreferences.hasCompletedOnboarding.first()
-            
             authRepository.getSession()
                 .onSuccess { response ->
-                    _uiState.update { 
-                        it.copy(
-                            currentUser = response.user,
-                            isAuthenticated = response.user != null,
-                            isCheckingSession = false,
-                            hasCompletedOnboarding = hasCompletedOnboarding
-                        )
+                    val isAuthenticated = response.user != null
+                    if (isAuthenticated) {
+                        checkOnboardingStatus(response.user)
+                    } else {
+                        _uiState.update { 
+                            it.copy(
+                                currentUser = null,
+                                isAuthenticated = false,
+                                isCheckingSession = false,
+                                hasCompletedOnboarding = false
+                            )
+                        }
                     }
                 }
                 .onFailure {
                     _uiState.update { 
                         it.copy(
                             isCheckingSession = false,
-                            hasCompletedOnboarding = hasCompletedOnboarding
+                            hasCompletedOnboarding = false
                         ) 
                     }
                 }
         }
+    }
+
+    private suspend fun checkOnboardingStatus(user: User?) {
+        val localStatus = userPreferences.hasCompletedOnboarding.first()
+        
+        if (localStatus) {
+            _uiState.update { 
+                it.copy(
+                    currentUser = user,
+                    isAuthenticated = true,
+                    isCheckingSession = false,
+                    hasCompletedOnboarding = true
+                )
+            }
+            return
+        }
+        
+        onboardingRepository.isOnboardingComplete()
+            .onSuccess { statusResponse ->
+                if (statusResponse.json.complete) {
+                    userPreferences.setHasCompletedOnboarding(true)
+                }
+                _uiState.update { 
+                    it.copy(
+                        currentUser = user,
+                        isAuthenticated = true,
+                        isCheckingSession = false,
+                        hasCompletedOnboarding = statusResponse.json.complete
+                    )
+                }
+            }
+            .onFailure {
+                _uiState.update { 
+                    it.copy(
+                        currentUser = user,
+                        isAuthenticated = true,
+                        isCheckingSession = false,
+                        hasCompletedOnboarding = false
+                    )
+                }
+            }
     }
     
     fun setOnboardingCompleted() {

@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__morph-mcp__edit_file",
+      "mcp__morph-mcp__warpgrep_codebase_search"
+    ]
+  }
+}

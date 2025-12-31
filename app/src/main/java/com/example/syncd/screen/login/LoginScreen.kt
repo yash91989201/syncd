@@ -1,6 +1,8 @@
 package com.example.syncd.screen.login
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -68,17 +70,30 @@ fun LoginScreen() {
 
             Spacer(modifier = Modifier.height(32.dp))
 
-            OutlinedTextField(
-                value = uiState.phoneNumber,
-                onValueChange = { viewModel.updatePhoneNumber(it) },
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                label = { Text("Phone Number") },
-                placeholder = { Text("e.g. +1 555 000 0000") },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Phone),
-                shape = RoundedCornerShape(12.dp),
-                isError = uiState.error != null
-            )
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Text(
+                    text = "+91",
+                    style = MaterialTheme.typography.bodyLarge,
+                    fontWeight = FontWeight.Medium,
+                    color = MaterialTheme.colorScheme.onBackground,
+                    modifier = Modifier.padding(top = 8.dp)
+                )
+                
+                OutlinedTextField(
+                    value = uiState.phoneNumber,
+                    onValueChange = { viewModel.updatePhoneNumber(it) },
+                    modifier = Modifier.weight(1f),
+                    label = { Text("Phone Number") },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    shape = RoundedCornerShape(12.dp),
+                    isError = uiState.error != null
+                )
+            }
 
             if (uiState.error != null) {
                 Spacer(modifier = Modifier.height(8.dp))
@@ -96,7 +111,7 @@ fun LoginScreen() {
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(56.dp),
-                enabled = !uiState.isLoading && uiState.phoneNumber.isNotBlank(),
+                enabled = !uiState.isLoading && uiState.phoneNumber.length == 10,
                 shape = RoundedCornerShape(28.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.tertiary,
@@ -118,7 +133,5 @@ fun LoginScreen() {
                     )
                 }
             }
-            
-        Spacer(modifier = Modifier.height(16.dp))
     }
 }

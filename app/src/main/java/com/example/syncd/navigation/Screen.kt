@@ -6,9 +6,6 @@ import kotlinx.serialization.Serializable
 sealed class Screen {
 
     @Serializable
-    object Initial: Screen()
-
-    @Serializable
     object Welcome: Screen()
 
     @Serializable

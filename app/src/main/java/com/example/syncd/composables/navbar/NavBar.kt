@@ -63,9 +63,7 @@ fun NavBar(
             NavigationBarItem(
                 selected = isSelected,
                 onClick = {
-                    if (!isSelected) {
-                        navigator.setRoot(item.screen)
-                    }
+                    navigator.navigateTo(item.screen)
                 },
                 icon = {
                     Icon(
