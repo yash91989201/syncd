@@ -19,12 +19,14 @@ data class OnboardingRequest(
 data class UserProfile(
     val ageGroup: String,
     val cycleStage: String,
-    val isAthlete: Boolean
+    val isAthlete: Boolean,
+    val physicalActivity: String? = null
 )
 
 @Serializable
 data class HealthCondition(
-    val condition: String
+    val condition: String,
+    val medication: String
 )
 
 @Serializable

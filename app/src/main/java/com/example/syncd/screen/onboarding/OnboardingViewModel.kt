@@ -28,6 +28,7 @@ object StepIds {
     const val IS_ATHLETE = 9
     const val TRAINING_FREQUENCY = 10
     const val SPORT = 11
+    const val PHYSICAL_ACTIVITY = 12
 }
 
 data class OnboardingStep(
@@ -56,17 +57,19 @@ data class OnboardingState(
     val currentStep: OnboardingStep get() = steps[currentStepIndex]
 
     val selectedOptionId: String? get() = answers[currentStep.id]
-    
-    val canProceed: Boolean get() {
-        val currentAnswer = selectedOptionId ?: return false
-        if (currentStep.id == StepIds.SPORT && currentAnswer == "not_listed") {
-            return customSport.isNotBlank()
+
+    val canProceed: Boolean
+        get() {
+            val currentAnswer = selectedOptionId ?: return false
+            if (currentStep.id == StepIds.SPORT && currentAnswer == "not_listed") {
+                return customSport.isNotBlank()
+            }
+            return true
         }
-        return true
-    }
-    
-    val showCustomSportInput: Boolean get() = 
-        currentStep.id == StepIds.SPORT && selectedOptionId == "not_listed"
+
+    val showCustomSportInput: Boolean
+        get() =
+            currentStep.id == StepIds.SPORT && selectedOptionId == "not_listed"
 }
 
 class OnboardingViewModel(
@@ -94,6 +97,8 @@ class OnboardingViewModel(
                 OnboardingOption("regular", "Regular periods"),
                 OnboardingOption("irregular", "Irregular periods"),
                 OnboardingOption("trying_to_conceive", "Trying to conceive"),
+                OnboardingOption("pregnant", "Pregnant"),
+                OnboardingOption("postpartum", "Postpartum"),
                 OnboardingOption("perimenopause", "Perimenopause")
             )
         ),
@@ -148,14 +153,16 @@ class OnboardingViewModel(
                 OnboardingOption("pcos", "PCOS"),
                 OnboardingOption("endometriosis", "Endometriosis"),
                 OnboardingOption("thyroid", "Thyroid issues"),
-                OnboardingOption("other", "Other")
+                OnboardingOption("fibroids", "Fibroids"),
+                OnboardingOption("anemia", "Anemia"),
+                OnboardingOption("diabetes", "Diabetes"),
             )
         ),
         OnboardingStep(
             id = StepIds.HORMONAL_MEDICATION,
             question = "Are you currently taking any hormonal medication?",
             options = listOf(
-                OnboardingOption("no", "No"),
+                OnboardingOption("none", "No"),
                 OnboardingOption("pill", "The Pill"),
                 OnboardingOption("iud", "Hormonal IUD"),
                 OnboardingOption("implant", "Implant / Injection")
@@ -166,8 +173,7 @@ class OnboardingViewModel(
             question = "Do you identify as an athlete?",
             options = listOf(
                 OnboardingOption("yes", "Yes"),
-                OnboardingOption("no", "No"),
-                OnboardingOption("occasional", "I exercise occasionally")
+                OnboardingOption("no", "No")
             )
         )
     )
@@ -212,6 +218,21 @@ class OnboardingViewModel(
         )
     )
 
+    private val nonAthleteSteps = listOf(
+        OnboardingStep(
+            id = StepIds.PHYSICAL_ACTIVITY,
+            question = "What best describes your physical activity?",
+            helperText = "This helps us personalize your experience.",
+            options = listOf(
+                OnboardingOption("daily_running", "Daily running"),
+                OnboardingOption("gym_fitness", "Gym / Fitness workouts"),
+                OnboardingOption("walking", "Walking / Light exercise"),
+                OnboardingOption("yoga_stretching", "Yoga / Stretching"),
+                OnboardingOption("none", "No regular physical activity")
+            )
+        )
+    )
+
     private val _state = MutableStateFlow(OnboardingState(steps = baseSteps))
     val state: StateFlow<OnboardingState> = _state.asStateFlow()
 
@@ -232,10 +253,10 @@ class OnboardingViewModel(
     }
 
     private fun rebuildStepsBasedOnAthleteAnswer(answer: String) {
-        val newSteps = if (answer == "yes") {
-            baseSteps + athleteSteps
-        } else {
-            baseSteps
+        val newSteps = when (answer) {
+            "yes" -> baseSteps + athleteSteps
+            "no" -> baseSteps + nonAthleteSteps
+            else -> baseSteps
         }
         _state.update { it.copy(steps = newSteps) }
     }
@@ -259,9 +280,9 @@ class OnboardingViewModel(
     private fun completeOnboarding() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, error = null) }
-            
+
             val request = buildOnboardingRequest()
-            
+
             onboardingRepository.completeOnboarding(request)
                 .onSuccess { response ->
                     response.json.success?.let {
@@ -271,11 +292,11 @@ class OnboardingViewModel(
                     _state.update { it.copy(isComplete = true, isLoading = false) }
                 }
                 .onFailure { throwable ->
-                    _state.update { 
+                    _state.update {
                         it.copy(
-                            isLoading = false, 
+                            isLoading = false,
                             error = throwable.message ?: "Failed to complete onboarding"
-                        ) 
+                        )
                     }
                 }
         }
@@ -283,26 +304,34 @@ class OnboardingViewModel(
 
     private fun buildOnboardingRequest(): OnboardingRequest {
         val answers = _state.value.answers
-        
+
         val isAthlete = answers[StepIds.IS_ATHLETE] == "yes"
-        
+
+        val physicalActivity = if (!isAthlete) {
+            answers[StepIds.PHYSICAL_ACTIVITY]
+        } else {
+            "none"
+        }
+
         val userProfile = UserProfile(
             ageGroup = answers[StepIds.AGE_GROUP] ?: "unknown",
             cycleStage = answers[StepIds.CYCLE_STAGE] ?: "regular",
-            isAthlete = isAthlete
+            isAthlete = isAthlete,
+            physicalActivity = physicalActivity
         )
-        
+
         val healthCondition = HealthCondition(
-            condition = answers[StepIds.HEALTH_CONDITION] ?: "none"
+            condition = answers[StepIds.HEALTH_CONDITION] ?: "none",
+            medication = answers[StepIds.HORMONAL_MEDICATION] ?: "none"
         )
-        
+
         val cycleProfile = CycleProfile(
             cycleLength = answers[StepIds.CYCLE_LENGTH] ?: "unknown",
             bleedingDays = answers[StepIds.BLEEDING_DAYS] ?: "3_4",
             flowIntensity = answers[StepIds.FLOW_INTENSITY] ?: "medium",
             painLevel = answers[StepIds.PAIN_LEVEL] ?: "none"
         )
-        
+
         val athleteProfile = if (isAthlete) {
             val sportAnswer = answers[StepIds.SPORT]
             val sport = if (sportAnswer == "not_listed") {
@@ -310,7 +339,7 @@ class OnboardingViewModel(
             } else {
                 sportAnswer ?: ""
             }
-            
+
             AthleteProfile(
                 trainingFrequency = answers[StepIds.TRAINING_FREQUENCY] ?: "3_4_per_week",
                 sport = sport
@@ -318,7 +347,7 @@ class OnboardingViewModel(
         } else {
             null
         }
-        
+
         return OnboardingRequest(
             json = OnboardingInput(
                 userProfile = userProfile,
