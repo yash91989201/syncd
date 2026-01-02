@@ -48,10 +48,12 @@ import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
 import com.example.syncd.screen.home.data.model.PhaseInfo
@@ -84,7 +86,7 @@ fun HomeScreen(
 
             uiState.error != null -> {
                 ErrorState(
-                    message = uiState.error ?: "Something went wrong",
+                    message = uiState.error ?: stringResource(R.string.home_error_something_wrong),
                     onRetry = { viewModel.loadPhaseInfo() }
                 )
             }
@@ -101,7 +103,7 @@ fun HomeScreen(
 
             else -> {
                 ErrorState(
-                    message = "No cycle data available",
+                    message = stringResource(R.string.home_error_no_data),
                     onRetry = { viewModel.loadPhaseInfo() }
                 )
             }
@@ -133,7 +135,7 @@ private fun SuccessContent(
             color = MaterialTheme.colorScheme.surfaceContainerHigh.copy(alpha = 0.7f)
         ) {
             Text(
-                text = "TODAY'S INSIGHTS",
+                text = stringResource(R.string.home_todays_insights),
                 style = MaterialTheme.typography.labelMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 letterSpacing = 2.sp,
@@ -180,17 +182,17 @@ private fun SuccessContent(
         ) {
             InfoCard(
                 modifier = Modifier.weight(1f),
-                label = "Cycle Length",
+                label = stringResource(R.string.home_cycle_length),
                 value = "${phaseInfo.cycleLength}",
-                unit = "DAYS",
+                unit = stringResource(R.string.home_days),
                 iconColor = phaseColor
             )
             
             InfoCard(
                 modifier = Modifier.weight(1f),
-                label = "Next Period",
+                label = stringResource(R.string.home_next_period),
                 value = "${phaseInfo.daysUntilNextPeriod}",
-                unit = "DAYS LEFT",
+                unit = stringResource(R.string.home_days_left),
                 iconColor = phaseColor
             )
         }
@@ -253,7 +255,7 @@ private fun CycleProgressVisual(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             Text(
-                text = "DAY",
+                text = stringResource(R.string.home_day),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 letterSpacing = 2.sp,
@@ -268,7 +270,7 @@ private fun CycleProgressVisual(
                 lineHeight = 76.sp
             )
             Text(
-                text = "OF $cycleLength",
+                text = stringResource(R.string.home_of, cycleLength),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f),
                 fontWeight = FontWeight.Medium
@@ -347,13 +349,13 @@ private fun TodayGuideSection(
         ) {
             Column {
                 Text(
-                    text = "Today's Guide",
+                    text = stringResource(R.string.home_todays_guide),
                     style = MaterialTheme.typography.headlineSmall,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Text(
-                    text = "Personalized for your phase",
+                    text = stringResource(R.string.home_personalized_phase),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -368,7 +370,7 @@ private fun TodayGuideSection(
                 shape = RoundedCornerShape(16.dp)
             ) {
                 Text(
-                    text = "View All",
+                    text = stringResource(R.string.home_view_all),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold
                 )
@@ -392,7 +394,7 @@ private fun TodayGuideSection(
                         color = phaseColor.copy(alpha = 0.3f),
                     ) {}
                     Text(
-                        text = "Phase Insight",
+                        text = stringResource(R.string.home_phase_insight),
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.7f),
@@ -416,7 +418,7 @@ private fun TodayGuideSection(
             CompactGuideCard(
                 modifier = Modifier.weight(1f),
                 emoji = "🍲",
-                title = "Nutrition",
+                title = stringResource(R.string.home_nutrition),
                 items = guideContent.nutritionTips.take(2),
                 accentColor = phaseColor
             )
@@ -424,7 +426,7 @@ private fun TodayGuideSection(
             CompactGuideCard(
                 modifier = Modifier.weight(1f),
                 emoji = "🏃",
-                title = "Movement",
+                title = stringResource(R.string.home_movement),
                 items = guideContent.movementTips.take(2),
                 accentColor = phaseColor
             )
@@ -460,13 +462,13 @@ private fun TodayGuideSection(
                     )
                     Column {
                         Text(
-                            text = "Quick Do's & Don'ts",
+                            text = stringResource(R.string.home_quick_dos_donts),
                             style = MaterialTheme.typography.titleMedium,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Essential reminders for today",
+                            text = stringResource(R.string.home_essential_reminders),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -583,7 +585,7 @@ private fun TodayGuideSection(
                         }
                     }
                     Text(
-                        text = "Gentle Reminders",
+                        text = stringResource(R.string.home_gentle_reminders),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
@@ -747,154 +749,155 @@ private data class GuidePreviewContent(
     val tips: List<String>
 )
 
+@Composable
 private fun getGuideContentForPhase(phaseName: String, isAthlete: Boolean = false): GuidePreviewContent {
     return when {
         phaseName.contains("Menstrual", ignoreCase = true) -> GuidePreviewContent(
-            phaseInsight = "Your body is shedding and renewing. This phase asks for rest and gentle nourishment. Listen to what feels right for you today.",
+            phaseInsight = stringResource(R.string.menstrual_insight),
             nutritionTips = listOf(
-                "Warm dal-chawal, khichdi with ghee",
-                "Iron-rich: palak paneer, beetroot, dates",
-                "Ginger-jaggery chai or jeera water",
-                "Sesame (til) ladoo for warmth"
+                stringResource(R.string.menstrual_nutrition_1),
+                stringResource(R.string.menstrual_nutrition_2),
+                stringResource(R.string.menstrual_nutrition_3),
+                stringResource(R.string.menstrual_nutrition_4)
             ),
             movementTips = if (isAthlete) listOf(
-                "Light stretching or mobility drills only",
-                "This is your recovery phase",
-                "Muscles repair best when you rest",
-                "Return gradually in 2-3 days"
+                stringResource(R.string.menstrual_movement_athlete_1),
+                stringResource(R.string.menstrual_movement_athlete_2),
+                stringResource(R.string.menstrual_movement_athlete_3),
+                stringResource(R.string.menstrual_movement_athlete_4)
             ) else listOf(
-                "Gentle 10-15 minute walks only",
-                "Supta Baddha Konasana eases cramps",
-                "Complete rest is perfectly fine",
-                "Move only if body says yes"
+                stringResource(R.string.menstrual_movement_regular_1),
+                stringResource(R.string.menstrual_movement_regular_2),
+                stringResource(R.string.menstrual_movement_regular_3),
+                stringResource(R.string.menstrual_movement_regular_4)
             ),
             dos = listOf(
-                "Keep heating pad handy",
-                "Rest when tired"
+                stringResource(R.string.menstrual_do_1),
+                stringResource(R.string.menstrual_do_2)
             ),
             donts = listOf(
-                "Force through pain",
-                "Skip meals"
+                stringResource(R.string.menstrual_dont_1),
+                stringResource(R.string.menstrual_dont_2)
             ),
             tips = if (isAthlete) listOf(
-                "Recovery today = stronger performance ahead",
-                "Overtraining now increases injury risk",
-                "Low energy is biological, not laziness"
+                stringResource(R.string.menstrual_tip_athlete_1),
+                stringResource(R.string.menstrual_tip_athlete_2),
+                stringResource(R.string.menstrual_tip_athlete_3)
             ) else listOf(
-                "Warm oil massage on lower belly helps",
-                "Low energy is biological, not laziness",
-                "This phase lasts 3-5 days typically"
+                stringResource(R.string.menstrual_tip_regular_1),
+                stringResource(R.string.menstrual_tip_regular_2),
+                stringResource(R.string.menstrual_tip_regular_3)
             )
         )
         phaseName.contains("Follicular", ignoreCase = true) -> GuidePreviewContent(
-            phaseInsight = "Energy and motivation are rising naturally. Your body is building up strength. Great time for starting new habits or projects.",
+            phaseInsight = stringResource(R.string.follicular_insight),
             nutritionTips = listOf(
-                "Moong dal chilla, paneer bhurji",
-                "Fresh methi, palak, bhindi sabzi",
-                "Probiotic: curd, buttermilk, dosa",
-                "Sprouts salad with chat masala"
+                stringResource(R.string.follicular_nutrition_1),
+                stringResource(R.string.follicular_nutrition_2),
+                stringResource(R.string.follicular_nutrition_3),
+                stringResource(R.string.follicular_nutrition_4)
             ),
             movementTips = if (isAthlete) listOf(
-                "Great for skill-building & technique",
-                "Strength training feels easier",
-                "High energy for speed work, drills",
-                "Recovery is faster - make the most of it"
+                stringResource(R.string.follicular_movement_athlete_1),
+                stringResource(R.string.follicular_movement_athlete_2),
+                stringResource(R.string.follicular_movement_athlete_3),
+                stringResource(R.string.follicular_movement_athlete_4)
             ) else listOf(
-                "Try new yoga or dance class",
-                "Brisk 30-40 minute walks, cycling",
-                "Strength training feels manageable",
-                "Energy is high - enjoy movement"
+                stringResource(R.string.follicular_movement_regular_1),
+                stringResource(R.string.follicular_movement_regular_2),
+                stringResource(R.string.follicular_movement_regular_3),
+                stringResource(R.string.follicular_movement_regular_4)
             ),
             dos = listOf(
-                "Start postponed projects",
-                "Schedule important tasks"
+                stringResource(R.string.follicular_do_1),
+                stringResource(R.string.follicular_do_2)
             ),
             donts = listOf(
-                "Overcommit capabilities",
-                "Sacrifice sleep"
+                stringResource(R.string.follicular_dont_1),
+                stringResource(R.string.follicular_dont_2)
             ),
             tips = if (isAthlete) listOf(
-                "Best phase for strength gains",
-                "Body adapts well to training stimulus",
-                "Use strategically for hard blocks"
+                stringResource(R.string.follicular_tip_athlete_1),
+                stringResource(R.string.follicular_tip_athlete_2),
+                stringResource(R.string.follicular_tip_athlete_3)
             ) else listOf(
-                "Prime time for tackling challenges",
-                "Creativity peaks during this phase",
-                "Skin may look clearer naturally"
+                stringResource(R.string.follicular_tip_regular_1),
+                stringResource(R.string.follicular_tip_regular_2),
+                stringResource(R.string.follicular_tip_regular_3)
             )
         )
         phaseName.contains("Ovulation", ignoreCase = true) -> GuidePreviewContent(
-            phaseInsight = "You're at your peak. Energy, confidence and physical strength are highest. Social connections feel easier. Make the most of this vibrant window.",
+            phaseInsight = stringResource(R.string.ovulation_insight),
             nutritionTips = listOf(
-                "Light salads with sprouted moong",
-                "Pomegranate, berries, green leafy",
-                "Coconut water, cucumber raita",
-                "Quinoa pulao, multi-grain roti"
+                stringResource(R.string.ovulation_nutrition_1),
+                stringResource(R.string.ovulation_nutrition_2),
+                stringResource(R.string.ovulation_nutrition_3),
+                stringResource(R.string.ovulation_nutrition_4)
             ),
             movementTips = if (isAthlete) listOf(
-                "Peak performance window for PRs",
-                "High-intensity, power work feel great",
-                "Coordination is optimal",
-                "⚠️ Warm up thoroughly - injury risk up"
+                stringResource(R.string.ovulation_movement_athlete_1),
+                stringResource(R.string.ovulation_movement_athlete_2),
+                stringResource(R.string.ovulation_movement_athlete_3),
+                stringResource(R.string.ovulation_movement_athlete_4)
             ) else listOf(
-                "HIIT, challenging sessions feel great",
-                "Group: Zumba, aerobics, team sports",
-                "Advanced yoga, challenging hikes",
-                "Warm up properly - prevent injuries"
+                stringResource(R.string.ovulation_movement_regular_1),
+                stringResource(R.string.ovulation_movement_regular_2),
+                stringResource(R.string.ovulation_movement_regular_3),
+                stringResource(R.string.ovulation_movement_regular_4)
             ),
             dos = listOf(
-                "Have important conversations",
-                "Take on challenges"
+                stringResource(R.string.ovulation_do_1),
+                stringResource(R.string.ovulation_do_2)
             ),
             donts = listOf(
-                "Skip warm-ups (injury risk)",
-                "Overextend socially"
+                stringResource(R.string.ovulation_dont_1),
+                stringResource(R.string.ovulation_dont_2)
             ),
             tips = if (isAthlete) listOf(
-                "Best for competitions/testing PRs",
-                "Ligaments more lax - warm up well",
-                "Many injuries happen now"
+                stringResource(R.string.ovulation_tip_athlete_1),
+                stringResource(R.string.ovulation_tip_athlete_2),
+                stringResource(R.string.ovulation_tip_athlete_3)
             ) else listOf(
-                "Communication skills peak now",
-                "Skin often glows naturally",
-                "This phase lasts only 2-3 days"
+                stringResource(R.string.ovulation_tip_regular_1),
+                stringResource(R.string.ovulation_tip_regular_2),
+                stringResource(R.string.ovulation_tip_regular_3)
             )
         )
         else -> GuidePreviewContent(
-            phaseInsight = "Energy may feel lower than before. Your body is preparing for menstruation. Gentle routines, comforting food and self-compassion help you navigate this phase.",
+            phaseInsight = stringResource(R.string.luteal_insight),
             nutritionTips = listOf(
-                "Dal-roti, rajma-chawal, khichdi",
-                "Sweet potato, oats for serotonin",
-                "Almonds, dark chocolate (70%+)",
-                "Jeera water, fennel tea for bloating"
+                stringResource(R.string.luteal_nutrition_1),
+                stringResource(R.string.luteal_nutrition_2),
+                stringResource(R.string.luteal_nutrition_3),
+                stringResource(R.string.luteal_nutrition_4)
             ),
             movementTips = if (isAthlete) listOf(
-                "Shift to moderate intensity work",
-                "Endurance training, steady cardio",
-                "Avoid pushing for PRs",
-                "Recovery takes longer - reduce 20-30%"
+                stringResource(R.string.luteal_movement_athlete_1),
+                stringResource(R.string.luteal_movement_athlete_2),
+                stringResource(R.string.luteal_movement_athlete_3),
+                stringResource(R.string.luteal_movement_athlete_4)
             ) else listOf(
-                "Gentle 20-30 min walks in nature",
-                "Slow flowing yoga or pilates",
-                "Light cycling, swimming at own pace",
-                "Rest if energy is very low"
+                stringResource(R.string.luteal_movement_regular_1),
+                stringResource(R.string.luteal_movement_regular_2),
+                stringResource(R.string.luteal_movement_regular_3),
+                stringResource(R.string.luteal_movement_regular_4)
             ),
             dos = listOf(
-                "Schedule lighter days",
-                "Prioritize 7-8 hours sleep"
+                stringResource(R.string.luteal_do_1),
+                stringResource(R.string.luteal_do_2)
             ),
             donts = listOf(
-                "Force high productivity",
-                "Blame yourself for PMS"
+                stringResource(R.string.luteal_dont_1),
+                stringResource(R.string.luteal_dont_2)
             ),
             tips = if (isAthlete) listOf(
-                "This isn't weakness - it's smart periodization",
-                "Progesterone increases body temp & fatigue",
-                "Recovery longer - plan accordingly"
+                stringResource(R.string.luteal_tip_athlete_1),
+                stringResource(R.string.luteal_tip_athlete_2),
+                stringResource(R.string.luteal_tip_athlete_3)
             ) else listOf(
-                "Warm Epsom salt baths ease tension",
-                "Lower energy is hormonal, not a flaw",
-                "Cravings peak 3-5 days before period"
+                stringResource(R.string.luteal_tip_regular_1),
+                stringResource(R.string.luteal_tip_regular_2),
+                stringResource(R.string.luteal_tip_regular_3)
             )
         )
     }
@@ -928,7 +931,7 @@ private fun ErrorState(
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "oops",
+            text = stringResource(R.string.home_error_oops),
             style = MaterialTheme.typography.displaySmall,
             color = MaterialTheme.colorScheme.error.copy(alpha = 0.6f),
             fontWeight = FontWeight.Bold
@@ -953,7 +956,7 @@ private fun ErrorState(
             )
         ) {
             Text(
-                "Try Again",
+                stringResource(R.string.home_try_again),
                 fontWeight = FontWeight.SemiBold
             )
         }

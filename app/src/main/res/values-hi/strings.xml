@@ -1,0 +1,438 @@
+<resources>
+    <string name="app_name">syncd</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_app_name">Sync\'d</string>
+    <string name="welcome_tagline">आपका चक्र, समझा गया।</string>
+    <string name="welcome_headline">अपने चक्र को समझें।\nनियंत्रण महसूस करें।</string>
+    <string name="welcome_description">Sync\'d आपको यह समझने में मदद करता है कि महीने भर में आपके शरीर में कैसे बदलाव होते हैं और हर दिन आपका कोमलता से मार्गदर्शन करता है।</string>
+    <string name="welcome_button_get_started">शुरू करें</string>
+    <string name="welcome_time_estimate">केवल कुछ मिनट लगते हैं</string>
+    
+    <!-- Language Selector -->
+    <string name="language_selector_title">भाषा चुनें</string>
+    <string name="language_selector_cancel">रद्द करें</string>
+    <string name="welcome_select_language">भाषा चुनें</string>
+    
+    <!-- Login Screen -->
+    <string name="login_title">आपका नंबर क्या है?</string>
+    <string name="login_subtitle">हम आपकी पहचान सत्यापित करने के लिए आपको एक कोड भेजेंगे।</string>
+    <string name="login_phone_placeholder">फ़ोन नंबर</string>
+    <string name="login_send_code">कोड भेजें</string>
+    <string name="login_back">वापस</string>
+    
+    <!-- OTP Screen -->
+    <string name="otp_title">कोड दर्ज करें</string>
+    <string name="otp_sent_to">%s को भेजा गया</string>
+    <string name="otp_resend">नहीं मिला? कोड फिर से भेजें</string>
+    <string name="otp_verify">सत्यापित करें</string>
+    
+    <!-- Onboarding Screen -->
+    <string name="onboarding_step_indicator">चरण %1$d में से %2$d</string>
+    <string name="onboarding_progress_percent">%d%%</string>
+    <string name="onboarding_why_ask">हम यह क्यों पूछते हैं?</string>
+    <string name="onboarding_next">आगे</string>
+    <string name="onboarding_finish">समाप्त</string>
+    <string name="onboarding_back">वापस</string>
+    <string name="onboarding_info">जानकारी</string>
+    <string name="onboarding_selected">चयनित</string>
+    <string name="onboarding_custom_sport_placeholder">अपना खेल दर्ज करें</string>
+    <string name="onboarding_date_picker_select">एक तारीख चुनें</string>
+    
+    <!-- Navigation Bar -->
+    <string name="nav_home">होम</string>
+    <string name="nav_log">लॉग</string>
+    <string name="nav_guide">गाइड</string>
+    <string name="nav_insights">जानकारी</string>
+    
+    <!-- Home Screen -->
+    <string name="home_todays_insights">आज की जानकारी</string>
+    <string name="home_day">दिन</string>
+    <string name="home_of">%d में से</string>
+    <string name="home_cycle_length">चक्र की अवधि</string>
+    <string name="home_days">दिन</string>
+    <string name="home_next_period">अगली माहवारी</string>
+    <string name="home_days_left">दिन बाकी</string>
+    <string name="home_todays_guide">आज का मार्गदर्शन</string>
+    <string name="home_personalized_phase">आपके चरण के लिए व्यक्तिगत</string>
+    <string name="home_view_all">सभी देखें</string>
+    <string name="home_phase_insight">चरण अंतर्दृष्टि</string>
+    <string name="home_nutrition">पोषण</string>
+    <string name="home_movement">व्यायाम</string>
+    <string name="home_quick_dos_donts">त्वरित करें और न करें</string>
+    <string name="home_essential_reminders">आज के लिए आवश्यक अनुस्मारक</string>
+    <string name="home_gentle_reminders">कोमल अनुस्मारक</string>
+    <string name="home_error_oops">ओह</string>
+    <string name="home_error_no_data">कोई चक्र डेटा उपलब्ध नहीं</string>
+    <string name="home_error_something_wrong">कुछ गलत हो गया</string>
+    <string name="home_try_again">पुनः प्रयास करें</string>
+    
+    <!-- Today Guide Screen -->
+    <string name="guide_title">आज का मार्गदर्शन</string>
+    <string name="guide_subtitle">आज आपके चक्र के आधार पर</string>
+    <string name="guide_back">वापस</string>
+    <string name="guide_phase_day">%1$s · दिन %2$d</string>
+    <string name="guide_gentle_tips">आज के लिए कोमल सुझाव</string>
+    <string name="guide_training_note">प्रशिक्षण नोट</string>
+    <string name="guide_log_feeling">अपनी भावना लॉग करें</string>
+    <string name="guide_recommendations">%d सिफारिशें</string>
+    <string name="guide_dos_donts_title">उपयोगी करें और न करें</string>
+    <string name="guide_balance_day">अपने दिन को संतुलित करें</string>
+    <string name="guide_do_this">यह करें</string>
+    <string name="guide_avoid_this">इससे बचें</string>
+    
+    <!-- Log Screen -->
+    <string name="log_title">दैनिक लॉग</string>
+    <string name="log_subtitle">अपनी भलाई ट्रैक करें</string>
+    <string name="log_today">आज</string>
+    <string name="log_yesterday">कल</string>
+    <string name="log_back">वापस</string>
+    <string name="log_progress">लॉग प्रगति</string>
+    <string name="log_flow_title">प्रवाह</string>
+    <string name="log_flow_subtitle">आज यह कितना भारी है?</string>
+    <string name="log_pain_title">दर्द</string>
+    <string name="log_pain_subtitle">कोई शारीरिक असुविधा?</string>
+    <string name="log_energy_title">ऊर्जा</string>
+    <string name="log_energy_subtitle">आपकी ऊर्जा का स्तर कैसा है?</string>
+    <string name="log_mood_title">मनोदशा</string>
+    <string name="log_mood_subtitle">आप मानसिक रूप से कैसा महसूस कर रहे हैं?</string>
+    <string name="log_notes_title">नोट्स</string>
+    <string name="log_notes_placeholder">कुछ और जो आप याद रखना चाहें? लक्षण, दवाएं, या बस विचार।</string>
+    <string name="log_chars">%d अक्षर</string>
+    <string name="log_save">लॉग सहेजें</string>
+    <string name="log_update">लॉग अपडेट करें</string>
+    <string name="log_saved_title">लॉग सहेजा गया!</string>
+    <string name="log_saved_message">चेक इन करने के लिए धन्यवाद। हमने आपकी जानकारी अपडेट कर दी है।</string>
+    <string name="log_date_confirm">पुष्टि करें</string>
+    <string name="log_date_cancel">रद्द करें</string>
+    
+    <!-- Log Screen - Flow Levels -->
+    <string name="log_flow_light">हल्का</string>
+    <string name="log_flow_medium">मध्यम</string>
+    <string name="log_flow_heavy">भारी</string>
+    <string name="log_flow_very_heavy">बहुत भारी</string>
+    
+    <!-- Log Screen - Pain Levels -->
+    <string name="log_pain_none">कोई नहीं</string>
+    <string name="log_pain_mild">हल्का</string>
+    <string name="log_pain_moderate">मध्यम</string>
+    <string name="log_pain_severe">गंभीर</string>
+    
+    <!-- Log Screen - Energy Levels -->
+    <string name="log_energy_low">कम</string>
+    <string name="log_energy_okay">ठीक है</string>
+    <string name="log_energy_good">अच्छा</string>
+    <string name="log_energy_high">उच्च</string>
+    
+    <!-- Log Screen - Mood Levels -->
+    <string name="log_mood_low">कम</string>
+    <string name="log_mood_neutral">तटस्थ</string>
+    <string name="log_mood_good">अच्छा</string>
+    <string name="log_mood_great">बेहतरीन</string>
+    
+    <!-- Insights Screen -->
+    <string name="insights_title">जानकारी</string>
+    <string name="insights_subtitle">समय के साथ अपने चक्र को समझना</string>
+    <string name="insights_cycle_glance">आपके चक्र की एक झलक</string>
+    <string name="insights_based_on_history">आपके ट्रैकिंग इतिहास के आधार पर</string>
+    <string name="insights_avg_cycle_length">आपका चक्र आमतौर पर चलता है</string>
+    <string name="insights_avg_bleeding">रक्तस्राव रहता है</string>
+    <string name="insights_current_phase">वर्तमान चरण</string>
+    <string name="insights_patterns_title">पैटर्न जो हमने देखे</string>
+    <string name="insights_patterns_count">%d अंतर्दृष्टि</string>
+    <string name="insights_keep_tracking">अंतर्दृष्टि अनलॉक करने के लिए ट्रैकिंग जारी रखें</string>
+    <string name="insights_learning_title">हम अभी भी आपके चक्र के बारे में सीख रहे हैं</string>
+    <string name="insights_learning_message">समय के साथ अधिक पैटर्न दिखाई देंगे जैसे-जैसे हम अधिक डेटा एकत्र करते हैं।</string>
+    <string name="insights_last_cycle_reflection">पिछले चक्र का चिंतन</string>
+    <string name="insights_learn_about_cycle">अपने चक्र के बारे में जानें</string>
+    <string name="insights_swipe_articles">लेख देखने के लिए स्वाइप करें</string>
+    <string name="insights_health_notice">स्वास्थ्य सूचना</string>
+    <string name="insights_safety_alert">सुरक्षा चेतावनी</string>
+    
+    <!-- Phase Names -->
+    <string name="phase_menstrual">मासिक धर्म चरण</string>
+    <string name="phase_follicular">फॉलिक्युलर चरण</string>
+    <string name="phase_ovulation">ओव्यूलेशन चरण</string>
+    <string name="phase_luteal">ल्यूटियल चरण</string>
+    
+    <!-- Menstrual Phase Guide Content -->
+    <string name="menstrual_insight">आपका शरीर स्रावण और नवीनीकरण कर रहा है। यह चरण आराम और कोमल पोषण की मांग करता है। सुनें कि आज आपके लिए क्या सही लगता है।</string>
+    <string name="menstrual_nutrition_title">आज के लिए पोषण</string>
+    <string name="menstrual_nutrition_footer">गर्म, सरल भोजन पचाने में आसान होते हैं और इस चरण में आराम प्रदान करते हैं।</string>
+    <string name="menstrual_nutrition_1">गर्म दाल-चावल, खिचड़ी या मूंग दाल का सूप घी के साथ</string>
+    <string name="menstrual_nutrition_2">आयरन युक्त भोजन: पालक पनीर, चुकंदर की सब्जी, गर्म दूध के साथ खजूर</string>
+    <string name="menstrual_nutrition_3">गर्माहट के लिए अदरक-गुड़ की चाय या जीरा पानी</string>
+    <string name="menstrual_nutrition_4">दही चावल या हल्का इडली-सांभर अगर आप सरल भोजन पसंद करते हैं</string>
+    <string name="menstrual_nutrition_5">आयरन और गर्माहट के लिए तिल के लड्डू या चिक्की</string>
+    <string name="menstrual_nutrition_6">यदि असुविधा होती है तो भारी, तैलीय या बहुत मसालेदार भोजन से बचें</string>
+    <string name="menstrual_movement_title">आज कैसे चलें</string>
+    <string name="menstrual_movement_athlete_1">केवल हल्की स्ट्रेचिंग, चलना या गतिशीलता अभ्यास</string>
+    <string name="menstrual_movement_athlete_2">यह आपका रिकवरी चरण है - मांसपेशियां अब मरम्मत करती हैं</string>
+    <string name="menstrual_movement_athlete_3">हल्का योग या प्राणायाम ऐंठन में मदद कर सकता है</string>
+    <string name="menstrual_movement_athlete_4">उच्च-तीव्रता प्रशिक्षण छोड़ें; 2-3 दिनों में धीरे-धीरे लौटें</string>
+    <string name="menstrual_movement_athlete_5">आज रिकवरी = फॉलिक्युलर चरण में मजबूत प्रदर्शन</string>
+    <string name="menstrual_movement_regular_1">यदि ऊर्जा अनुमति देती है तो कोमल 10-15 मिनट की सैर</string>
+    <string name="menstrual_movement_regular_2">धीमी स्ट्रेचिंग या पुनर्स्थापनात्मक योग आसन</string>
+    <string name="menstrual_movement_regular_3">सुप्त बद्ध कोणासन (लेटकर तितली आसन) ऐंठन को कम करता है</string>
+    <string name="menstrual_movement_regular_4">पूर्ण आराम बिल्कुल ठीक है और आवश्यक है</string>
+    <string name="menstrual_movement_regular_5">केवल तभी चलें जब आपका शरीर हां कहे, न कि क्योंकि आपको चाहिए</string>
+    <string name="menstrual_do_1">गर्म पानी की बोतल या हीटिंग पैड तैयार रखें</string>
+    <string name="menstrual_do_2">थकान होने पर आराम करें - झपकी लेना सहायक है</string>
+    <string name="menstrual_do_3">ढीले, आरामदायक सूती कपड़े पहनें</string>
+    <string name="menstrual_do_4">दिन भर गर्म तरल पदार्थ पिएं</string>
+    <string name="menstrual_do_5">निचले पेट और पीठ पर गर्म तेल से हल्की आत्म-मालिश करें</string>
+    <string name="menstrual_dont_1">गंभीर दर्द के माध्यम से धक्का देने के लिए खुद को मजबूर न करें</string>
+    <string name="menstrual_dont_2">यह सोचकर भोजन न छोड़ें कि आप बेहतर महसूस करेंगे - रक्त शर्करा गिरने से मूड खराब होता है</string>
+    <string name="menstrual_dont_3">अपने कैलेंडर को लगातार प्रतिबद्धताओं से अधिक भार न डालें</string>
+    <string name="menstrual_dont_4">अपने प्रवाह या दर्द की दूसरों से तुलना न करें - हर शरीर अलग है</string>
+    <string name="menstrual_dont_5">आराम या धीमा होने की आवश्यकता के लिए दोषी महसूस न करें</string>
+    <string name="menstrual_tip_regular_1">लैवेंडर तेल की कुछ बूंदों के साथ गर्म स्नान या बाथ मांसपेशियों को शांत करता है</string>
+    <string name="menstrual_tip_regular_2">यह चरण आमतौर पर 3-5 दिन रहता है - तदनुसार खुद को गति दें</string>
+    <string name="menstrual_tip_regular_3">मासिक धर्म के दौरान कम ऊर्जा जैविक है, आलस्य नहीं</string>
+    <string name="menstrual_tip_regular_4">यदि दर्द बहुत गंभीर या असामान्य है, तो स्त्री रोग विशेषज्ञ से परामर्श करें</string>
+    <string name="menstrual_tip_regular_5">सैनिटरी उत्पादों, दर्द निवारण और स्नैक्स को काम/घर पर सुलभ रखें</string>
+    <string name="menstrual_tip_athlete_1">आज रिकवरी = फॉलिक्युलर चरण में मजबूत प्रदर्शन</string>
+    <string name="menstrual_tip_athlete_2">अब अधिक प्रशिक्षण चोट के जोखिम को बढ़ाता है और रिकवरी में देरी करता है</string>
+    <string name="menstrual_tip_athlete_3">मासिक धर्म के दौरान कम ऊर्जा जैविक है, आलस्य नहीं</string>
+    <string name="menstrual_athlete_note">यह आपका सक्रिय आराम चरण है। नींद, पोषण और हल्की गति को प्राथमिकता दें। अब अधिक प्रशिक्षण चोट के जोखिम को बढ़ाता है और रिकवरी में देरी करता है। आप फॉलिक्युलर चरण में शक्ति वापसी महसूस करेंगे।</string>
+    
+    <!-- Follicular Phase Guide Content -->
+    <string name="follicular_insight">ऊर्जा और प्रेरणा स्वाभाविक रूप से बढ़ रही है। आपका शरीर शक्ति का निर्माण कर रहा है। नई आदतें या परियोजनाएं शुरू करने का शानदार समय।</string>
+    <string name="follicular_nutrition_title">आज के लिए पोषण</string>
+    <string name="follicular_nutrition_footer">आपका चयापचय अब सक्रिय है - पोषक तत्वों से भरपूर, हल्का भोजन सबसे अच्छा काम करता है।</string>
+    <string name="follicular_nutrition_1">प्रोटीन युक्त: मूंग दाल चीला, पनीर भुर्जी, रोटी के साथ अंडे की भुर्जी</string>
+    <string name="follicular_nutrition_2">ताजी सब्जियां: पालक, मेथी, भिंडी, या मिली-जुली सब्जी</string>
+    <string name="follicular_nutrition_3">प्रोबायोटिक खाद्य पदार्थ: दही, छाछ, किण्वित डोसा/इडली बैटर</string>
+    <string name="follicular_nutrition_4">नींबू और चाट मसाला के साथ अंकुरित सलाद</string>
+    <string name="follicular_nutrition_5">हल्के अनाज: रागी, ज्वार रोटी, ब्राउन राइस उपमा</string>
+    <string name="follicular_nutrition_6">ताजे मौसमी फल: पपीता, अमरूद, संतरा, अनार</string>
+    <string name="follicular_movement_title">आज कैसे चलें</string>
+    <string name="follicular_movement_athlete_1">कौशल-निर्माण और तकनीक कार्य के लिए शानदार समय</string>
+    <string name="follicular_movement_athlete_2">शक्ति प्रशिक्षण आसान लगता है - प्रगतिशील अधिभार अच्छा काम करता है</string>
+    <string name="follicular_movement_athlete_3">अभ्यास, गति कार्य या नई गतिविधियां सीखने के लिए उच्च ऊर्जा</string>
+    <string name="follicular_movement_athlete_4">इस चरण में रिकवरी तेज है - इसका अधिकतम उपयोग करें</string>
+    <string name="follicular_movement_athlete_5">अधिक प्रशिक्षण से बचने के लिए तीव्रता को आराम के दिनों के साथ संतुलित करें</string>
+    <string name="follicular_movement_regular_1">उस नए योग वर्ग या नृत्य कसरत को आजमाएं जिसके बारे में आप उत्सुक थे</string>
+    <string name="follicular_movement_regular_2">तेज 30-40 मिनट की सैर, साइकिलिंग या तैराकी</string>
+    <string name="follicular_movement_regular_3">शक्ति प्रशिक्षण या शारीरिक व्यायाम प्रबंधनीय महसूस होते हैं</string>
+    <string name="follicular_movement_regular_4">समूह फिटनेस या दोस्तों के साथ खेल खेलना</string>
+    <string name="follicular_movement_regular_5">ऊर्जा उच्च है - ऐसी गति का आनंद लें जो मजेदार लगे, मजबूर नहीं</string>
+    <string name="follicular_do_1">उस परियोजना या आदत को शुरू करें जिसे आप स्थगित कर रहे थे</string>
+    <string name="follicular_do_2">इस विंडो में महत्वपूर्ण बैठकें या कार्य शेड्यूल करें</string>
+    <string name="follicular_do_3">मानसिक स्पष्टता उच्च होने पर अपने सप्ताह की योजना बनाएं</string>
+    <string name="follicular_do_4">सामाजिक बनें, नेटवर्किंग करें या दोस्तों से फिर से जुड़ें</string>
+    <string name="follicular_do_5">सीखने या काम के लिए उच्च फोकस का लाभ उठाएं</string>
+    <string name="follicular_dont_1">सिर्फ इसलिए अधिक प्रतिबद्ध न हों क्योंकि आप अभी सक्षम महसूस करते हैं</string>
+    <string name="follicular_dont_2">अतिरिक्त गतिविधियों में पैक करने के लिए नींद का त्याग न करें</string>
+    <string name="follicular_dont_3">भूख के संकेतों को अनदेखा न करें - अपने सक्रिय शरीर को ठीक से ईंधन दें</string>
+    <string name="follicular_dont_4">यह न भूलें कि यह उच्च-ऊर्जा चरण पूरे महीने नहीं रहेगा</string>
+    <string name="follicular_dont_5">अपनी तुलना उन लोगों से न करें जो कम ऊर्जावान लगते हैं</string>
+    <string name="follicular_tip_regular_1">यह काम या अध्ययन में चुनौतीपूर्ण कार्यों से निपटने का प्रमुख समय है</string>
+    <string name="follicular_tip_regular_2">रचनात्मकता और समस्या-समाधान अक्सर फॉलिक्युलर चरण के दौरान चरम पर होते हैं</string>
+    <string name="follicular_tip_regular_3">आगामी महीने के लक्ष्य निर्धारित करने के लिए अच्छा चरण</string>
+    <string name="follicular_tip_regular_4">त्वचा स्वाभाविक रूप से साफ और उज्ज्वल दिख सकती है</string>
+    <string name="follicular_tip_regular_5">यदि सामाजिक कार्यक्रमों की योजना बना रहे हैं, तो यह आपकी आदर्श विंडो है</string>
+    <string name="follicular_tip_athlete_1">आपका शरीर अब प्रशिक्षण उत्तेजना के लिए सर्वोत्तम प्रतिक्रिया देता है - शक्ति लाभ के लिए आदर्श</string>
+    <string name="follicular_tip_athlete_2">सहनशक्ति निर्माण और कौशल अधिग्रहण असाधारण रूप से अच्छा काम करता है</string>
+    <string name="follicular_tip_athlete_3">अपने सबसे कठिन प्रशिक्षण ब्लॉकों के लिए इस चरण का रणनीतिक रूप से उपयोग करें</string>
+    <string name="follicular_athlete_note">आपका शरीर अब प्रशिक्षण उत्तेजना के लिए असाधारण रूप से अच्छी प्रतिक्रिया देता है। शक्ति लाभ, सहनशक्ति निर्माण और कौशल अधिग्रहण इस चरण में सबसे अच्छा काम करते हैं। अपने सबसे कठिन प्रशिक्षण ब्लॉकों के लिए इसका रणनीतिक रूप से उपयोग करें।</string>
+    
+    <!-- Ovulation Phase Guide Content -->
+    <string name="ovulation_insight">आप अपने चरम पर हैं। ऊर्जा, आत्मविश्वास और शारीरिक शक्ति सर्वोच्च हैं। सामाजिक संबंध आसान लगते हैं। इस जीवंत विंडो का अधिकतम लाभ उठाएं।</string>
+    <string name="ovulation_nutrition_title">आज के लिए पोषण</string>
+    <string name="ovulation_nutrition_footer">चयापचय अपने सबसे कुशल पर है - हल्का, पोषक तत्वों से भरपूर भोजन सबसे अच्छा काम करता है।</string>
+    <string name="ovulation_nutrition_1">हल्के, ताजा भोजन: अंकुरित मूंग, छोले, पनीर के साथ सलाद</string>
+    <string name="ovulation_nutrition_2">एंटीऑक्सीडेंट युक्त: बेरी, अनार, हरी पत्तेदार सब्जियां</string>
+    <string name="ovulation_nutrition_3">शीतल खाद्य पदार्थ: खीरे का रायता, नारियल पानी, ताजा फलों का रस</string>
+    <string name="ovulation_nutrition_4">साबुत अनाज: क्विनोआ पुलाव, ब्राउन राइस, मल्टी-ग्रेन रोटी</string>
+    <string name="ovulation_nutrition_5">लीन प्रोटीन: ग्रिल्ड पनीर, दाल, अंडे की सफेदी, मछली (यदि मांसाहारी)</string>
+    <string name="ovulation_nutrition_6">बहुत भारी या गहरी तली हुई चीजों से बचें - इसे हल्का और ताजा रखें</string>
+    <string name="ovulation_movement_title">आज कैसे चलें</string>
+    <string name="ovulation_movement_athlete_1">चरम प्रदर्शन विंडो - प्रतियोगिताओं या PRs परीक्षण के लिए बढ़िया</string>
+    <string name="ovulation_movement_athlete_2">उच्च-तीव्रता प्रशिक्षण, प्लायोमेट्रिक्स या शक्ति कार्य प्राप्त करने योग्य लगता है</string>
+    <string name="ovulation_movement_athlete_3">समन्वय और प्रतिक्रिया समय इष्टतम हैं</string>
+    <string name="ovulation_movement_athlete_4">महत्वपूर्ण: लिगामेंट्स अधिक ढीले हैं - चोटों को रोकने के लिए अच्छी तरह से वार्म अप करें</string>
+    <string name="ovulation_movement_athlete_5">यदि प्रतिस्पर्धा कर रहे हैं, तो इस चरण में रणनीतिक रूप से घटनाओं का समय दें</string>
+    <string name="ovulation_movement_regular_1">उच्च-तीव्रता वर्कआउट, HIIT या चुनौतीपूर्ण सत्र बढ़िया लगते हैं</string>
+    <string name="ovulation_movement_regular_2">समूह कक्षाएं: जुम्बा, एरोबिक्स, किकबॉक्सिंग या टीम खेल</string>
+    <string name="ovulation_movement_regular_3">उच्च तीव्रता पर दौड़ना, साइकिल चलाना या तैरना</string>
+    <string name="ovulation_movement_regular_4">उस उन्नत योग वर्ग या चुनौतीपूर्ण पदयात्रा को आजमाएं</string>
+    <string name="ovulation_movement_regular_5">ठीक से वार्म अप करें - लचीलापन उच्च है लेकिन संयुक्त स्थिरता को देखभाल की आवश्यकता है</string>
+    <string name="ovulation_do_1">महत्वपूर्ण बातचीत या कठिन चर्चा करें</string>
+    <string name="ovulation_do_2">सामाजिक कार्यक्रमों में शामिल हों, नेटवर्क करें या विचार प्रस्तुत करें</string>
+    <string name="ovulation_do_3">चुनौतीपूर्ण परियोजनाओं या समय सीमा को संभालें</string>
+    <string name="ovulation_do_4">आत्मविश्वास और स्पष्टता की आवश्यकता वाले निर्णय लें</string>
+    <string name="ovulation_do_5">नौकरी के साक्षात्कार, प्रस्तुतियां या सार्वजनिक बोलने को शेड्यूल करें</string>
+    <string name="ovulation_dont_1">तीव्र व्यायाम से पहले वार्म-अप न छोड़ें - चोट का खतरा अधिक है</string>
+    <string name="ovulation_dont_2">सामाजिक या पेशेवर रूप से अधिक विस्तार न करें - बर्नआउट बाद में आता है</string>
+    <string name="ovulation_dont_3">गतिविधि के दौरान जलयोजन और इलेक्ट्रोलाइट आवश्यकताओं को अनदेखा न करें</string>
+    <string name="ovulation_dont_4">यह न मानें कि यह चरम पूरे महीने रहेगा - आगे कम ऊर्जा के लिए योजना बनाएं</string>
+    <string name="ovulation_dont_5">संयुक्त दर्द के माध्यम से धक्का न दें - लिगामेंट शिथिलता चोटों को आसान बनाती है</string>
+    <string name="ovulation_tip_regular_1">ओव्यूलेशन के दौरान संचार कौशल, आकर्षण और अनुनय चरम पर होते हैं</string>
+    <string name="ovulation_tip_regular_2">आपकी आवाज़ स्वाभाविक रूप से अधिक आत्मविश्वासी और आकर्षक लग सकती है</string>
+    <string name="ovulation_tip_regular_3">त्वचा अक्सर चमकती है और अपने सर्वश्रेष्ठ दिखती है</string>
+    <string name="ovulation_tip_regular_4">यह चरण केवल 2-3 दिन रहता है - इसके आसपास अपने महीने की योजना बनाएं</string>
+    <string name="ovulation_tip_regular_5">यदि गर्भधारण करने की कोशिश कर रहे हैं, तो इस विंडो में प्रजनन क्षमता सर्वोच्च है</string>
+    <string name="ovulation_tip_regular_6">प्राकृतिक आत्मविश्वास बढ़ावा का आनंद लें लेकिन जमीन से जुड़े रहें</string>
+    <string name="ovulation_tip_athlete_1">चरम प्रदर्शन विंडो - प्रतियोगिताओं या PRs परीक्षण के लिए सर्वोत्तम</string>
+    <string name="ovulation_tip_athlete_2">लिगामेंट्स अधिक ढीले हैं - ACL चोटों को रोकने के लिए अच्छी तरह से वार्म अप करें</string>
+    <string name="ovulation_tip_athlete_3">कई महिला एथलीट ओव्यूलेशन के दौरान चोटों की रिपोर्ट करती हैं - सावधानी बरतें</string>
+    <string name="ovulation_athlete_note">चरम शक्ति, शक्ति और समन्वय। प्रतियोगिताओं, PRs या उच्च-दांव प्रदर्शन के लिए सर्वोत्तम चरण। लेकिन: एस्ट्रोजन के कारण लिगामेंट्स अधिक आराम से हैं - ACL या संयुक्त चोटों को रोकने के लिए सावधानीपूर्वक वार्म अप करें और झटकेदार गतिविधियों से बचें। कई महिला एथलीट इसके कारण ओव्यूलेशन के दौरान चोटों की रिपोर्ट करती हैं।</string>
+    
+    <!-- Luteal Phase Guide Content -->
+    <string name="luteal_insight">ऊर्जा पहले से कम महसूस हो सकती है। आपका शरीर मासिक धर्म या गर्भावस्था के लिए तैयारी कर रहा है। कोमल दिनचर्या, आरामदायक भोजन और आत्म-करुणा आपको इस चरण को नेविगेट करने में मदद करती है।</string>
+    <string name="luteal_nutrition_title">आज के लिए पोषण</string>
+    <string name="luteal_nutrition_footer">मिठाई या कार्ब्स की लालसा सामान्य है - खजूर, गुड़ या साबुत अनाज जैसे स्वास्थ्यकर संस्करण चुनें।</string>
+    <string name="luteal_nutrition_1">गर्म, ग्राउंडिंग भोजन: दाल-रोटी, घी के साथ खिचड़ी, राजमा-चावल</string>
+    <string name="luteal_nutrition_2">सेरोटोनिन के लिए जटिल कार्ब्स: शकरकंद, ओट्स, गेहूं का आटा</string>
+    <string name="luteal_nutrition_3">मैग्नीशियम युक्त: बादाम, काजू, कद्दू के बीज, डार्क चॉकलेट (70%+)</string>
+    <string name="luteal_nutrition_4">सूजन कम करें: जीरा पानी, अजवाइन, सौंफ की चाय, अदरक की चाय</string>
+    <string name="luteal_nutrition_5">स्वस्थ वसा: घी, नारियल की चटनी, तिल, एवोकाडो</string>
+    <string name="luteal_nutrition_6">यदि PMS लक्षण मजबूत हैं तो नमक, कैफीन और परिष्कृत चीनी पर आसानी करें</string>
+    <string name="luteal_movement_title">आज कैसे चलें</string>
+    <string name="luteal_movement_athlete_1">मध्यम तीव्रता, लंबी अवधि के कार्य पर ध्यान केंद्रित करें</string>
+    <string name="luteal_movement_athlete_2">सहनशक्ति प्रशिक्षण, स्थिर-स्थिति कार्डियो, तकनीक अभ्यास</string>
+    <string name="luteal_movement_athlete_3">PRs के लिए धक्का देने से बचें - थकान के साथ चोट का खतरा बढ़ता है</string>
+    <string name="luteal_movement_athlete_4">अपने शरीर को सुनें: कम ऊर्जा के दिनों में समायोजित मात्रा की आवश्यकता होती है</string>
+    <string name="luteal_movement_athlete_5">रिकवरी सत्र: योग, स्ट्रेचिंग, तैराकी, हल्की साइकिलिंग</string>
+    <string name="luteal_movement_regular_1">कोमल 20-30 मिनट की सैर, अधिमानतः प्रकृति या पार्कों में</string>
+    <string name="luteal_movement_regular_2">धीमी, बहती योग या पिलेट्स</string>
+    <string name="luteal_movement_regular_3">अपनी गति पर हल्की साइकिलिंग, तैराकी या नृत्य</string>
+    <string name="luteal_movement_regular_4">उच्च-तीव्रता या प्रतिस्पर्धी वर्कआउट से बचें</string>
+    <string name="luteal_movement_regular_5">यदि ऊर्जा बहुत कम है तो पूरी तरह से आराम करें - यह पूरी तरह से ठीक है</string>
+    <string name="luteal_do_1">हल्के दिनों को शेड्यूल करें और लगातार प्रतिबद्धताओं से बचें</string>
+    <string name="luteal_do_2">7-8 घंटे की नींद को प्राथमिकता दें - यह मूड और ऊर्जा में मदद करती है</string>
+    <string name="luteal_do_3">आराम आइटम तैयार रखें: हीटिंग पैड, ढीले कपड़े, स्नैक्स</string>
+    <string name="luteal_do_4">यदि मूड गिरता है या चिड़चिड़ापन बढ़ता है तो आत्म-करुणा का अभ्यास करें</string>
+    <string name="luteal_do_5">आगामी पीरियड की योजना बनाएं: आपूर्ति स्टॉक करें, आसान भोजन तैयार करें</string>
+    <string name="luteal_dont_1">फॉलिक्युलर-चरण उत्पादकता बनाए रखने के लिए खुद को मजबूर न करें</string>
+    <string name="luteal_dont_2">सूजन को कम करने की उम्मीद में भोजन न छोड़ें - यह लक्षणों को बदतर बनाता है</string>
+    <string name="luteal_dont_3">अधिक-शेड्यूल न करें या तीव्र सामाजिक दायित्वों के लिए प्रतिबद्ध न हों</string>
+    <string name="luteal_dont_4">कम ऊर्जा, मूड स्विंग या लालसा के लिए खुद को दोष न दें</string>
+    <string name="luteal_dont_5">गंभीर PMS लक्षणों को अनदेखा न करें - यदि यह दुर्बल है तो डॉक्टर से बात करें</string>
+    <string name="luteal_tip_regular_1">एप्सम सॉल्ट के साथ गर्म स्नान मांसपेशियों के तनाव और सूजन को कम करता है</string>
+    <string name="luteal_tip_regular_2">जर्नलिंग या हल्का रचनात्मक कार्य भावनाओं को संसाधित करने में मदद कर सकता है</string>
+    <string name="luteal_tip_regular_3">कम ऊर्जा और आंतरिक फोकस जैविक हैं - व्यक्तिगत दोष नहीं</string>
+    <string name="luteal_tip_regular_4">यह चरण आमतौर पर मासिक धर्म से पहले 10-14 दिन रहता है</string>
+    <string name="luteal_tip_regular_5">लालसा पीरियड से 3-5 दिन पहले चरम पर होती है - पहले से पोषक स्नैक्स तैयार करें</string>
+    <string name="luteal_tip_regular_6">यदि PMS गंभीर है, तो अपने डॉक्टर के साथ चर्चा करने के लिए लक्षणों को ट्रैक करने पर विचार करें</string>
+    <string name="luteal_tip_athlete_1">सहनशक्ति और तकनीक पर ध्यान केंद्रित करें - रिकवरी 20-30% अधिक समय लेती है</string>
+    <string name="luteal_tip_athlete_2">प्रोजेस्टेरोन शरीर के तापमान और थकान को बढ़ाता है</string>
+    <string name="luteal_tip_athlete_3">यह कमजोरी नहीं है; यह दीर्घकालिक प्रदर्शन के लिए स्मार्ट पीरियडाइजेशन है</string>
+    <string name="luteal_athlete_note">प्रशिक्षण फोकस को शक्ति या शक्ति के बजाय सहनशक्ति और तकनीक में स्थानांतरित करें। प्रोजेस्टेरोन प्रभुत्व शरीर के तापमान और थकान को बढ़ाता है। रिकवरी अधिक समय लेती है - देर से ल्यूटियल चरण में मात्रा या तीव्रता को 20-30% कम करें। यह कमजोरी नहीं है; यह दीर्घकालिक प्रदर्शन के लिए स्मार्ट पीरियडाइजेशन है।</string>
+    
+    <!-- Language Selection -->
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिंदी</string>
+    <string name="language_oriya">ଓଡ଼ିଆ</string>
+    
+    <!-- Insights Screen - Cycle Overview -->
+    <string name="insights_cycle_avg_length">लगभग 28 दिन</string>
+    <string name="insights_cycle_avg_bleeding">लगभग 4-5 दिन</string>
+    <string name="insights_cycle_still_learning">अभी सीख रहे हैं</string>
+    
+    <!-- Insights Screen - Pattern Insights - Menstrual Phase -->
+    <string name="insight_menstrual_pain_first_days">दर्द का स्तर आमतौर पर आपकी माहवारी के दिन 1-2 पर सबसे अधिक होता है, फिर धीरे-धीरे कम होता है।</string>
+    <string name="insight_menstrual_energy_low">आपकी ऊर्जा आम तौर पर मासिक धर्म के दौरान कम हो जाती है। यह पूरी तरह से सामान्य है।</string>
+    <string name="insight_menstrual_mood_improves">मूड और ऊर्जा आमतौर पर आपकी माहवारी समाप्त होने के बाद काफी बेहतर हो जाती है।</string>
+    <string name="insight_menstrual_athlete_recovery">एथलीटों के लिए: मासिक धर्म चरण आपकी सक्रिय पुनर्प्राप्ति विंडो है। जब आप आराम करती हैं तो मांसपेशियां सबसे अच्छी तरह से मरम्मत करती हैं।</string>
+    
+    <!-- Insights Screen - Pattern Insights - Follicular Phase -->
+    <string name="insight_follicular_energy_rise">आपके फॉलिक्युलर चरण के दौरान ऊर्जा का स्तर लगातार बढ़ता है। आप इन दिनों अधिक उत्पादक होती हैं।</string>
+    <string name="insight_follicular_mood_positive">फॉलिक्युलर चरण में आपका मूड अधिक सकारात्मक और स्थिर होता है।</string>
+    <string name="insight_follicular_sleep_better">इस चरण में नींद की गुणवत्ता अक्सर बेहतर होती है। आप अधिक ताजा महसूस करके उठती हैं।</string>
+    <string name="insight_follicular_athlete_strength">एथलीटों के लिए: फॉलिक्युलर चरण शक्ति लाभ और कौशल-निर्माण के लिए प्रमुख समय है। आपका शरीर अब प्रशिक्षण के लिए सबसे अच्छी प्रतिक्रिया देता है।</string>
+    
+    <!-- Insights Screen - Pattern Insights - Ovulation Phase -->
+    <string name="insight_ovulation_peak_energy">आप ओव्यूलेशन के आसपास चरम ऊर्जा और आत्मविश्वास पर पहुंचती हैं। इस विंडो का रणनीतिक रूप से उपयोग करें।</string>
+    <string name="insight_ovulation_social_ease">ओव्यूलेशन के दौरान सामाजिक संपर्क आसान लगता है। आप इन दिनों अधिक बाहर जाने वाली होती हैं।</string>
+    <string name="insight_ovulation_skin_glow">ओव्यूलेशन चरण के दौरान आपकी त्वचा अक्सर साफ और उज्ज्वल दिखती है।</string>
+    <string name="insight_ovulation_athlete_peak_warning">एथलीटों के लिए: चरम प्रदर्शन विंडो लेकिन उच्च चोट जोखिम। अच्छी तरह से वार्म अप करें—लिगामेंट्स अब अधिक ढीले हैं।</string>
+    
+    <!-- Insights Screen - Pattern Insights - Luteal Phase -->
+    <string name="insight_luteal_energy_decrease">ल्यूटियल चरण के माध्यम से ऊर्जा धीरे-धीरे कम हो जाती है। आराम अधिक महत्वपूर्ण हो जाता है।</string>
+    <string name="insight_luteal_cravings">मिठाई या कार्ब्स की लालसा देर से ल्यूटियल चरण में चरम पर होती है। यह हार्मोनल है, इच्छाशक्ति की कमी नहीं।</string>
+    <string name="insight_luteal_mood_sensitive">आप ल्यूटियल चरण में भावनात्मक रूप से अधिक संवेदनशील होती हैं। अतिरिक्त आत्म-देखभाल मदद करती है।</string>
+    <string name="insight_luteal_bloating">आपकी माहवारी से 5-7 दिन पहले सूजन और पानी का प्रतिधारण अक्सर दिखाई देता है।</string>
+    <string name="insight_luteal_athlete_endurance">एथलीटों के लिए: सहनशक्ति कार्य और तकनीक ड्रिल में शिफ्ट करें। रिकवरी अधिक समय लेती है—प्रशिक्षण मात्रा को 20-30% कम करें।</string>
+    
+    <!-- Insights Screen - Mock Pattern Insights -->
+    <string name="insight_mock_energy_luteal">ऊर्जा का स्तर आपके ल्यूटियल चरण के दौरान कम होता है। यह हार्मोनल है और पूरी तरह से सामान्य है।</string>
+    <string name="insight_mock_pain_period">दर्द आमतौर पर आपकी माहवारी के पहले 1-2 दिनों में अधिक होता है, फिर कम हो जाता है।</string>
+    <string name="insight_mock_energy_post_period">आपकी ऊर्जा आपकी माहवारी समाप्त होने के बाद काफी बेहतर हो जाती है। तदनुसार योजना बनाएं।</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Menstrual Phase -->
+    <string name="reflection_menstrual_title">आपका पिछला चक्र</string>
+    <string name="reflection_menstrual_text">आपने अपने पिछले चक्र को जागरूकता और आत्म-देखभाल के साथ नेविगेट किया। जिन दिनों आपने आवश्यकता होने पर आराम किया, उसने फर्क किया।</string>
+    <string name="reflection_menstrual_encouragement">हर चक्र आपको अपने शरीर के बारे में कुछ सिखाता है 🌸</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Follicular Phase -->
+    <string name="reflection_follicular_title">अपने पैटर्न को देखना</string>
+    <string name="reflection_follicular_text">आपकी फॉलिक्युलर चरण की ऊर्जा सुसंगत रही है। आप इस प्राकृतिक लय के साथ महत्वपूर्ण कार्यों का समय निर्धारित करना सीख रही हैं।</string>
+    <string name="reflection_follicular_encouragement">अपने चक्र को समझना सशक्तिकरण है 🌱</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Ovulation Phase -->
+    <string name="reflection_ovulation_title">चरम चरण अंतर्दृष्टि</string>
+    <string name="reflection_ovulation_text">आपके ओव्यूलेशन चरण ने इस चक्र में स्पष्टता और ऊर्जा लाई। आपने अपने उच्च-प्रदर्शन विंडो का अधिकतम लाभ उठाया।</string>
+    <string name="reflection_ovulation_encouragement">आप अपने शरीर के साथ काम करना सीख रही हैं, इसके खिलाफ नहीं ✨</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Luteal Phase -->
+    <string name="reflection_luteal_title">आपका पिछला चक्र</string>
+    <string name="reflection_luteal_text">ल्यूटियल चरण में कुछ चुनौतीपूर्ण दिन थे, विशेष रूप से अंत की ओर। आप फिर भी अपने लिए दिखाई दीं—यह मायने रखता है।</string>
+    <string name="reflection_luteal_encouragement">हर चक्र अलग होता है, और यह पूरी तरह से सामान्य है 🌸</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Mock -->
+    <string name="reflection_mock_title">आपका पिछला चक्र</string>
+    <string name="reflection_mock_text">आपके पिछले चक्र में कुछ कठिन दिन थे, खासकर आपकी माहवारी के आसपास। आपने अपने शरीर की सुनी और यह मायने रखता है।</string>
+    <string name="reflection_mock_encouragement">हर चक्र हमें अपने बारे में कुछ सिखाता है 🌸</string>
+    
+    <!-- Insights Screen - Educational Articles -->
+    <string name="article_menstrual_phase">भारत में मासिक धर्म को समझना</string>
+    <string name="article_luteal_phase">PMS क्यों होता है और इसे कैसे प्रबंधित करें</string>
+    <string name="article_energy_changes">आपके चक्र के माध्यम से ऊर्जा</string>
+    <string name="article_movement_cycle">व्यायाम और आपका मासिक चक्र</string>
+    <string name="article_nutrition_phases">प्रत्येक चरण के लिए भारतीय खाद्य पदार्थ</string>
+    <string name="article_pcos_awareness">PCOS: संकेत और डॉक्टर को कब दिखाना है</string>
+    <string name="article_athlete_periodization">एथलीटों के लिए चक्र-आधारित प्रशिक्षण</string>
+    <string name="article_injury_prevention">आपके चक्र में चोटों को रोकना</string>
+    
+    <!-- Insights Screen - Safety Insights -->
+    <string name="safety_insight_severe_pain">आपने हाल ही में कई बार गंभीर दर्द या बहुत भारी प्रवाह लॉग किया है। यह सामान्य हो सकता है, लेकिन लगातार लक्षण ध्यान देने योग्य हैं।</string>
+    <string name="safety_insight_suggestion">PCOS, एंडोमेट्रियोसिस या फाइब्रॉएड जैसी स्थितियों को दूर करने के लिए स्त्री रोग विशेषज्ञ के साथ इस पर चर्चा करने पर विचार करें।</string>
+    
+    <!-- Common UI Strings -->
+    <string name="loading">लोड हो रहा है...</string>
+    
+    <!-- Error Messages -->
+    <string name="error_load_phase_info">चरण की जानकारी लोड करने में विफल</string>
+    <string name="error_phone_required">कृपया फोन नंबर दर्ज करें</string>
+    <string name="error_send_otp">OTP भेजने में विफल</string>
+    <string name="error_otp_required">कृपया OTP कोड दर्ज करें</string>
+    <string name="error_verify_otp">OTP सत्यापित करने में विफल</string>
+    <string name="error_sign_out">साइन आउट करने में विफल</string>
+    <string name="error_onboarding">ऑनबोर्डिंग पूरा करने में विफल</string>
+    
+    <!-- Log Screen - Flow Levels -->
+    <string name="flow_level_light">हल्का</string>
+    <string name="flow_level_medium">मध्यम</string>
+    <string name="flow_level_heavy">भारी</string>
+    <string name="flow_level_very_heavy">बहुत भारी</string>
+    
+    <!-- Log Screen - Pain Levels -->
+    <string name="pain_level_none">कोई दर्द नहीं</string>
+    <string name="pain_level_mild">हल्का</string>
+    <string name="pain_level_moderate">मध्यम</string>
+    <string name="pain_level_severe">गंभीर</string>
+    
+    <!-- Log Screen - Energy Levels -->
+    <string name="energy_level_low">कम</string>
+    <string name="energy_level_okay">ठीक है</string>
+    <string name="energy_level_good">अच्छा</string>
+    <string name="energy_level_high">उच्च</string>
+    
+    <!-- Log Screen - Mood Levels -->
+    <string name="mood_level_low">कम</string>
+    <string name="mood_level_neutral">तटस्थ</string>
+    <string name="mood_level_good">अच्छा</string>
+    <string name="mood_level_great">बहुत अच्छा</string>
+</resources>

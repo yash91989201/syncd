@@ -1,3 +1,434 @@
 <resources>
     <string name="app_name">syncd</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_app_name">Sync\'d</string>
+    <string name="welcome_tagline">Your cycle, understood.</string>
+    <string name="welcome_headline">Understand your cycle.\nFeel in control.</string>
+    <string name="welcome_description">Sync\'d helps you understand how your body changes through the month and gently guides you every day.</string>
+    <string name="welcome_button_get_started">Get Started</string>
+    <string name="welcome_time_estimate">Takes only a few minutes</string>
+    
+    <!-- Language Selector -->
+    <string name="language_selector_title">Select Language</string>
+    <string name="language_selector_cancel">Cancel</string>
+    <string name="welcome_select_language">Select Language</string>
+    
+    <!-- Login Screen -->
+    <string name="login_title">What\'s your number?</string>
+    <string name="login_subtitle">We\'ll send you a code to verify your identity.</string>
+    <string name="login_phone_placeholder">Phone Number</string>
+    <string name="login_send_code">Send Code</string>
+    <string name="login_back">Back</string>
+    
+    <!-- OTP Screen -->
+    <string name="otp_title">Enter code</string>
+    <string name="otp_sent_to">Sent to %s</string>
+    <string name="otp_resend">Didn\'t get it? Resend Code</string>
+    <string name="otp_verify">Verify</string>
+    
+    <!-- Onboarding Screen -->
+    <string name="onboarding_step_indicator">Step %1$d of %2$d</string>
+    <string name="onboarding_progress_percent">%d%%</string>
+    <string name="onboarding_why_ask">Why we ask this?</string>
+    <string name="onboarding_next">Next</string>
+    <string name="onboarding_finish">Finish</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_info">Info</string>
+    <string name="onboarding_selected">Selected</string>
+    <string name="onboarding_custom_sport_placeholder">Enter your sport</string>
+    <string name="onboarding_date_picker_select">Select a date</string>
+    
+    <!-- Navigation Bar -->
+    <string name="nav_home">Home</string>
+    <string name="nav_log">Log</string>
+    <string name="nav_guide">Guide</string>
+    <string name="nav_insights">Insights</string>
+    
+    <!-- Home Screen -->
+    <string name="home_todays_insights">TODAY\'S INSIGHTS</string>
+    <string name="home_day">DAY</string>
+    <string name="home_of">OF %d</string>
+    <string name="home_cycle_length">Cycle Length</string>
+    <string name="home_days">DAYS</string>
+    <string name="home_next_period">Next Period</string>
+    <string name="home_days_left">DAYS LEFT</string>
+    <string name="home_todays_guide">Today\'s Guide</string>
+    <string name="home_personalized_phase">Personalized for your phase</string>
+    <string name="home_view_all">View All</string>
+    <string name="home_phase_insight">Phase Insight</string>
+    <string name="home_nutrition">Nutrition</string>
+    <string name="home_movement">Movement</string>
+    <string name="home_quick_dos_donts">Quick Do\'s &amp; Don\'ts</string>
+    <string name="home_essential_reminders">Essential reminders for today</string>
+    <string name="home_gentle_reminders">Gentle Reminders</string>
+    <string name="home_error_oops">oops</string>
+    <string name="home_error_no_data">No cycle data available</string>
+    <string name="home_error_something_wrong">Something went wrong</string>
+    <string name="home_try_again">Try Again</string>
+    
+    <!-- Today Guide Screen -->
+    <string name="guide_title">Today\'s Guide</string>
+    <string name="guide_subtitle">Based on your cycle today</string>
+    <string name="guide_back">Back</string>
+    <string name="guide_phase_day">%1$s · Day %2$d</string>
+    <string name="guide_gentle_tips">Gentle Tips for Today</string>
+    <string name="guide_training_note">Training note</string>
+    <string name="guide_log_feeling">Log how you\'re feeling</string>
+    <string name="guide_recommendations">%d recommendations</string>
+    <string name="guide_dos_donts_title">Helpful Do\'s &amp; Don\'ts</string>
+    <string name="guide_balance_day">Balance your day wisely</string>
+    <string name="guide_do_this">DO THIS</string>
+    <string name="guide_avoid_this">AVOID THIS</string>
+    
+    <!-- Log Screen -->
+    <string name="log_title">Daily Log</string>
+    <string name="log_subtitle">Track your wellness</string>
+    <string name="log_today">Today</string>
+    <string name="log_yesterday">Yesterday</string>
+    <string name="log_back">Back</string>
+    <string name="log_progress">Log progress</string>
+    <string name="log_flow_title">Flow</string>
+    <string name="log_flow_subtitle">How heavy is it today?</string>
+    <string name="log_pain_title">Pain</string>
+    <string name="log_pain_subtitle">Any physical discomfort?</string>
+    <string name="log_energy_title">Energy</string>
+    <string name="log_energy_subtitle">How are your energy levels?</string>
+    <string name="log_mood_title">Mood</string>
+    <string name="log_mood_subtitle">How are you feeling mentally?</string>
+    <string name="log_notes_title">Notes</string>
+    <string name="log_notes_placeholder">Anything else you\'d like to remember? Symptoms, medications, or just thoughts.</string>
+    <string name="log_chars">%d chars</string>
+    <string name="log_save">Save Log</string>
+    <string name="log_update">Update Log</string>
+    <string name="log_saved_title">Log Saved!</string>
+    <string name="log_saved_message">Thanks for checking in. We\'ve updated your insights.</string>
+    <string name="log_date_confirm">Confirm</string>
+    <string name="log_date_cancel">Cancel</string>
+    
+    <!-- Log Screen - Flow Levels -->
+    <string name="log_flow_light">Light</string>
+    <string name="log_flow_medium">Medium</string>
+    <string name="log_flow_heavy">Heavy</string>
+    <string name="log_flow_very_heavy">Very Heavy</string>
+    
+    <!-- Log Screen - Pain Levels -->
+    <string name="log_pain_none">None</string>
+    <string name="log_pain_mild">Mild</string>
+    <string name="log_pain_moderate">Moderate</string>
+    <string name="log_pain_severe">Severe</string>
+    
+    <!-- Log Screen - Energy Levels -->
+    <string name="log_energy_low">Low</string>
+    <string name="log_energy_okay">Okay</string>
+    <string name="log_energy_good">Good</string>
+    <string name="log_energy_high">High</string>
+    
+    <!-- Log Screen - Mood Levels -->
+    <string name="log_mood_low">Low</string>
+    <string name="log_mood_neutral">Neutral</string>
+    <string name="log_mood_good">Good</string>
+    <string name="log_mood_great">Great</string>
+    
+    <!-- Insights Screen -->
+    <string name="insights_title">Insights</string>
+    <string name="insights_subtitle">Understanding your cycle over time</string>
+    <string name="insights_cycle_glance">Your Cycle at a Glance</string>
+    <string name="insights_based_on_history">Based on your tracking history</string>
+    <string name="insights_avg_cycle_length">Your cycle usually lasts</string>
+    <string name="insights_avg_bleeding">Bleeding lasts</string>
+    <string name="insights_current_phase">Current phase</string>
+    <string name="insights_patterns_title">Patterns We\'ve Noticed</string>
+    <string name="insights_patterns_count">%d insights</string>
+    <string name="insights_keep_tracking">Keep tracking to unlock insights</string>
+    <string name="insights_learning_title">We\'re still learning about your cycle</string>
+    <string name="insights_learning_message">More patterns will appear over time as we gather more data.</string>
+    <string name="insights_last_cycle_reflection">Last Cycle Reflection</string>
+    <string name="insights_learn_about_cycle">Learn About Your Cycle</string>
+    <string name="insights_swipe_articles">Swipe to explore articles</string>
+    <string name="insights_health_notice">Health Notice</string>
+    <string name="insights_safety_alert">Safety Alert</string>
+    
+    <!-- Phase Names -->
+    <string name="phase_menstrual">Menstrual Phase</string>
+    <string name="phase_follicular">Follicular Phase</string>
+    <string name="phase_ovulation">Ovulation Phase</string>
+    <string name="phase_luteal">Luteal Phase</string>
+    
+    <!-- Menstrual Phase Guide Content -->
+    <string name="menstrual_insight">Your body is shedding and renewing. This phase asks for rest and gentle nourishment. Listen to what feels right for you today.</string>
+    <string name="menstrual_nutrition_title">Nourishment for Today</string>
+    <string name="menstrual_nutrition_footer">Warm, simple meals digest easier and provide comfort during this phase.</string>
+    <string name="menstrual_nutrition_1">Warm dal-chawal, khichdi or moong dal soup with ghee</string>
+    <string name="menstrual_nutrition_2">Iron-rich foods: spinach palak paneer, beetroot subzi, dates with warm milk</string>
+    <string name="menstrual_nutrition_3">Ginger-jaggery chai or jeera water for warmth</string>
+    <string name="menstrual_nutrition_4">Curd rice or light idli-sambar if you prefer simple meals</string>
+    <string name="menstrual_nutrition_5">Sesame seeds (til) ladoo or chikki for iron and warmth</string>
+    <string name="menstrual_nutrition_6">Avoid heavy, oily or very spicy food if it causes discomfort</string>
+    <string name="menstrual_movement_title">How to Move Today</string>
+    <string name="menstrual_movement_athlete_1">Light stretching, walking or mobility drills only</string>
+    <string name="menstrual_movement_athlete_2">This is your recovery phase - muscles repair now</string>
+    <string name="menstrual_movement_athlete_3">Gentle yoga or pranayama can help with cramps</string>
+    <string name="menstrual_movement_athlete_4">Skip high-intensity training; return gradually in 2-3 days</string>
+    <string name="menstrual_movement_athlete_5">Recovery today = stronger performance in follicular phase</string>
+    <string name="menstrual_movement_regular_1">Gentle 10-15 minute walks if energy permits</string>
+    <string name="menstrual_movement_regular_2">Slow stretching or restorative yoga poses</string>
+    <string name="menstrual_movement_regular_3">Supta Baddha Konasana (lying butterfly pose) eases cramps</string>
+    <string name="menstrual_movement_regular_4">Complete rest is perfectly fine and needed</string>
+    <string name="menstrual_movement_regular_5">Move only if your body says yes, not because you should</string>
+    <string name="menstrual_do_1">Keep a hot water bottle or heating pad handy</string>
+    <string name="menstrual_do_2">Rest when tired - naps are helpful</string>
+    <string name="menstrual_do_3">Wear loose, comfortable cotton clothes</string>
+    <string name="menstrual_do_4">Drink warm fluids through the day</string>
+    <string name="menstrual_do_5">Light self-massage with warm oil on lower belly and back</string>
+    <string name="menstrual_dont_1">Force yourself to push through severe pain</string>
+    <string name="menstrual_dont_2">Skip meals thinking you\'ll feel better - blood sugar drops worsen mood</string>
+    <string name="menstrual_dont_3">Overload your calendar with back-to-back commitments</string>
+    <string name="menstrual_dont_4">Compare your flow or pain to others - every body is different</string>
+    <string name="menstrual_dont_5">Feel guilty for needing rest or slowing down</string>
+    <string name="menstrual_tip_regular_1">A warm shower or bath with a few drops of lavender oil soothes muscles</string>
+    <string name="menstrual_tip_regular_2">This phase lasts 3-5 days typically - pace yourself accordingly</string>
+    <string name="menstrual_tip_regular_3">Low energy during menstruation is biological, not laziness</string>
+    <string name="menstrual_tip_regular_4">If pain is very severe or unusual, consult a gynecologist</string>
+    <string name="menstrual_tip_regular_5">Keep sanitary products, pain relief and snacks accessible at work/home</string>
+    <string name="menstrual_tip_athlete_1">Recovery today = stronger performance in follicular phase</string>
+    <string name="menstrual_tip_athlete_2">Overtraining now increases injury risk and delays recovery</string>
+    <string name="menstrual_tip_athlete_3">Low energy during menstruation is biological, not laziness</string>
+    <string name="menstrual_athlete_note">This is your active rest phase. Prioritize sleep, nutrition and light movement. Overtraining now increases injury risk and delays recovery. You\'ll feel strength return in the follicular phase.</string>
+    
+    <!-- Follicular Phase Guide Content -->
+    <string name="follicular_insight">Energy and motivation are rising naturally. Your body is building up strength. Great time for starting new habits or projects.</string>
+    <string name="follicular_nutrition_title">Nourishment for Today</string>
+    <string name="follicular_nutrition_footer">Your metabolism is active now - nutrient-dense, lighter meals work best.</string>
+    <string name="follicular_nutrition_1">Protein-rich: moong dal chilla, paneer bhurji, egg bhurji with roti</string>
+    <string name="follicular_nutrition_2">Fresh vegetables: palak, methi, bhindi, or mixed sabzi</string>
+    <string name="follicular_nutrition_3">Probiotic foods: curd, buttermilk, fermented dosa/idli batter</string>
+    <string name="follicular_nutrition_4">Sprouts salad with lemon and chat masala</string>
+    <string name="follicular_nutrition_5">Light grains: ragi, jowar roti, brown rice upma</string>
+    <string name="follicular_nutrition_6">Fresh seasonal fruits: papaya, guava, oranges, pomegranate</string>
+    <string name="follicular_movement_title">How to Move Today</string>
+    <string name="follicular_movement_athlete_1">Great time for skill-building and technique work</string>
+    <string name="follicular_movement_athlete_2">Strength training feels easier - progressive overload works well</string>
+    <string name="follicular_movement_athlete_3">High energy for drills, speed work or learning new movements</string>
+    <string name="follicular_movement_athlete_4">Recovery is faster in this phase - make the most of it</string>
+    <string name="follicular_movement_athlete_5">Balance intensity with rest days to avoid overtraining</string>
+    <string name="follicular_movement_regular_1">Try that new yoga class or dance workout you\'ve been curious about</string>
+    <string name="follicular_movement_regular_2">Brisk 30-40 minute walks, cycling or swimming</string>
+    <string name="follicular_movement_regular_3">Strength training or bodyweight exercises feel manageable</string>
+    <string name="follicular_movement_regular_4">Group fitness or playing a sport with friends</string>
+    <string name="follicular_movement_regular_5">Energy is high - enjoy movement that feels fun, not forced</string>
+    <string name="follicular_do_1">Start that project or habit you\'ve been postponing</string>
+    <string name="follicular_do_2">Schedule important meetings or tasks in this window</string>
+    <string name="follicular_do_3">Plan your week ahead while mental clarity is high</string>
+    <string name="follicular_do_4">Socialize, network or reconnect with friends</string>
+    <string name="follicular_do_5">Take advantage of higher focus for learning or work</string>
+    <string name="follicular_dont_1">Overcommit just because you feel capable right now</string>
+    <string name="follicular_dont_2">Sacrifice sleep to pack in extra activities</string>
+    <string name="follicular_dont_3">Ignore hunger signals - fuel your active body properly</string>
+    <string name="follicular_dont_4">Forget that this high-energy phase won\'t last all month</string>
+    <string name="follicular_dont_5">Compare yourself to others who seem less energetic</string>
+    <string name="follicular_tip_regular_1">This is prime time for tackling challenging tasks at work or studies</string>
+    <string name="follicular_tip_regular_2">Creativity and problem-solving often peak during follicular phase</string>
+    <string name="follicular_tip_regular_3">Good phase to set goals for the month ahead</string>
+    <string name="follicular_tip_regular_4">Skin may look clearer and brighter naturally</string>
+    <string name="follicular_tip_regular_5">If planning social events, this is your ideal window</string>
+    <string name="follicular_tip_athlete_1">Your body responds best to training stimulus now - ideal for strength gains</string>
+    <string name="follicular_tip_athlete_2">Endurance building and skill acquisition work exceptionally well</string>
+    <string name="follicular_tip_athlete_3">Use this phase strategically for your hardest training blocks</string>
+    <string name="follicular_athlete_note">Your body responds exceptionally well to training stimulus now. Strength gains, endurance building and skill acquisition work best in this phase. Use it strategically for your hardest training blocks.</string>
+    
+    <!-- Ovulation Phase Guide Content -->
+    <string name="ovulation_insight">You\'re at your peak. Energy, confidence and physical strength are highest. Social connections feel easier. Make the most of this vibrant window.</string>
+    <string name="ovulation_nutrition_title">Nourishment for Today</string>
+    <string name="ovulation_nutrition_footer">Metabolism is at its most efficient - lighter, nutrient-dense meals work best.</string>
+    <string name="ovulation_nutrition_1">Light, fresh meals: salads with sprouted moong, chickpeas, paneer</string>
+    <string name="ovulation_nutrition_2">Antioxidant-rich: berries, pomegranate, green leafy vegetables</string>
+    <string name="ovulation_nutrition_3">Cooling foods: cucumber raita, coconut water, fresh fruit juice</string>
+    <string name="ovulation_nutrition_4">Whole grains: quinoa pulao, brown rice, multi-grain roti</string>
+    <string name="ovulation_nutrition_5">Lean proteins: grilled paneer, dal, egg whites, fish (if non-veg)</string>
+    <string name="ovulation_nutrition_6">Avoid very heavy or deep-fried foods - keep it light and fresh</string>
+    <string name="ovulation_movement_title">How to Move Today</string>
+    <string name="ovulation_movement_athlete_1">Peak performance window - great for competitions or testing PRs</string>
+    <string name="ovulation_movement_athlete_2">High-intensity training, plyometrics or power work feel achievable</string>
+    <string name="ovulation_movement_athlete_3">Coordination and reaction time are optimal</string>
+    <string name="ovulation_movement_athlete_4">Important: Ligaments are more lax - warm up thoroughly to prevent injuries</string>
+    <string name="ovulation_movement_athlete_5">If competing, time events in this phase strategically</string>
+    <string name="ovulation_movement_regular_1">High-intensity workouts, HIIT or challenging sessions feel great</string>
+    <string name="ovulation_movement_regular_2">Group classes: Zumba, aerobics, kickboxing or team sports</string>
+    <string name="ovulation_movement_regular_3">Running, cycling or swimming at higher intensity</string>
+    <string name="ovulation_movement_regular_4">Try that advanced yoga class or challenging hike</string>
+    <string name="ovulation_movement_regular_5">Warm up properly - flexibility is high but joint stability needs care</string>
+    <string name="ovulation_do_1">Have important conversations or difficult discussions</string>
+    <string name="ovulation_do_2">Attend social events, network or present ideas</string>
+    <string name="ovulation_do_3">Take on challenging projects or deadlines</string>
+    <string name="ovulation_do_4">Make decisions requiring confidence and clarity</string>
+    <string name="ovulation_do_5">Schedule job interviews, presentations or public speaking</string>
+    <string name="ovulation_dont_1">Skip warm-ups before intense exercise - injury risk is higher</string>
+    <string name="ovulation_dont_2">Overextend socially or professionally - burnout comes later</string>
+    <string name="ovulation_dont_3">Ignore hydration and electrolyte needs during activity</string>
+    <string name="ovulation_dont_4">Assume this peak will last all month - plan for lower energy ahead</string>
+    <string name="ovulation_dont_5">Push through joint pain - ligament laxity makes injuries easier</string>
+    <string name="ovulation_tip_regular_1">Communication skills, charm and persuasion peak during ovulation</string>
+    <string name="ovulation_tip_regular_2">Your voice may sound more confident and attractive naturally</string>
+    <string name="ovulation_tip_regular_3">Skin often glows and looks its best</string>
+    <string name="ovulation_tip_regular_4">This phase lasts only 2-3 days - plan your month around it</string>
+    <string name="ovulation_tip_regular_5">If trying to conceive, fertility is highest in this window</string>
+    <string name="ovulation_tip_regular_6">Enjoy the natural confidence boost but stay grounded</string>
+    <string name="ovulation_tip_athlete_1">Peak performance window - best for competitions or testing PRs</string>
+    <string name="ovulation_tip_athlete_2">Ligaments are more lax - warm up thoroughly to prevent ACL injuries</string>
+    <string name="ovulation_tip_athlete_3">Many female athletes report injuries during ovulation - take precautions</string>
+    <string name="ovulation_athlete_note">Peak strength, power and coordination. Best phase for competitions, PRs or high-stakes performance. BUT: Ligaments are more relaxed due to estrogen - warm up meticulously and avoid jerky movements to prevent ACL or joint injuries. Many female athletes report injuries during ovulation due to this.</string>
+    
+    <!-- Luteal Phase Guide Content -->
+    <string name="luteal_insight">Energy may feel lower than before. Your body is preparing for either menstruation or pregnancy. Gentle routines, comforting food and self-compassion help you navigate this phase.</string>
+    <string name="luteal_nutrition_title">Nourishment for Today</string>
+    <string name="luteal_nutrition_footer">Cravings for sweets or carbs are normal - choose wholesome versions like dates, jaggery or whole grains.</string>
+    <string name="luteal_nutrition_1">Warm, grounding meals: dal-roti, khichdi with ghee, rajma-chawal</string>
+    <string name="luteal_nutrition_2">Complex carbs for serotonin: sweet potato, oats, whole wheat</string>
+    <string name="luteal_nutrition_3">Magnesium-rich: almonds, cashews, pumpkin seeds, dark chocolate (70%+)</string>
+    <string name="luteal_nutrition_4">Reduce bloating: jeera water, ajwain, fennel tea, ginger chai</string>
+    <string name="luteal_nutrition_5">Healthy fats: ghee, coconut chutney, til (sesame), avocado</string>
+    <string name="luteal_nutrition_6">Go easy on salt, caffeine and refined sugar if PMS symptoms are strong</string>
+    <string name="luteal_movement_title">How to Move Today</string>
+    <string name="luteal_movement_athlete_1">Shift focus to moderate intensity, longer duration work</string>
+    <string name="luteal_movement_athlete_2">Endurance training, steady-state cardio, technique drills</string>
+    <string name="luteal_movement_athlete_3">Avoid pushing for PRs - injury risk increases with fatigue</string>
+    <string name="luteal_movement_athlete_4">Listen to your body: low energy days need adjusted volume</string>
+    <string name="luteal_movement_athlete_5">Recovery sessions: yoga, stretching, swimming, light cycling</string>
+    <string name="luteal_movement_regular_1">Gentle 20-30 minute walks, preferably in nature or parks</string>
+    <string name="luteal_movement_regular_2">Slow, flowing yoga or pilates</string>
+    <string name="luteal_movement_regular_3">Light cycling, swimming or dancing at your own pace</string>
+    <string name="luteal_movement_regular_4">Avoid high-intensity or competitive workouts</string>
+    <string name="luteal_movement_regular_5">Rest completely if energy is very low - that\'s completely okay</string>
+    <string name="luteal_do_1">Schedule lighter days and avoid back-to-back commitments</string>
+    <string name="luteal_do_2">Prioritize 7-8 hours of sleep - it helps mood and energy</string>
+    <string name="luteal_do_3">Keep comfort items ready: heating pad, loose clothes, snacks</string>
+    <string name="luteal_do_4">Practice self-compassion if mood dips or irritability rises</string>
+    <string name="luteal_do_5">Plan for upcoming period: stock supplies, prep easy meals</string>
+    <string name="luteal_dont_1">Force yourself to maintain follicular-phase productivity</string>
+    <string name="luteal_dont_2">Skip meals hoping to reduce bloating - it makes symptoms worse</string>
+    <string name="luteal_dont_3">Over-schedule or commit to intense social obligations</string>
+    <string name="luteal_dont_4">Blame yourself for lower energy, mood swings or cravings</string>
+    <string name="luteal_dont_5">Ignore severe PMS symptoms - talk to a doctor if it\'s debilitating</string>
+    <string name="luteal_tip_regular_1">Warm baths with Epsom salt ease muscle tension and bloating</string>
+    <string name="luteal_tip_regular_2">Journaling or light creative work can help process emotions</string>
+    <string name="luteal_tip_regular_3">Lower energy and inward focus are biological - not personal flaws</string>
+    <string name="luteal_tip_regular_4">This phase typically lasts 10-14 days before menstruation</string>
+    <string name="luteal_tip_regular_5">Cravings peak 3-5 days before period - prepare nourishing snacks in advance</string>
+    <string name="luteal_tip_regular_6">If PMS is severe, consider tracking symptoms to discuss with your doctor</string>
+    <string name="luteal_tip_athlete_1">Shift focus to endurance and technique - recovery takes 20-30% longer</string>
+    <string name="luteal_tip_athlete_2">Progesterone increases body temperature and fatigue</string>
+    <string name="luteal_tip_athlete_3">This isn\'t weakness; it\'s smart periodization for long-term performance</string>
+    <string name="luteal_athlete_note">Shift training focus to endurance and technique rather than strength or power. Progesterone dominance increases body temperature and fatigue. Recovery takes longer - reduce volume or intensity by 20-30% in late luteal phase. This isn\'t weakness; it\'s smart periodization for long-term performance.</string>
+    
+    <!-- Language Selection -->
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिंदी</string>
+    <string name="language_oriya">ଓଡ଼ିଆ</string>
+    
+    <!-- Insights Screen - Cycle Overview -->
+    <string name="insights_cycle_avg_length">around 28 days</string>
+    <string name="insights_cycle_avg_bleeding">about 4–5 days</string>
+    <string name="insights_cycle_still_learning">still learning</string>
+    
+    <!-- Insights Screen - Pattern Insights - Menstrual Phase -->
+    <string name="insight_menstrual_pain_first_days">Pain levels are usually highest on Day 1-2 of your period, then gradually reduce.</string>
+    <string name="insight_menstrual_energy_low">Your energy typically dips during menstruation. This is completely normal.</string>
+    <string name="insight_menstrual_mood_improves">Mood and energy usually lift noticeably after your period ends.</string>
+    <string name="insight_menstrual_athlete_recovery">For athletes: Menstrual phase is your active recovery window. Muscles repair best when you rest.</string>
+    
+    <!-- Insights Screen - Pattern Insights - Follicular Phase -->
+    <string name="insight_follicular_energy_rise">Energy levels rise steadily during your follicular phase. You\'re more productive these days.</string>
+    <string name="insight_follicular_mood_positive">Your mood tends to be more positive and stable in the follicular phase.</string>
+    <string name="insight_follicular_sleep_better">Sleep quality is often better in this phase. You wake up feeling more refreshed.</string>
+    <string name="insight_follicular_athlete_strength">For athletes: Follicular phase is prime time for strength gains and skill-building. Your body adapts best to training now.</string>
+    
+    <!-- Insights Screen - Pattern Insights - Ovulation Phase -->
+    <string name="insight_ovulation_peak_energy">You hit peak energy and confidence around ovulation. Use this window strategically.</string>
+    <string name="insight_ovulation_social_ease">Social interactions feel easier during ovulation. You\'re more outgoing these days.</string>
+    <string name="insight_ovulation_skin_glow">Your skin often looks clearer and brighter during the ovulation phase.</string>
+    <string name="insight_ovulation_athlete_peak_warning">For athletes: Peak performance window BUT higher injury risk. Warm up thoroughly—ligaments are more lax now.</string>
+    
+    <!-- Insights Screen - Pattern Insights - Luteal Phase -->
+    <string name="insight_luteal_energy_decrease">Energy gradually decreases through the luteal phase. Rest becomes more important.</string>
+    <string name="insight_luteal_cravings">Cravings for sweets or carbs peak in late luteal phase. This is hormonal, not lack of willpower.</string>
+    <string name="insight_luteal_mood_sensitive">You\'re more emotionally sensitive in the luteal phase. Extra self-care helps.</string>
+    <string name="insight_luteal_bloating">Bloating and water retention often appear 5-7 days before your period.</string>
+    <string name="insight_luteal_athlete_endurance">For athletes: Shift to endurance work and technique drills. Recovery takes longer—reduce training volume by 20-30%%.</string>
+    
+    <!-- Insights Screen - Mock Patterns -->
+    <string name="insight_mock_energy_luteal">Energy levels tend to be lower during your luteal phase. This is hormonal and completely normal.</string>
+    <string name="insight_mock_pain_period">Pain is usually stronger in the first 1–2 days of your period, then eases up.</string>
+    <string name="insight_mock_energy_post_period">Your energy improves noticeably after your period ends. Plan accordingly.</string>
+    
+    <!-- Insights Screen - Cycle Reflections -->
+    <string name="reflection_menstrual_title">Your Last Cycle</string>
+    <string name="reflection_menstrual_text">You navigated your last cycle with awareness and self-care. The days you rested when needed made a difference.</string>
+    <string name="reflection_menstrual_encouragement">Every cycle teaches you something about your body 🌸</string>
+    
+    <string name="reflection_follicular_title">Observing Your Patterns</string>
+    <string name="reflection_follicular_text">Your follicular phase energy has been consistent. You\'re learning to time important tasks with this natural rhythm.</string>
+    <string name="reflection_follicular_encouragement">Understanding your cycle is empowering 🌱</string>
+    
+    <string name="reflection_ovulation_title">Peak Phase Insights</string>
+    <string name="reflection_ovulation_text">Your ovulation phase brought clarity and energy this cycle. You made the most of your high-performance window.</string>
+    <string name="reflection_ovulation_encouragement">You\'re learning to work with your body, not against it ✨</string>
+    
+    <string name="reflection_luteal_title">Your Last Cycle</string>
+    <string name="reflection_luteal_text">The luteal phase had some challenging days, especially toward the end. You showed up for yourself anyway—that matters.</string>
+    <string name="reflection_luteal_encouragement">Every cycle is different, and that\'s completely normal 🌸</string>
+    
+    <string name="reflection_mock_title">Your Last Cycle</string>
+    <string name="reflection_mock_text">Your last cycle had a few tough days, especially around your period. You listened to your body and that matters.</string>
+    <string name="reflection_mock_encouragement">Every cycle teaches us something about ourselves 🌸</string>
+    
+    <!-- Insights Screen - Educational Articles -->
+    <string name="article_menstrual_phase">Understanding Menstruation in India</string>
+    <string name="article_luteal_phase">Why PMS Happens &amp; How to Manage It</string>
+    <string name="article_energy_changes">Energy Through Your Cycle</string>
+    <string name="article_movement_cycle">Exercise &amp; Your Menstrual Cycle</string>
+    <string name="article_nutrition_phases">Indian Foods for Each Phase</string>
+    <string name="article_pcos_awareness">PCOS: Signs &amp; When to See a Doctor</string>
+    <string name="article_athlete_periodization">Cycle-Based Training for Athletes</string>
+    <string name="article_injury_prevention">Preventing Injuries Across Your Cycle</string>
+    
+    <!-- Insights Screen - Safety Insights -->
+    <string name="safety_insight_severe_pain">You\'ve logged severe pain or very heavy flow multiple times recently. This can be normal, but persistent symptoms deserve attention.</string>
+    <string name="safety_insight_suggestion">Consider discussing this with a gynecologist to rule out conditions like PCOS, endometriosis or fibroids.</string>
+    
+    <!-- Common UI Strings -->
+    <string name="loading">Loading...</string>
+    
+    <!-- Error Messages -->
+    <string name="error_load_phase_info">Failed to load phase info</string>
+    <string name="error_phone_required">Please enter a phone number</string>
+    <string name="error_send_otp">Failed to send OTP</string>
+    <string name="error_otp_required">Please enter the OTP code</string>
+    <string name="error_verify_otp">Failed to verify OTP</string>
+    <string name="error_sign_out">Failed to sign out</string>
+    <string name="error_onboarding">Failed to complete onboarding</string>
+    
+    <!-- Log Screen - Flow Levels -->
+    <string name="flow_level_light">Light</string>
+    <string name="flow_level_medium">Medium</string>
+    <string name="flow_level_heavy">Heavy</string>
+    <string name="flow_level_very_heavy">Very heavy</string>
+    
+    <!-- Log Screen - Pain Levels -->
+    <string name="pain_level_none">No pain</string>
+    <string name="pain_level_mild">Mild</string>
+    <string name="pain_level_moderate">Moderate</string>
+    <string name="pain_level_severe">Severe</string>
+    
+    <!-- Log Screen - Energy Levels -->
+    <string name="energy_level_low">Low</string>
+    <string name="energy_level_okay">Okay</string>
+    <string name="energy_level_good">Good</string>
+    <string name="energy_level_high">High</string>
+    
+    <!-- Log Screen - Mood Levels -->
+    <string name="mood_level_low">Low</string>
+    <string name="mood_level_neutral">Neutral</string>
+    <string name="mood_level_good">Good</string>
+    <string name="mood_level_great">Great</string>
 </resources>

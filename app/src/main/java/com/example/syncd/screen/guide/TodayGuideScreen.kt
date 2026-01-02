@@ -40,10 +40,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
 import org.koin.compose.koinInject
@@ -95,7 +97,7 @@ fun TodayGuideScreen() {
                     ) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.guide_back),
                             modifier = Modifier.padding(10.dp),
                             tint = MaterialTheme.colorScheme.onSurface
                         )
@@ -105,13 +107,13 @@ fun TodayGuideScreen() {
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         Text(
-                            text = "Today's Guide",
+                            text = stringResource(R.string.guide_title),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Based on your cycle today",
+                            text = stringResource(R.string.guide_subtitle),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -126,7 +128,7 @@ fun TodayGuideScreen() {
                 modifier = Modifier.align(Alignment.CenterHorizontally)
             ) {
                 Text(
-                    text = "${state.phaseName} · Day ${state.cycleDay}",
+                    text = stringResource(R.string.guide_phase_day, state.phaseName, state.cycleDay),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onSecondaryContainer,
@@ -187,7 +189,7 @@ fun TodayGuideScreen() {
 
             GuideSection(
                 emoji = "💡",
-                title = "Gentle Tips for Today",
+                title = stringResource(R.string.guide_gentle_tips),
                 items = state.gentleTips,
                 footer = null
             )
@@ -217,7 +219,7 @@ fun TodayGuideScreen() {
                             }
                             Spacer(modifier = Modifier.width(12.dp))
                             Text(
-                                text = "Training note",
+                                text = stringResource(R.string.guide_training_note),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onTertiaryContainer
@@ -247,7 +249,7 @@ fun TodayGuideScreen() {
                 )
             ) {
                 Text(
-                    text = "Log how you're feeling",
+                    text = stringResource(R.string.guide_log_feeling),
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold,
                     color = MaterialTheme.colorScheme.onPrimary
@@ -304,7 +306,7 @@ fun GuideSection(
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "${items.size} recommendations",
+                        text = stringResource(R.string.guide_recommendations, items.size),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -419,13 +421,13 @@ fun DosDontsSection(dosDonts: DosDonts) {
                 }
                 Column {
                     Text(
-                        text = "Helpful Do's & Don'ts",
+                        text = stringResource(R.string.guide_dos_donts_title),
                         style = MaterialTheme.typography.titleLarge,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.onSurface
                     )
                     Text(
-                        text = "Balance your day wisely",
+                        text = stringResource(R.string.guide_balance_day),
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.onSurfaceVariant
                     )
@@ -458,7 +460,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                                 modifier = Modifier.size(20.dp)
                             )
                             Text(
-                                text = "DO THIS",
+                                text = stringResource(R.string.guide_do_this),
                                 style = MaterialTheme.typography.labelMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.primary,
@@ -523,7 +525,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                                 modifier = Modifier.size(20.dp)
                             )
                             Text(
-                                text = "AVOID THIS",
+                                text = stringResource(R.string.guide_avoid_this),
                                 style = MaterialTheme.typography.labelMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.error,

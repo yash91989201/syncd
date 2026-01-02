@@ -12,32 +12,32 @@ import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-enum class FlowLevel(val label: String, val apiValue: String) {
-    LIGHT("Light", "light"),
-    MEDIUM("Medium", "medium"),
-    HEAVY("Heavy", "heavy"),
-    VERY_HEAVY("Very heavy", "very_heavy")
+enum class FlowLevel(val apiValue: String) {
+    LIGHT("light"),
+    MEDIUM("medium"),
+    HEAVY("heavy"),
+    VERY_HEAVY("very_heavy")
 }
 
-enum class PainLevel(val label: String, val apiValue: String) {
-    NONE("No pain", "none"),
-    MILD("Mild", "mild"),
-    MODERATE("Moderate", "moderate"),
-    SEVERE("Severe", "severe")
+enum class PainLevel(val apiValue: String) {
+    NONE("none"),
+    MILD("mild"),
+    MODERATE("moderate"),
+    SEVERE("severe")
 }
 
-enum class EnergyLevel(val label: String, val apiValue: String) {
-    LOW("Low", "low"),
-    OKAY("Okay", "okay"),
-    GOOD("Good", "good"),
-    HIGH("High", "high")
+enum class EnergyLevel(val apiValue: String) {
+    LOW("low"),
+    OKAY("okay"),
+    GOOD("good"),
+    HIGH("high")
 }
 
-enum class MoodLevel(val label: String, val apiValue: String) {
-    LOW("Low", "low"),
-    NEUTRAL("Neutral", "neutral"),
-    GOOD("Good", "good"),
-    GREAT("Great", "great")
+enum class MoodLevel(val apiValue: String) {
+    LOW("low"),
+    NEUTRAL("neutral"),
+    GOOD("good"),
+    GREAT("great")
 }
 
 data class LogState(
@@ -55,16 +55,6 @@ data class LogState(
     val error: String? = null,
     val existingLogId: String? = null
 ) {
-    val displayDate: String
-        get() {
-            val today = LocalDate.now()
-            return when (selectedDate) {
-                today -> "Today"
-                today.minusDays(1) -> "Yesterday"
-                else -> selectedDate.format(DateTimeFormatter.ofPattern("MMM d, yyyy"))
-            }
-        }
-    
     val hasExistingLog: Boolean
         get() = existingLogId != null
 }

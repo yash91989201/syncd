@@ -41,11 +41,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.syncd.R
 import org.koin.compose.viewmodel.koinViewModel
 
 @Composable
@@ -77,14 +79,14 @@ fun InsightsScreen() {
         ) {
             Column {
                 Text(
-                    text = "Insights",
+                    text = stringResource(R.string.insights_title),
                     style = MaterialTheme.typography.headlineLarge,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
                 )
                 Spacer(modifier = Modifier.height(4.dp))
                 Text(
-                    text = "Understanding your cycle over time",
+                    text = stringResource(R.string.insights_subtitle),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -92,8 +94,8 @@ fun InsightsScreen() {
 
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 SectionTitle(
-                    text = "Your Cycle at a Glance",
-                    subtitle = "Based on your tracking history"
+                    text = stringResource(R.string.insights_cycle_glance),
+                    subtitle = stringResource(R.string.insights_based_on_history)
                 )
                 
                 ElevatedCard(
@@ -111,7 +113,7 @@ fun InsightsScreen() {
                         verticalArrangement = Arrangement.spacedBy(16.dp)
                     ) {
                         OverviewRow(
-                            label = "Your cycle usually lasts",
+                            label = stringResource(R.string.insights_avg_cycle_length),
                             value = state.cycleOverview.averageCycleLength
                         )
                         HorizontalDivider(
@@ -119,7 +121,7 @@ fun InsightsScreen() {
                             color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
                         )
                         OverviewRow(
-                            label = "Bleeding lasts",
+                            label = stringResource(R.string.insights_avg_bleeding),
                             value = state.cycleOverview.averageBleedingDays
                         )
                         HorizontalDivider(
@@ -127,7 +129,7 @@ fun InsightsScreen() {
                             color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
                         )
                         OverviewRow(
-                            label = "Current phase",
+                            label = stringResource(R.string.insights_current_phase),
                             value = state.cycleOverview.currentPhase,
                             isHighlighted = true
                         )
@@ -137,8 +139,8 @@ fun InsightsScreen() {
 
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 SectionTitle(
-                    text = "Patterns We've Noticed",
-                    subtitle = if (state.hasEnoughData) "${state.patterns.size} insights" else "Keep tracking to unlock insights"
+                    text = stringResource(R.string.insights_patterns_title),
+                    subtitle = if (state.hasEnoughData) stringResource(R.string.insights_patterns_count, state.patterns.size) else stringResource(R.string.insights_keep_tracking)
                 )
 
                 if (state.hasEnoughData) {
@@ -166,7 +168,7 @@ fun InsightsScreen() {
                             )
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = "We're still learning about your cycle",
+                                text = stringResource(R.string.insights_learning_title),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface,
@@ -174,7 +176,7 @@ fun InsightsScreen() {
                             )
                             Spacer(modifier = Modifier.height(4.dp))
                             Text(
-                                text = "More patterns will appear over time as we gather more data.",
+                                text = stringResource(R.string.insights_learning_message),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                                 textAlign = TextAlign.Center
@@ -186,7 +188,7 @@ fun InsightsScreen() {
 
             state.lastCycleReflection?.let { reflection ->
                 Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    SectionTitle(text = "Last Cycle Reflection")
+                    SectionTitle(text = stringResource(R.string.insights_last_cycle_reflection))
                     
                     ElevatedCard(
                         modifier = Modifier.fillMaxWidth(),
@@ -251,8 +253,8 @@ fun InsightsScreen() {
 
             Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
                 SectionTitle(
-                    text = "Learn About Your Cycle",
-                    subtitle = "Swipe to explore articles"
+                    text = stringResource(R.string.insights_learn_about_cycle),
+                    subtitle = stringResource(R.string.insights_swipe_articles)
                 )
                 
                 LazyRow(
@@ -324,14 +326,14 @@ fun InsightsScreen() {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.Outlined.Info,
-                                        contentDescription = "Safety Alert",
+                                        contentDescription = stringResource(R.string.insights_safety_alert),
                                         tint = MaterialTheme.colorScheme.error,
                                         modifier = Modifier.size(22.dp)
                                     )
                                 }
                             }
                             Text(
-                                text = "Health Notice",
+                                text = stringResource(R.string.insights_health_notice),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.error

@@ -34,11 +34,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.syncd.R
 import com.example.syncd.auth.presentation.AuthViewModel
 import com.example.syncd.navigation.Navigator
 import org.koin.compose.koinInject
@@ -81,7 +83,7 @@ fun OTPScreen(phoneNumber: String) {
                 IconButton(onClick = { navigator.goBack() }) {
                     Icon(
                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                        contentDescription = "Back",
+                        contentDescription = stringResource(R.string.login_back),
                         tint = MaterialTheme.colorScheme.onSurface
                     )
                 }
@@ -94,7 +96,7 @@ fun OTPScreen(phoneNumber: String) {
                 horizontalAlignment = Alignment.Start
             ) {
                 Text(
-                    text = "Enter code",
+                    text = stringResource(R.string.otp_title),
                     style = MaterialTheme.typography.headlineMedium,
                     fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.onSurface
@@ -103,7 +105,7 @@ fun OTPScreen(phoneNumber: String) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Text(
-                    text = "Sent to $phoneNumber",
+                    text = stringResource(R.string.otp_sent_to, phoneNumber),
                     style = MaterialTheme.typography.bodyLarge,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -142,7 +144,7 @@ fun OTPScreen(phoneNumber: String) {
                 enabled = !uiState.isLoading
             ) {
                 Text(
-                    text = "Didn't get it? Resend Code",
+                    text = stringResource(R.string.otp_resend),
                     color = MaterialTheme.colorScheme.primary,
                     style = MaterialTheme.typography.labelLarge,
                     fontWeight = FontWeight.SemiBold
@@ -178,7 +180,7 @@ fun OTPScreen(phoneNumber: String) {
                     )
                 } else {
                     Text(
-                        text = "Verify",
+                        text = stringResource(R.string.otp_verify),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )

@@ -12,6 +12,7 @@ import com.example.syncd.screen.home.data.repository.HomeRepository
 import com.example.syncd.screen.log.data.repository.LogRepository
 import com.example.syncd.screen.onboarding.OnboardingViewModel
 import com.example.syncd.screen.onboarding.data.repository.OnboardingRepository
+import com.example.syncd.utils.LocaleManager
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
 import org.koin.core.module.dsl.viewModel
@@ -19,10 +20,11 @@ import org.koin.dsl.module
 
 val authModule = module {
     single { UserPreferences(get()) }
+    single { LocaleManager(get()) }
     single { AuthRepository(get()) }
     single { OnboardingRepository(get()) }
     single { UserProfileRepository(get()) }
-    single { AuthViewModel(get(), get(), get(), get()) }
+    single { AuthViewModel(get(), get(), get(), get(), get()) }
 }
 
 val onboardingModule = module {
@@ -35,16 +37,16 @@ val logModule = module {
 }
 
 val guideModule = module {
-    viewModel { TodayGuideViewModel(get(), get()) }
+    viewModel { TodayGuideViewModel(get(), get(), get()) }
 }
 
 val insightsModule = module {
-    viewModel { InsightsViewModel(get(), get(), get()) }
+    viewModel { InsightsViewModel(get(), get(), get(), get()) }
 }
 
 val homeModule = module {
     single { HomeRepository(get()) }
-    viewModel { HomeViewModel(get(), get()) }
+    viewModel { HomeViewModel(get(), get(), get()) }
 }
 
 fun initializeKoin(

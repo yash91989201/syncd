@@ -1,0 +1,438 @@
+<resources>
+    <string name="app_name">syncd</string>
+    
+    <!-- Welcome Screen -->
+    <string name="welcome_app_name">Sync\'d</string>
+    <string name="welcome_tagline">ଆପଣଙ୍କ ଚକ୍ର, ବୁଝାଗଲା।</string>
+    <string name="welcome_headline">ଆପଣଙ୍କ ଚକ୍ରକୁ ବୁଝନ୍ତୁ।\nନିୟନ୍ତ୍ରଣ ଅନୁଭବ କରନ୍ତୁ।</string>
+    <string name="welcome_description">Sync\'d ଆପଣଙ୍କୁ ବୁଝିବାରେ ସାହାଯ୍ୟ କରେ ଯେ ମାସ ମଧ୍ୟରେ ଆପଣଙ୍କ ଶରୀରରେ କିପରି ପରିବର୍ତ୍ତନ ହୁଏ ଏବଂ ପ୍ରତିଦିନ ଆପଣଙ୍କୁ ମୃଦୁଭାବେ ମାର୍ଗଦର୍ଶନ କରେ।</string>
+    <string name="welcome_button_get_started">ଆରମ୍ଭ କରନ୍ତୁ</string>
+    <string name="welcome_time_estimate">କେବଳ କିଛି ମିନିଟ୍ ଲାଗେ</string>
+    
+    <!-- Language Selector -->
+    <string name="language_selector_title">ଭାଷା ବାଛନ୍ତୁ</string>
+    <string name="language_selector_cancel">ବାତିଲ କରନ୍ତୁ</string>
+    <string name="welcome_select_language">ଭାଷା ବାଛନ୍ତୁ</string>
+    
+    <!-- Login Screen -->
+    <string name="login_title">ଆପଣଙ୍କ ନମ୍ବର କଣ?</string>
+    <string name="login_subtitle">ଆମେ ଆପଣଙ୍କ ପରିଚୟ ଯାଞ୍ଚ କରିବାକୁ ଆପଣଙ୍କୁ ଏକ କୋଡ୍ ପଠାଇବୁ।</string>
+    <string name="login_phone_placeholder">ଫୋନ୍ ନମ୍ବର</string>
+    <string name="login_send_code">କୋଡ୍ ପଠାନ୍ତୁ</string>
+    <string name="login_back">ପଛକୁ</string>
+    
+    <!-- OTP Screen -->
+    <string name="otp_title">କୋଡ୍ ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="otp_sent_to">%s କୁ ପଠାଯାଇଛି</string>
+    <string name="otp_resend">ପାଇଲେ ନାହିଁ? କୋଡ୍ ପୁନର୍ବାର ପଠାନ୍ତୁ</string>
+    <string name="otp_verify">ଯାଞ୍ଚ କରନ୍ତୁ</string>
+    
+    <!-- Onboarding Screen -->
+    <string name="onboarding_step_indicator">%2$d ର %1$d ପଦକ୍ଷେପ</string>
+    <string name="onboarding_progress_percent">%d%%</string>
+    <string name="onboarding_why_ask">ଆମେ ଏହା କାହିଁକି ପଚାରୁଛୁ?</string>
+    <string name="onboarding_next">ପରବର୍ତ୍ତୀ</string>
+    <string name="onboarding_finish">ସମାପ୍ତ</string>
+    <string name="onboarding_back">ପଛକୁ</string>
+    <string name="onboarding_info">ସୂଚନା</string>
+    <string name="onboarding_selected">ଚୟନିତ</string>
+    <string name="onboarding_custom_sport_placeholder">ଆପଣଙ୍କ ଖେଳ ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="onboarding_date_picker_select">ଏକ ତାରିଖ ବାଛନ୍ତୁ</string>
+    
+    <!-- Navigation Bar -->
+    <string name="nav_home">ମୁଖ୍ୟ</string>
+    <string name="nav_log">ଲଗ୍</string>
+    <string name="nav_guide">ଗାଇଡ୍</string>
+    <string name="nav_insights">ସୂଚନା</string>
+    
+    <!-- Home Screen -->
+    <string name="home_todays_insights">ଆଜିର ସୂଚନା</string>
+    <string name="home_day">ଦିନ</string>
+    <string name="home_of">%d ରୁ</string>
+    <string name="home_cycle_length">ଚକ୍ର ଦୈର୍ଘ୍ୟ</string>
+    <string name="home_days">ଦିନ</string>
+    <string name="home_next_period">ପରବର୍ତ୍ତୀ ମାସିକ</string>
+    <string name="home_days_left">ଦିନ ବାକି</string>
+    <string name="home_todays_guide">ଆଜିର ମାର୍ଗଦର୍ଶନ</string>
+    <string name="home_personalized_phase">ଆପଣଙ୍କ ପର୍ଯ୍ୟାୟ ପାଇଁ ବ୍ୟକ୍ତିଗତ</string>
+    <string name="home_view_all">ସମସ୍ତ ଦେଖନ୍ତୁ</string>
+    <string name="home_phase_insight">ପର୍ଯ୍ୟାୟ ଅନ୍ତର୍ଦୃଷ୍ଟି</string>
+    <string name="home_nutrition">ପୋଷଣ</string>
+    <string name="home_movement">ବ୍ୟାୟାମ</string>
+    <string name="home_quick_dos_donts">ଶୀଘ୍ର କରିବା ଏବଂ ନକରିବା</string>
+    <string name="home_essential_reminders">ଆଜି ପାଇଁ ଜରୁରୀ ସ୍ମରଣିକା</string>
+    <string name="home_gentle_reminders">ମୃଦୁ ସ୍ମରଣିକା</string>
+    <string name="home_error_oops">ଓହ</string>
+    <string name="home_error_no_data">କୌଣସି ଚକ୍ର ତଥ୍ୟ ଉପଲବ୍ଧ ନାହିଁ</string>
+    <string name="home_error_something_wrong">କିଛି ଭୁଲ ହୋଇଗଲା</string>
+    <string name="home_try_again">ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ</string>
+    
+    <!-- Today Guide Screen -->
+    <string name="guide_title">ଆଜିର ମାର୍ଗଦର୍ଶନ</string>
+    <string name="guide_subtitle">ଆଜି ଆପଣଙ୍କ ଚକ୍ର ଉପରେ ଆଧାରିତ</string>
+    <string name="guide_back">ପଛକୁ</string>
+    <string name="guide_phase_day">%1$s · ଦିନ %2$d</string>
+    <string name="guide_gentle_tips">ଆଜି ପାଇଁ ମୃଦୁ ପରାମର୍ଶ</string>
+    <string name="guide_training_note">ପ୍ରଶିକ୍ଷଣ ନୋଟ୍</string>
+    <string name="guide_log_feeling">ଆପଣଙ୍କ ଅନୁଭୂତି ଲଗ୍ କରନ୍ତୁ</string>
+    <string name="guide_recommendations">%d ସୁପାରିଶ</string>
+    <string name="guide_dos_donts_title">ଉପଯୋଗୀ କରିବା ଏବଂ ନକରିବା</string>
+    <string name="guide_balance_day">ଆପଣଙ୍କ ଦିନକୁ ସନ୍ତୁଳିତ କରନ୍ତୁ</string>
+    <string name="guide_do_this">ଏହା କରନ୍ତୁ</string>
+    <string name="guide_avoid_this">ଏହାରୁ ଦୂରେଇ ରୁହନ୍ତୁ</string>
+    
+    <!-- Log Screen -->
+    <string name="log_title">ଦୈନିକ ଲଗ୍</string>
+    <string name="log_subtitle">ଆପଣଙ୍କ ସୁସ୍ଥତା ଟ୍ରାକ୍ କରନ୍ତୁ</string>
+    <string name="log_today">ଆଜି</string>
+    <string name="log_yesterday">ଗତକାଲି</string>
+    <string name="log_back">ପଛକୁ</string>
+    <string name="log_progress">ଲଗ୍ ପ୍ରଗତି</string>
+    <string name="log_flow_title">ପ୍ରବାହ</string>
+    <string name="log_flow_subtitle">ଆଜି ଏହା କେତେ ଭାରୀ?</string>
+    <string name="log_pain_title">ଯନ୍ତ୍ରଣା</string>
+    <string name="log_pain_subtitle">କୌଣସି ଶାରୀରିକ ଅସୁବିଧା?</string>
+    <string name="log_energy_title">ଶକ୍ତି</string>
+    <string name="log_energy_subtitle">ଆପଣଙ୍କ ଶକ୍ତି ସ୍ତର କିପରି?</string>
+    <string name="log_mood_title">ମନୋଦଶା</string>
+    <string name="log_mood_subtitle">ଆପଣ ମାନସିକ ଭାବରେ କିପରି ଅନୁଭବ କରୁଛନ୍ତି?</string>
+    <string name="log_notes_title">ନୋଟ୍ସ</string>
+    <string name="log_notes_placeholder">ଆଉ କିଛି ଯାହା ଆପଣ ମନେ ରଖିବାକୁ ଚାହାଁନ୍ତି? ଲକ୍ଷଣ, ଔଷଧ, କିମ୍ବା କେବଳ ବିଚାର।</string>
+    <string name="log_chars">%d ଅକ୍ଷର</string>
+    <string name="log_save">ଲଗ୍ ସଂରକ୍ଷଣ କରନ୍ତୁ</string>
+    <string name="log_update">ଲଗ୍ ଅପଡେଟ୍ କରନ୍ତୁ</string>
+    <string name="log_saved_title">ଲଗ୍ ସଂରକ୍ଷିତ ହେଲା!</string>
+    <string name="log_saved_message">ଚେକ୍ ଇନ୍ କରିଥିବାରୁ ଧନ୍ୟବାଦ। ଆମେ ଆପଣଙ୍କ ସୂଚନା ଅପଡେଟ୍ କରିଛୁ।</string>
+    <string name="log_date_confirm">ନିଶ୍ଚିତ କରନ୍ତୁ</string>
+    <string name="log_date_cancel">ବାତିଲ୍ କରନ୍ତୁ</string>
+    
+    <!-- Log Screen - Flow Levels -->
+    <string name="log_flow_light">ହାଲୁକା</string>
+    <string name="log_flow_medium">ମଧ୍ୟମ</string>
+    <string name="log_flow_heavy">ଭାରୀ</string>
+    <string name="log_flow_very_heavy">ଅତି ଭାରୀ</string>
+    
+    <!-- Log Screen - Pain Levels -->
+    <string name="log_pain_none">କିଛି ନାହିଁ</string>
+    <string name="log_pain_mild">ହାଲୁକା</string>
+    <string name="log_pain_moderate">ମଧ୍ୟମ</string>
+    <string name="log_pain_severe">ଗମ୍ଭୀର</string>
+    
+    <!-- Log Screen - Energy Levels -->
+    <string name="log_energy_low">କମ୍</string>
+    <string name="log_energy_okay">ଠିକ୍ ଅଛି</string>
+    <string name="log_energy_good">ଭଲ</string>
+    <string name="log_energy_high">ଉଚ୍ଚ</string>
+    
+    <!-- Log Screen - Mood Levels -->
+    <string name="log_mood_low">କମ୍</string>
+    <string name="log_mood_neutral">ନିରପେକ୍ଷ</string>
+    <string name="log_mood_good">ଭଲ</string>
+    <string name="log_mood_great">ଉତ୍କୃଷ୍ଟ</string>
+    
+    <!-- Insights Screen -->
+    <string name="insights_title">ସୂଚନା</string>
+    <string name="insights_subtitle">ସମୟ ସହିତ ଆପଣଙ୍କ ଚକ୍ରକୁ ବୁଝିବା</string>
+    <string name="insights_cycle_glance">ଆପଣଙ୍କ ଚକ୍ରର ଏକ ଝଲକ</string>
+    <string name="insights_based_on_history">ଆପଣଙ୍କ ଟ୍ରାକିଂ ଇତିହାସ ଉପରେ ଆଧାରିତ</string>
+    <string name="insights_avg_cycle_length">ଆପଣଙ୍କ ଚକ୍ର ସାଧାରଣତଃ ଚାଲେ</string>
+    <string name="insights_avg_bleeding">ରକ୍ତସ୍ରାବ ରହେ</string>
+    <string name="insights_current_phase">ବର୍ତ୍ତମାନ ପର୍ଯ୍ୟାୟ</string>
+    <string name="insights_patterns_title">ଆମେ ଦେଖିଥିବା ପ୍ୟାଟର୍ନ</string>
+    <string name="insights_patterns_count">%d ଅନ୍ତର୍ଦୃଷ୍ଟି</string>
+    <string name="insights_keep_tracking">ଅନ୍ତର୍ଦୃଷ୍ଟି ଅନଲକ୍ କରିବାକୁ ଟ୍ରାକିଂ ଜାରି ରଖନ୍ତୁ</string>
+    <string name="insights_learning_title">ଆମେ ଏପର୍ଯ୍ୟନ୍ତ ଆପଣଙ୍କ ଚକ୍ର ବିଷୟରେ ଶିଖୁଛୁ</string>
+    <string name="insights_learning_message">ଆମେ ଅଧିକ ତଥ୍ୟ ସଂଗ୍ରହ କଲାବେଳେ ସମୟ ସହିତ ଅଧିକ ପ୍ୟାଟର୍ନ ଦେଖାଯିବ।</string>
+    <string name="insights_last_cycle_reflection">ଶେଷ ଚକ୍ର ପ୍ରତିଫଳନ</string>
+    <string name="insights_learn_about_cycle">ଆପଣଙ୍କ ଚକ୍ର ବିଷୟରେ ଜାଣନ୍ତୁ</string>
+    <string name="insights_swipe_articles">ପ୍ରବନ୍ଧ ଦେଖିବାକୁ ସ୍ୱାଇପ୍ କରନ୍ତୁ</string>
+    <string name="insights_health_notice">ସ୍ୱାସ୍ଥ୍ୟ ସୂଚନା</string>
+    <string name="insights_safety_alert">ସୁରକ୍ଷା ସତର୍କତା</string>
+    
+    <!-- Phase Names -->
+    <string name="phase_menstrual">ମାସିକ ପର୍ଯ୍ୟାୟ</string>
+    <string name="phase_follicular">ଫଲିକୁଲାର୍ ପର୍ଯ୍ୟାୟ</string>
+    <string name="phase_ovulation">ଡିମ୍ବାଣୁ ପର୍ଯ୍ୟାୟ</string>
+    <string name="phase_luteal">ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟ</string>
+    
+    <!-- Menstrual Phase Guide Content -->
+    <string name="menstrual_insight">ଆପଣଙ୍କ ଶରୀର ଝାଡୁଥାଏ ଏବଂ ନବୀକରଣ କରୁଥାଏ। ଏହି ପର୍ଯ୍ୟାୟ ବିଶ୍ରାମ ଏବଂ ମୃଦୁ ପୋଷଣ ମାଗେ। ଆଜି ଆପଣଙ୍କ ପାଇଁ କଣ ଠିକ୍ ଲାଗୁଛି ଶୁଣନ୍ତୁ।</string>
+    <string name="menstrual_nutrition_title">ଆଜି ପାଇଁ ପୋଷଣ</string>
+    <string name="menstrual_nutrition_footer">ଗରମ, ସରଳ ଭୋଜନ ହଜମ କରିବାକୁ ସହଜ ଏବଂ ଏହି ପର୍ଯ୍ୟାୟରେ ଆରାମ ଦିଏ।</string>
+    <string name="menstrual_nutrition_1">ଗରମ ଡାଲି-ଭାତ, ଖିଚୁଡ଼ି କିମ୍ବା ମୁଗ ଡାଲି ସୁପ୍ ଘିଓ ସହିତ</string>
+    <string name="menstrual_nutrition_2">ଲୌହ ସମୃଦ୍ଧ ଖାଦ୍ୟ: ପାଳଙ୍ଗ ପନୀର, ବିଟ୍ ବ୍ୟଞ୍ଜନ, ଗରମ କ୍ଷୀର ସହିତ ଖଜୁରୀ</string>
+    <string name="menstrual_nutrition_3">ଉଷ୍ମତା ପାଇଁ ଅଦା-ଗୁଡ଼ ଚା କିମ୍ବା ଜିରା ପାଣି</string>
+    <string name="menstrual_nutrition_4">ଦହି ଭାତ କିମ୍ବା ହାଲୁକା ଇଡ୍ଲି-ସାମ୍ବାର ଯଦି ଆପଣ ସରଳ ଭୋଜନ ପସନ୍ଦ କରନ୍ତି</string>
+    <string name="menstrual_nutrition_5">ଲୌହ ଏବଂ ଉଷ୍ମତା ପାଇଁ ତେଲ (ତିଲ) ଲଡୁ କିମ୍ବା ଚିକି</string>
+    <string name="menstrual_nutrition_6">ଯଦି ଅସୁବିଧା ହୁଏ ତେବେ ଭାରୀ, ତେଲିଆ କିମ୍ବା ଅତ୍ୟଧିକ ମସଲା ଖାଦ୍ୟରୁ ଦୂରେଇ ରୁହନ୍ତୁ</string>
+    <string name="menstrual_movement_title">ଆଜି କିପରି ଚାଲନ୍ତୁ</string>
+    <string name="menstrual_movement_athlete_1">କେବଳ ହାଲୁକା ଷ୍ଟ୍ରେଚିଂ, ଚାଲିବା କିମ୍ବା ଗତିଶୀଳତା ଅଭ୍ୟାସ</string>
+    <string name="menstrual_movement_athlete_2">ଏହା ଆପଣଙ୍କର ପୁନରୁଦ୍ଧାର ପର୍ଯ୍ୟାୟ - ମାଂସପେଶୀ ବର୍ତ୍ତମାନ ମରାମତି କରେ</string>
+    <string name="menstrual_movement_athlete_3">ହାଲୁକା ଯୋଗ କିମ୍ବା ପ୍ରାଣାୟାମ କଷା ସହିତ ସାହାଯ୍ୟ କରିପାରେ</string>
+    <string name="menstrual_movement_athlete_4">ଉଚ୍ଚ-ତୀବ୍ରତା ପ୍ରଶିକ୍ଷଣ ଛାଡନ୍ତୁ; 2-3 ଦିନରେ ଧୀରେ ଧୀରେ ଫେରନ୍ତୁ</string>
+    <string name="menstrual_movement_athlete_5">ଆଜି ପୁନରୁଦ୍ଧାର = ଫଲିକୁଲାର୍ ପର୍ଯ୍ୟାୟରେ ଶକ୍ତିଶାଳୀ ପ୍ରଦର୍ଶନ</string>
+    <string name="menstrual_movement_regular_1">ଯଦି ଶକ୍ତି ଅନୁମତି ଦେଇଥାଏ ତେବେ ମୃଦୁ 10-15 ମିନିଟ୍ ଚାଲିବା</string>
+    <string name="menstrual_movement_regular_2">ଧୀର ଷ୍ଟ୍ରେଚିଂ କିମ୍ବା ପୁନରୁଦ୍ଧାରକାରୀ ଯୋଗ ଆସନ</string>
+    <string name="menstrual_movement_regular_3">ସୁପ୍ତ ବଦ୍ଧ କୋଣାସନ (ଶୋଇବା ପ୍ରଜାପତି ଆସନ) କଷା କମାଏ</string>
+    <string name="menstrual_movement_regular_4">ସମ୍ପୂର୍ଣ୍ଣ ବିଶ୍ରାମ ସମ୍ପୂର୍ଣ୍ଣ ଠିକ୍ ଏବଂ ଆବଶ୍ୟକ</string>
+    <string name="menstrual_movement_regular_5">କେବଳ ଚାଲନ୍ତୁ ଯଦି ଆପଣଙ୍କ ଶରୀର ହଁ କୁହେ, କାରଣ ଆପଣ କରିବା ଉଚିତ୍ ନୁହେଁ</string>
+    <string name="menstrual_do_1">ଗରମ ପାଣି ବୋତଲ କିମ୍ବା ହିଟିଂ ପ୍ୟାଡ୍ ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ</string>
+    <string name="menstrual_do_2">କ୍ଳାନ୍ତ ହେଲେ ବିଶ୍ରାମ କରନ୍ତୁ - ନିଦ ନେବା ସହାୟକ</string>
+    <string name="menstrual_do_3">ଢିଲା, ଆରାମଦାୟକ ସୁତା ପୋଷାକ ପିନ୍ଧନ୍ତୁ</string>
+    <string name="menstrual_do_4">ଦିନସାରା ଗରମ ତରଳ ପଦାର୍ଥ ପିଅନ୍ତୁ</string>
+    <string name="menstrual_do_5">ତଳ ପେଟ ଏବଂ ପିଠିରେ ଗରମ ତେଲ ସହିତ ହାଲୁକା ଆତ୍ମ-ମାଲିସ୍</string>
+    <string name="menstrual_dont_1">ଗମ୍ଭୀର ଯନ୍ତ୍ରଣା ମଧ୍ୟରେ ଧକ୍କା ଦେବାକୁ ନିଜକୁ ବାଧ୍ୟ କରନ୍ତୁ ନାହିଁ</string>
+    <string name="menstrual_dont_2">ଭାବି ଭୋଜନ ଛାଡନ୍ତୁ ନାହିଁ ଯେ ଆପଣ ଭଲ ଅନୁଭବ କରିବେ - ରକ୍ତ ଶର୍କରା ହ୍ରାସ ମନୋଦଶାକୁ ଖରାପ କରେ</string>
+    <string name="menstrual_dont_3">ଆପଣଙ୍କ କ୍ୟାଲେଣ୍ଡରକୁ ଲଗାତାର ପ୍ରତିବଦ୍ଧତା ସହିତ ଅଧିକ ଭାର ଦିଅନ୍ତୁ ନାହିଁ</string>
+    <string name="menstrual_dont_4">ଆପଣଙ୍କ ପ୍ରବାହ କିମ୍ବା ଯନ୍ତ୍ରଣାକୁ ଅନ୍ୟମାନଙ୍କ ସହିତ ତୁଳନା କରନ୍ତୁ ନାହିଁ - ପ୍ରତ୍ୟେକ ଶରୀର ଅଲଗା</string>
+    <string name="menstrual_dont_5">ବିଶ୍ରାମ କିମ୍ବା ଧୀର ହେବା ଆବଶ୍ୟକତା ପାଇଁ ଦୋଷୀ ଅନୁଭବ କରନ୍ତୁ ନାହିଁ</string>
+    <string name="menstrual_tip_regular_1">ଲାଭେଣ୍ଡର ତେଲର କିଛି ବୁନ୍ଦା ସହିତ ଗରମ ସାୱାର କିମ୍ବା ସ୍ନାନ ମାଂସପେଶୀକୁ ଶାନ୍ତ କରେ</string>
+    <string name="menstrual_tip_regular_2">ଏହି ପର୍ଯ୍ୟାୟ ସାଧାରଣତଃ 3-5 ଦିନ ରହେ - ସେହି ଅନୁସାରେ ନିଜକୁ ଗତି ଦିଅନ୍ତୁ</string>
+    <string name="menstrual_tip_regular_3">ମାସିକ ଧର୍ମ ସମୟରେ କମ୍ ଶକ୍ତି ଜୈବିକ, ଅଳସୁଆପଣ ନୁହେଁ</string>
+    <string name="menstrual_tip_regular_4">ଯଦି ଯନ୍ତ୍ରଣା ଅତ୍ୟଧିକ ଗମ୍ଭୀର କିମ୍ବା ଅସାମାନ୍ୟ, ତେବେ ସ୍ତ୍ରୀ ରୋଗ ବିଶେଷଜ୍ଞଙ୍କ ସହିତ ପରାମର୍ଶ କରନ୍ତୁ</string>
+    <string name="menstrual_tip_regular_5">ସ୍ୱଚ୍ଛତା ଉତ୍ପାଦ, ଯନ୍ତ୍ରଣା ଉପଶମ ଏବଂ ସ୍ନାକ୍ସ କାମ/ଘରେ ସୁଲଭ ରଖନ୍ତୁ</string>
+    <string name="menstrual_tip_athlete_1">ଆଜି ପୁନରୁଦ୍ଧାର = ଫଲିକୁଲାର୍ ପର୍ଯ୍ୟାୟରେ ଶକ୍ତିଶାଳୀ ପ୍ରଦର୍ଶନ</string>
+    <string name="menstrual_tip_athlete_2">ବର୍ତ୍ତମାନ ଅଧିକ ପ୍ରଶିକ୍ଷଣ ଆଘାତର ବିପଦ ବଢ଼ାଏ ଏବଂ ପୁନରୁଦ୍ଧାରରେ ବିଳମ୍ବ କରେ</string>
+    <string name="menstrual_tip_athlete_3">ମାସିକ ଧର୍ମ ସମୟରେ କମ୍ ଶକ୍ତି ଜୈବିକ, ଅଳସୁଆପଣ ନୁହେଁ</string>
+    <string name="menstrual_athlete_note">ଏହା ଆପଣଙ୍କର ସକ୍ରିୟ ବିଶ୍ରାମ ପର୍ଯ୍ୟାୟ। ନିଦ, ପୋଷଣ ଏବଂ ହାଲୁକା ଗତିକୁ ପ୍ରାଥମିକତା ଦିଅନ୍ତୁ। ବର୍ତ୍ତମାନ ଅଧିକ ପ୍ରଶିକ୍ଷଣ ଆଘାତର ବିପଦ ବଢ଼ାଏ ଏବଂ ପୁନରୁଦ୍ଧାରରେ ବିଳମ୍ବ କରେ। ଆପଣ ଫଲିକୁଲାର୍ ପର୍ଯ୍ୟାୟରେ ଶକ୍ତି ଫେରିବା ଅନୁଭବ କରିବେ।</string>
+    
+    <!-- Follicular Phase Guide Content -->
+    <string name="follicular_insight">ଶକ୍ତି ଏବଂ ପ୍ରେରଣା ସ୍ୱାଭାବିକ ଭାବରେ ବଢୁଛି। ଆପଣଙ୍କ ଶରୀର ଶକ୍ତି ନିର୍ମାଣ କରୁଛି। ନୂତନ ଅଭ୍ୟାସ କିମ୍ବା ପ୍ରକଳ୍ପ ଆରମ୍ଭ କରିବା ପାଇଁ ଉତ୍ତମ ସମୟ।</string>
+    <string name="follicular_nutrition_title">ଆଜି ପାଇଁ ପୋଷଣ</string>
+    <string name="follicular_nutrition_footer">ଆପଣଙ୍କ ମେଟାବୋଲିଜମ୍ ବର୍ତ୍ତମାନ ସକ୍ରିୟ - ପୋଷକ ତତ୍ତ୍ୱରେ ସମୃଦ୍ଧ, ହାଲୁକା ଭୋଜନ ସର୍ବୋତ୍ତମ କାମ କରେ।</string>
+    <string name="follicular_nutrition_1">ପ୍ରୋଟିନ୍ ସମୃଦ୍ଧ: ମୁଗ ଡାଲି ଚିଲା, ପନୀର ଭୁର୍ଜୀ, ରୁଟି ସହିତ ଅଣ୍ଡା ଭୁର୍ଜୀ</string>
+    <string name="follicular_nutrition_2">ସତେଜ ପନିପରିବା: ପାଳଙ୍ଗ, ମେଥୀ, ଭେଣ୍ଡୀ, କିମ୍ବା ମିଶ୍ରିତ ବ୍ୟଞ୍ଜନ</string>
+    <string name="follicular_nutrition_3">ପ୍ରୋବାୟୋଟିକ୍ ଖାଦ୍ୟ: ଦହି, ଛାଞ୍ଚି, କ୍ୱଥିତ ଡୋସା/ଇଡ୍ଲି ବାଟର</string>
+    <string name="follicular_nutrition_4">ନିମ୍ବୁ ଏବଂ ଚାଟ୍ ମସଲା ସହିତ ଅଙ୍କୁର ସାଲାଦ</string>
+    <string name="follicular_nutrition_5">ହାଲୁକା ଶସ୍ୟ: ରାଗି, ଜୋୱାର ରୁଟି, ବ୍ରାଉନ୍ ଚାଉଳ ଉପମା</string>
+    <string name="follicular_nutrition_6">ସତେଜ ମୌସୁମୀ ଫଳ: ପପିତା, ପିଜୁଳି, କମଳା, ଡାଳିମ୍ବ</string>
+    <string name="follicular_movement_title">ଆଜି କିପରି ଚାଲନ୍ତୁ</string>
+    <string name="follicular_movement_athlete_1">ଦକ୍ଷତା ନିର୍ମାଣ ଏବଂ କୌଶଳ କାମ ପାଇଁ ଉତ୍ତମ ସମୟ</string>
+    <string name="follicular_movement_athlete_2">ଶକ୍ତି ପ୍ରଶିକ୍ଷଣ ସହଜ ଲାଗେ - ପ୍ରଗତିଶୀଳ ଅଧିଭାର ଭଲ କାମ କରେ</string>
+    <string name="follicular_movement_athlete_3">ଅଭ୍ୟାସ, ଗତି କାମ କିମ୍ବା ନୂତନ ଗତି ଶିଖିବା ପାଇଁ ଉଚ୍ଚ ଶକ୍ତି</string>
+    <string name="follicular_movement_athlete_4">ଏହି ପର୍ଯ୍ୟାୟରେ ପୁନରୁଦ୍ଧାର ଦ୍ରୁତ - ଏହାର ସର୍ବାଧିକ ଉପଯୋଗ କରନ୍ତୁ</string>
+    <string name="follicular_movement_athlete_5">ଅଧିକ ପ୍ରଶିକ୍ଷଣରୁ ଦୂରେଇ ରହିବାକୁ ତୀବ୍ରତାକୁ ବିଶ୍ରାମ ଦିନ ସହିତ ସନ୍ତୁଳିତ କରନ୍ତୁ</string>
+    <string name="follicular_movement_regular_1">ସେହି ନୂତନ ଯୋଗ କ୍ଲାସ୍ କିମ୍ବା ନୃତ୍ୟ କସରତ ଚେଷ୍ଟା କରନ୍ତୁ ଯାହା ବିଷୟରେ ଆପଣ ଉତ୍ସୁକ ଥିଲେ</string>
+    <string name="follicular_movement_regular_2">ତୀବ୍ର 30-40 ମିନିଟ୍ ଚାଲିବା, ସାଇକେଲିଂ କିମ୍ବା ସନ୍ତରଣ</string>
+    <string name="follicular_movement_regular_3">ଶକ୍ତି ପ୍ରଶିକ୍ଷଣ କିମ୍ବା ଶାରୀରିକ ବ୍ୟାୟାମ ପରିଚାଳନାଯୋଗ୍ୟ ଅନୁଭବ ହୁଏ</string>
+    <string name="follicular_movement_regular_4">ଗ୍ରୁପ୍ ଫିଟନେସ୍ କିମ୍ବା ବନ୍ଧୁମାନଙ୍କ ସହିତ ଖେଳ ଖେଳିବା</string>
+    <string name="follicular_movement_regular_5">ଶକ୍ତି ଉଚ୍ଚ - ମଜାଦାର ଲାଗୁଥିବା ଗତିର ଆନନ୍ଦ ନିଅନ୍ତୁ, ବାଧ୍ୟ ନୁହେଁ</string>
+    <string name="follicular_do_1">ସେହି ପ୍ରକଳ୍ପ କିମ୍ବା ଅଭ୍ୟାସ ଆରମ୍ଭ କରନ୍ତୁ ଯାହା ଆପଣ ସ୍ଥଗିତ କରୁଥିଲେ</string>
+    <string name="follicular_do_2">ଏହି ଉଇଣ୍ଡୋରେ ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ବୈଠକ କିମ୍ବା କାର୍ଯ୍ୟ ନିର୍ଧାରଣ କରନ୍ତୁ</string>
+    <string name="follicular_do_3">ମାନସିକ ସ୍ପଷ୍ଟତା ଉଚ୍ଚ ଥିବାବେଳେ ଆପଣଙ୍କ ସପ୍ତାହ ଆଗରେ ଯୋଜନା କରନ୍ତୁ</string>
+    <string name="follicular_do_4">ସାମାଜିକ ହୁଅନ୍ତୁ, ନେଟୱାର୍କ କରନ୍ତୁ କିମ୍ବା ବନ୍ଧୁମାନଙ୍କ ସହିତ ପୁନଃ ସଂଯୋଗ କରନ୍ତୁ</string>
+    <string name="follicular_do_5">ଶିଖିବା କିମ୍ବା କାମ ପାଇଁ ଉଚ୍ଚ ଧ୍ୟାନର ଲାଭ ଉଠାନ୍ତୁ</string>
+    <string name="follicular_dont_1">କେବଳ ବର୍ତ୍ତମାନ ସକ୍ଷମ ଅନୁଭବ କରୁଥିବାରୁ ଅଧିକ ପ୍ରତିବଦ୍ଧ ହୁଅନ୍ତୁ ନାହିଁ</string>
+    <string name="follicular_dont_2">ଅତିରିକ୍ତ କାର୍ଯ୍ୟକଳାପରେ ପ୍ୟାକ୍ କରିବାକୁ ନିଦ ତ୍ୟାଗ କରନ୍ତୁ ନାହିଁ</string>
+    <string name="follicular_dont_3">କ୍ଷୁଧା ସଙ୍କେତକୁ ଅଣଦେଖା କରନ୍ତୁ ନାହିଁ - ଆପଣଙ୍କ ସକ୍ରିୟ ଶରୀରକୁ ସଠିକ୍ ଭାବରେ ଇନ୍ଧନ ଦିଅନ୍ତୁ</string>
+    <string name="follicular_dont_4">ଭୁଲିଯାଆନ୍ତୁ ନାହିଁ ଯେ ଏହି ଉଚ୍ଚ-ଶକ୍ତି ପର୍ଯ୍ୟାୟ ସମଗ୍ର ମାସ ରହିବ ନାହିଁ</string>
+    <string name="follicular_dont_5">ନିଜକୁ ଅନ୍ୟମାନଙ୍କ ସହିତ ତୁଳନା କରନ୍ତୁ ନାହିଁ ଯେଉଁମାନେ କମ୍ ଶକ୍ତିଶାଳୀ ମନେ ହୁଅନ୍ତି</string>
+    <string name="follicular_tip_regular_1">କାମ କିମ୍ବା ଅଧ୍ୟୟନରେ ଚ୍ୟାଲେଞ୍ଜିଂ କାର୍ଯ୍ୟଗୁଡିକର ସାମ୍ନା କରିବା ପାଇଁ ଏହା ପ୍ରଧାନ ସମୟ</string>
+    <string name="follicular_tip_regular_2">ସୃଜନଶୀଳତା ଏବଂ ସମସ୍ୟା ସମାଧାନ ପ୍ରାୟତଃ ଫଲିକୁଲାର୍ ପର୍ଯ୍ୟାୟ ସମୟରେ ଶିଖରରେ ପହଞ୍ଚେ</string>
+    <string name="follicular_tip_regular_3">ଆଗକୁ ମାସ ପାଇଁ ଲକ୍ଷ୍ୟ ନିର୍ଧାରଣ କରିବାକୁ ଭଲ ପର୍ଯ୍ୟାୟ</string>
+    <string name="follicular_tip_regular_4">ଚର୍ମ ସ୍ୱାଭାବିକ ଭାବରେ ଅଧିକ ସଫା ଏବଂ ଉଜ୍ଜ୍ୱଳ ଦେଖାଯାଇପାରେ</string>
+    <string name="follicular_tip_regular_5">ଯଦି ସାମାଜିକ କାର୍ଯ୍ୟକ୍ରମ ଯୋଜନା କରୁଛନ୍ତି, ତେବେ ଏହା ଆପଣଙ୍କର ଆଦର୍ଶ ଉଇଣ୍ଡୋ</string>
+    <string name="follicular_tip_athlete_1">ଆପଣଙ୍କ ଶରୀର ବର୍ତ୍ତମାନ ପ୍ରଶିକ୍ଷଣ ଉତ୍ତେଜନାକୁ ସର୍ବୋତ୍ତମ ପ୍ରତିକ୍ରିୟା କରେ - ଶକ୍ତି ଲାଭ ପାଇଁ ଆଦର୍ଶ</string>
+    <string name="follicular_tip_athlete_2">ସହନଶୀଳତା ନିର୍ମାଣ ଏବଂ ଦକ୍ଷତା ଅର୍ଜନ ଅତ୍ୟନ୍ତ ଭଲ କାମ କରେ</string>
+    <string name="follicular_tip_athlete_3">ଆପଣଙ୍କର ସବୁଠୁ କଠିନ ପ୍ରଶିକ୍ଷଣ ବ୍ଲକ୍ ପାଇଁ ଏହି ପର୍ଯ୍ୟାୟକୁ ରଣନୀତିକ ଭାବରେ ବ୍ୟବହାର କରନ୍ତୁ</string>
+    <string name="follicular_athlete_note">ଆପଣଙ୍କ ଶରୀର ବର୍ତ୍ତମାନ ପ୍ରଶିକ୍ଷଣ ଉତ୍ତେଜନାକୁ ଅସାଧାରଣ ଭାବରେ ଭଲ ପ୍ରତିକ୍ରିୟା କରେ। ଶକ୍ତି ଲାଭ, ସହନଶୀଳତା ନିର୍ମାଣ ଏବଂ ଦକ୍ଷତା ଅର୍ଜନ ଏହି ପର୍ଯ୍ୟାୟରେ ସର୍ବୋତ୍ତମ କାମ କରେ। ଆପଣଙ୍କର ସବୁଠୁ କଠିନ ପ୍ରଶିକ୍ଷଣ ବ୍ଲକ୍ ପାଇଁ ଏହାକୁ ରଣନୀତିକ ଭାବରେ ବ୍ୟବହାର କରନ୍ତୁ।</string>
+    
+    <!-- Ovulation Phase Guide Content -->
+    <string name="ovulation_insight">ଆପଣ ଆପଣଙ୍କର ଶିଖରରେ ଅଛନ୍ତି। ଶକ୍ତି, ଆତ୍ମବିଶ୍ୱାସ ଏବଂ ଶାରୀରିକ ଶକ୍ତି ସର୍ବୋଚ୍ଚ। ସାମାଜିକ ସଂଯୋଗ ସହଜ ଲାଗେ। ଏହି ଜୀବନ୍ତ ଉଇଣ୍ଡୋର ସର୍ବାଧିକ ଉପଯୋଗ କରନ୍ତୁ।</string>
+    <string name="ovulation_nutrition_title">ଆଜି ପାଇଁ ପୋଷଣ</string>
+    <string name="ovulation_nutrition_footer">ମେଟାବୋଲିଜମ୍ ଏହାର ସବୁଠୁ ଦକ୍ଷ ଅବସ୍ଥାରେ - ହାଲୁକା, ପୋଷକ ତତ୍ତ୍ୱରେ ସମୃଦ୍ଧ ଭୋଜନ ସର୍ବୋତ୍ତମ କାମ କରେ।</string>
+    <string name="ovulation_nutrition_1">ହାଲୁକା, ସତେଜ ଭୋଜନ: ଅଙ୍କୁରିତ ମୁଗ, ଛୋଲା, ପନୀର ସହିତ ସାଲାଦ</string>
+    <string name="ovulation_nutrition_2">ଆଣ୍ଟିଅକ୍ସିଡାଣ୍ଟ ସମୃଦ୍ଧ: ବିରି, ଡାଳିମ୍ବ, ସବୁଜ ପତ୍ରିଆ ପନିପରିବା</string>
+    <string name="ovulation_nutrition_3">ଶୀତଳ ଖାଦ୍ୟ: କାକୁଡି ରାୟତା, ନଡ଼ିଆ ପାଣି, ସତେଜ ଫଳ ରସ</string>
+    <string name="ovulation_nutrition_4">ସମ୍ପୂର୍ଣ୍ଣ ଶସ୍ୟ: କ୍ୱିନୋଆ ପୁଲାଓ, ବ୍ରାଉନ୍ ଚାଉଳ, ମଲ୍ଟି-ଗ୍ରେନ୍ ରୁଟି</string>
+    <string name="ovulation_nutrition_5">ଲିନ୍ ପ୍ରୋଟିନ୍: ଗ୍ରିଲ୍ଡ ପନୀର, ଡାଲି, ଅଣ୍ଡା ଧବଳ, ମାଛ (ଯଦି ମାଂସାହାରୀ)</string>
+    <string name="ovulation_nutrition_6">ଅତ୍ୟଧିକ ଭାରୀ କିମ୍ବା ଗଭୀର ଭାଜା ଖାଦ୍ୟରୁ ଦୂରେଇ ରୁହନ୍ତୁ - ଏହାକୁ ହାଲୁକା ଏବଂ ସତେଜ ରଖନ୍ତୁ</string>
+    <string name="ovulation_movement_title">ଆଜି କିପରି ଚାଲନ୍ତୁ</string>
+    <string name="ovulation_movement_athlete_1">ଶିଖର ପ୍ରଦର୍ଶନ ଉଇଣ୍ଡୋ - ପ୍ରତିଯୋଗିତା କିମ୍ବା PRs ପରୀକ୍ଷଣ ପାଇଁ ଉତ୍ତମ</string>
+    <string name="ovulation_movement_athlete_2">ଉଚ୍ଚ-ତୀବ୍ରତା ପ୍ରଶିକ୍ଷଣ, ପ୍ଲାୟୋମେଟ୍ରିକ୍ସ କିମ୍ବା ଶକ୍ତି କାମ ହାସଲଯୋଗ୍ୟ ଲାଗେ</string>
+    <string name="ovulation_movement_athlete_3">ସମନ୍ୱୟ ଏବଂ ପ୍ରତିକ୍ରିୟା ସମୟ ଉତ୍କୃଷ୍ଟ</string>
+    <string name="ovulation_movement_athlete_4">ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ: ଲିଗାମେଣ୍ଟଗୁଡିକ ଅଧିକ ଢିଲା - ଆଘାତ ପ୍ରତିରୋଧ କରିବାକୁ ଭଲ ଭାବରେ ଗରମ କରନ୍ତୁ</string>
+    <string name="ovulation_movement_athlete_5">ଯଦି ପ୍ରତିଯୋଗିତା କରୁଛନ୍ତି, ଏହି ପର୍ଯ୍ୟାୟରେ ଇଭେଣ୍ଟଗୁଡିକର ରଣନୀତିକ ଭାବରେ ସମୟ ଦିଅନ୍ତୁ</string>
+    <string name="ovulation_movement_regular_1">ଉଚ୍ଚ-ତୀବ୍ରତା ବ୍ୟାୟାମ, HIIT କିମ୍ବା ଚ୍ୟାଲେଞ୍ଜିଂ ସେସନ୍ ଉତ୍ତମ ଲାଗେ</string>
+    <string name="ovulation_movement_regular_2">ଗ୍ରୁପ୍ କ୍ଲାସ୍: ଜୁମ୍ବା, ଏରୋବିକ୍ସ, କିକବକ୍ସିଂ କିମ୍ବା ଟିମ୍ ଖେଳ</string>
+    <string name="ovulation_movement_regular_3">ଉଚ୍ଚ ତୀବ୍ରତାରେ ଦୌଡିବା, ସାଇକେଲିଂ କିମ୍ବା ସନ୍ତରଣ</string>
+    <string name="ovulation_movement_regular_4">ସେହି ଉନ୍ନତ ଯୋଗ କ୍ଲାସ୍ କିମ୍ବା ଚ୍ୟାଲେଞ୍ଜିଂ ପାହାଡ ଯାତ୍ରା ଚେଷ୍ଟା କରନ୍ତୁ</string>
+    <string name="ovulation_movement_regular_5">ସଠିକ୍ ଭାବରେ ଗରମ କରନ୍ତୁ - ନମନୀୟତା ଉଚ୍ଚ କିନ୍ତୁ ଗଣ୍ଠି ସ୍ଥିରତା ଯତ୍ନ ଆବଶ୍ୟକ କରେ</string>
+    <string name="ovulation_do_1">ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ ବାର୍ତ୍ତାଳାପ କିମ୍ବା କଠିନ ଆଲୋଚନା କରନ୍ତୁ</string>
+    <string name="ovulation_do_2">ସାମାଜିକ କାର୍ଯ୍ୟକ୍ରମରେ ଯୋଗ ଦିଅନ୍ତୁ, ନେଟୱାର୍କ କରନ୍ତୁ କିମ୍ବା ଧାରଣା ଉପସ୍ଥାପନ କରନ୍ତୁ</string>
+    <string name="ovulation_do_3">ଚ୍ୟାଲେଞ୍ଜିଂ ପ୍ରକଳ୍ପ କିମ୍ବା ସମୟସୀମା ଗ୍ରହଣ କରନ୍ତୁ</string>
+    <string name="ovulation_do_4">ଆତ୍ମବିଶ୍ୱାସ ଏବଂ ସ୍ପଷ୍ଟତା ଆବଶ୍ୟକ କରୁଥିବା ନିଷ୍ପତ୍ତି ନିଅନ୍ତୁ</string>
+    <string name="ovulation_do_5">ଚାକିରି ସାକ୍ଷାତକାର, ଉପସ୍ଥାପନା କିମ୍ବା ସାର୍ବଜନୀନ ଭାଷଣ ନିର୍ଧାରଣ କରନ୍ତୁ</string>
+    <string name="ovulation_dont_1">ତୀବ୍ର ବ୍ୟାୟାମ ପୂର୍ବରୁ ୱାର୍ମ-ଅପ୍ ଛାଡନ୍ତୁ ନାହିଁ - ଆଘାତର ବିପଦ ଅଧିକ</string>
+    <string name="ovulation_dont_2">ସାମାଜିକ କିମ୍ବା ପେଶାଗତ ଭାବରେ ଅତ୍ୟଧିକ ବିସ୍ତାର କରନ୍ତୁ ନାହିଁ - ବର୍ନଆଉଟ୍ ପରେ ଆସେ</string>
+    <string name="ovulation_dont_3">କାର୍ଯ୍ୟକଳାପ ସମୟରେ ଜଳୟୋଜନ ଏବଂ ଇଲେକ୍ଟ୍ରୋଲାଇଟ୍ ଆବଶ୍ୟକତାକୁ ଅଣଦେଖା କରନ୍ତୁ ନାହିଁ</string>
+    <string name="ovulation_dont_4">ଏହି ଶିଖର ସମଗ୍ର ମାସ ରହିବ ବୋଲି ଅନୁମାନ କରନ୍ତୁ ନାହିଁ - ଆଗକୁ କମ୍ ଶକ୍ତି ପାଇଁ ଯୋଜନା କରନ୍ତୁ</string>
+    <string name="ovulation_dont_5">ଗଣ୍ଠି ଯନ୍ତ୍ରଣା ମଧ୍ୟରେ ଧକ୍କା ଦିଅନ୍ତୁ ନାହିଁ - ଲିଗାମେଣ୍ଟ ଢିଲତା ଆଘାତକୁ ସହଜ କରିଥାଏ</string>
+    <string name="ovulation_tip_regular_1">ଓଭୁଲେସନ୍ ସମୟରେ ଯୋଗାଯୋଗ ଦକ୍ଷତା, ଆକର୍ଷଣ ଏବଂ ପରାମର୍ଶ ଶିଖରରେ ପହଞ୍ଚେ</string>
+    <string name="ovulation_tip_regular_2">ଆପଣଙ୍କ ସ୍ୱର ସ୍ୱାଭାବିକ ଭାବରେ ଅଧିକ ଆତ୍ମବିଶ୍ୱାସୀ ଏବଂ ଆକର୍ଷଣୀୟ ଲାଗିପାରେ</string>
+    <string name="ovulation_tip_regular_3">ଚର୍ମ ପ୍ରାୟତଃ ଚମକେ ଏବଂ ଏହାର ସର୍ବୋତ୍ତମ ଦେଖାଯାଏ</string>
+    <string name="ovulation_tip_regular_4">ଏହି ପର୍ଯ୍ୟାୟ କେବଳ 2-3 ଦିନ ରହେ - ଏହାର ଚାରିପାଖରେ ଆପଣଙ୍କ ମାସ ଯୋଜନା କରନ୍ତୁ</string>
+    <string name="ovulation_tip_regular_5">ଯଦି ଗର୍ଭଧାରଣ କରିବାକୁ ଚେଷ୍ଟା କରୁଛନ୍ତି, ଏହି ଉଇଣ୍ଡୋରେ ପ୍ରଜନନ କ୍ଷମତା ସର୍ବୋଚ୍ଚ</string>
+    <string name="ovulation_tip_regular_6">ପ୍ରାକୃତିକ ଆତ୍ମବିଶ୍ୱାସ ବୃଦ୍ଧିର ଆନନ୍ଦ ନିଅନ୍ତୁ କିନ୍ତୁ ଗ୍ରାଉଣ୍ଡେଡ୍ ରୁହନ୍ତୁ</string>
+    <string name="ovulation_tip_athlete_1">ଶିଖର ପ୍ରଦର୍ଶନ ଉଇଣ୍ଡୋ - ପ୍ରତିଯୋଗିତା କିମ୍ବା PRs ପରୀକ୍ଷଣ ପାଇଁ ସର୍ବୋତ୍ତମ</string>
+    <string name="ovulation_tip_athlete_2">ଲିଗାମେଣ୍ଟଗୁଡିକ ଅଧିକ ଢିଲା - ACL ଆଘାତ ପ୍ରତିରୋଧ କରିବାକୁ ଭଲ ଭାବରେ ଗରମ କରନ୍ତୁ</string>
+    <string name="ovulation_tip_athlete_3">ଅନେକ ମହିଳା ଆଥଲେଟ୍ ଓଭୁଲେସନ୍ ସମୟରେ ଆଘାତର ରିପୋର୍ଟ କରନ୍ତି - ସତର୍କତା ଅବଲମ୍ବନ କରନ୍ତୁ</string>
+    <string name="ovulation_athlete_note">ଶିଖର ଶକ୍ତି, ଶକ୍ତି ଏବଂ ସମନ୍ୱୟ। ପ୍ରତିଯୋଗିତା, PRs କିମ୍ବା ଉଚ୍ଚ-ଦାଅ ପ୍ରଦର୍ଶନ ପାଇଁ ସର୍ବୋତ୍ତମ ପର୍ଯ୍ୟାୟ। କିନ୍ତୁ: ଏଷ୍ଟ୍ରୋଜେନ୍ ହେତୁ ଲିଗାମେଣ୍ଟଗୁଡିକ ଅଧିକ ଆରାମପ୍ରଦ - ACL କିମ୍ବା ଗଣ୍ଠି ଆଘାତ ପ୍ରତିରୋଧ କରିବାକୁ ସାବଧାନତାର ସହିତ ଗରମ କରନ୍ତୁ ଏବଂ ଝଟକା ଗତିବିଧିରୁ ଦୂରେଇ ରୁହନ୍ତୁ। ଏହି କାରଣରୁ ଅନେକ ମହିଳା ଆଥଲେଟ୍ ଓଭୁଲେସନ୍ ସମୟରେ ଆଘାତ ରିପୋର୍ଟ କରନ୍ତି।</string>
+    
+    <!-- Luteal Phase Guide Content -->
+    <string name="luteal_insight">ଶକ୍ତି ପୂର୍ବ ଅପେକ୍ଷା କମ୍ ଅନୁଭବ ହୋଇପାରେ। ଆପଣଙ୍କ ଶରୀର ମାସିକ ଧର୍ମ କିମ୍ବା ଗର୍ଭଧାରଣ ପାଇଁ ପ୍ରସ୍ତୁତ ହେଉଛି। ମୃଦୁ ରୁଟିନ୍, ଆରାମଦାୟକ ଖାଦ୍ୟ ଏବଂ ଆତ୍ମ-କରୁଣା ଆପଣଙ୍କୁ ଏହି ପର୍ଯ୍ୟାୟ ନେଭିଗେଟ୍ କରିବାରେ ସାହାଯ୍ୟ କରେ।</string>
+    <string name="luteal_nutrition_title">ଆଜି ପାଇଁ ପୋଷଣ</string>
+    <string name="luteal_nutrition_footer">ମିଠା କିମ୍ବା କାର୍ବ୍ସ ପାଇଁ ଲୋଭ ସାମାନ୍ୟ - ଖଜୁରୀ, ଗୁଡ଼ କିମ୍ବା ସମ୍ପୂର୍ଣ୍ଣ ଶସ୍ୟ ପରି ସ୍ୱାସ୍ଥ୍ୟକର ସଂସ୍କରଣ ବାଛନ୍ତୁ।</string>
+    <string name="luteal_nutrition_1">ଗରମ, ଗ୍ରାଉଣ୍ଡିଂ ଭୋଜନ: ଡାଲି-ରୁଟି, ଘିଓ ସହିତ ଖିଚୁଡ଼ି, ରାଜମା-ଭାତ</string>
+    <string name="luteal_nutrition_2">ସେରୋଟୋନିନ୍ ପାଇଁ ଜଟିଳ କାର୍ବ୍ସ: ମିଠା ଆଳୁ, ଓଟସ୍, ସମ୍ପୂର୍ଣ୍ଣ ଗହମ</string>
+    <string name="luteal_nutrition_3">ମ୍ୟାଗନେସିୟମ୍ ସମୃଦ୍ଧ: ବାଦାମ, କାଜୁ, କଖାରୁ ବିହନ, ଡାର୍କ ଚକୋଲେଟ୍ (70%+)</string>
+    <string name="luteal_nutrition_4">ଫୁଲା କମାନ୍ତୁ: ଜିରା ପାଣି, ଅଜୱାଇନ, ସଉଁଫ୍ ଚା, ଅଦା ଚା</string>
+    <string name="luteal_nutrition_5">ସ୍ୱାସ୍ଥ୍ୟକର ଚର୍ବି: ଘିଓ, ନଡ଼ିଆ ଚଟଣୀ, ତେଲ (ତିଲ), ଆଭୋକାଡୋ</string>
+    <string name="luteal_nutrition_6">ଯଦି PMS ଲକ୍ଷଣ ଶକ୍ତିଶାଳୀ, ତେବେ ଲୁଣ, କାଫିନ୍ ଏବଂ ବିଶୁଦ୍ଧ ଶର୍କରା ଉପରେ ସହଜ ହୁଅନ୍ତୁ</string>
+    <string name="luteal_movement_title">ଆଜି କିପରି ଚାଲନ୍ତୁ</string>
+    <string name="luteal_movement_athlete_1">ମଧ୍ୟମ ତୀବ୍ରତା, ଲମ୍ବା ଅବଧି କାମ ଉପରେ ଧ୍ୟାନ ଦିଅନ୍ତୁ</string>
+    <string name="luteal_movement_athlete_2">ସହନଶୀଳତା ପ୍ରଶିକ୍ଷଣ, ସ୍ଥିର-ଅବସ୍ଥା କାର୍ଡିଓ, କୌଶଳ ଅଭ୍ୟାସ</string>
+    <string name="luteal_movement_athlete_3">PRs ପାଇଁ ଧକ୍କା ଦେବାରୁ ଦୂରେଇ ରୁହନ୍ତୁ - କ୍ଳାନ୍ତି ସହିତ ଆଘାତର ବିପଦ ବଢେ</string>
+    <string name="luteal_movement_athlete_4">ଆପଣଙ୍କ ଶରୀରକୁ ଶୁଣନ୍ତୁ: କମ୍ ଶକ୍ତି ଦିନଗୁଡିକ ସମାଯୋଜିତ ପରିମାଣ ଆବଶ୍ୟକ କରେ</string>
+    <string name="luteal_movement_athlete_5">ପୁନରୁଦ୍ଧାର ସେସନ୍: ଯୋଗ, ଷ୍ଟ୍ରେଚିଂ, ସନ୍ତରଣ, ହାଲୁକା ସାଇକେଲିଂ</string>
+    <string name="luteal_movement_regular_1">ମୃଦୁ 20-30 ମିନିଟ୍ ଚାଲିବା, ଅଧିମାନତଃ ପ୍ରକୃତି କିମ୍ବା ପାର୍କରେ</string>
+    <string name="luteal_movement_regular_2">ଧୀର, ପ୍ରବାହିତ ଯୋଗ କିମ୍ବା ପାଇଲେଟ୍ସ</string>
+    <string name="luteal_movement_regular_3">ନିଜ ଗତିରେ ହାଲୁକା ସାଇକେଲିଂ, ସନ୍ତରଣ କିମ୍ବା ନୃତ୍ୟ</string>
+    <string name="luteal_movement_regular_4">ଉଚ୍ଚ-ତୀବ୍ରତା କିମ୍ବା ପ୍ରତିଯୋଗିତାମୂଳକ ବ୍ୟାୟାମରୁ ଦୂରେଇ ରୁହନ୍ତୁ</string>
+    <string name="luteal_movement_regular_5">ଯଦି ଶକ୍ତି ଅତ୍ୟନ୍ତ କମ୍, ତେବେ ସମ୍ପୂର୍ଣ୍ଣ ବିଶ୍ରାମ କରନ୍ତୁ - ତାହା ସମ୍ପୂର୍ଣ୍ଣ ଠିକ୍</string>
+    <string name="luteal_do_1">ହାଲୁକା ଦିନ ନିର୍ଧାରଣ କରନ୍ତୁ ଏବଂ ଲଗାତାର ପ୍ରତିବଦ୍ଧତାରୁ ଦୂରେଇ ରୁହନ୍ତୁ</string>
+    <string name="luteal_do_2">7-8 ଘଣ୍ଟା ନିଦକୁ ପ୍ରାଥମିକତା ଦିଅନ୍ତୁ - ଏହା ମନୋଦଶା ଏବଂ ଶକ୍ତିରେ ସାହାଯ୍ୟ କରେ</string>
+    <string name="luteal_do_3">ଆରାମ ଆଇଟମ୍ ପ୍ରସ୍ତୁତ ରଖନ୍ତୁ: ହିଟିଂ ପ୍ୟାଡ୍, ଢିଲା ପୋଷାକ, ସ୍ନାକ୍ସ</string>
+    <string name="luteal_do_4">ଯଦି ମନୋଦଶା ହ୍ରାସ ହୁଏ କିମ୍ବା ବିରକ୍ତି ବଢେ ତେବେ ଆତ୍ମ-କରୁଣା ଅଭ୍ୟାସ କରନ୍ତୁ</string>
+    <string name="luteal_do_5">ଆଗାମୀ ମାସିକ ପାଇଁ ଯୋଜନା କରନ୍ତୁ: ଯୋଗାଣ ଷ୍ଟକ୍ କରନ୍ତୁ, ସହଜ ଭୋଜନ ପ୍ରସ୍ତୁତ କରନ୍ତୁ</string>
+    <string name="luteal_dont_1">ଫଲିକୁଲାର୍-ପର୍ଯ୍ୟାୟ ଉତ୍ପାଦକତା ବଜାୟ ରଖିବାକୁ ନିଜକୁ ବାଧ୍ୟ କରନ୍ତୁ ନାହିଁ</string>
+    <string name="luteal_dont_2">ଫୁଲା କମାଇବା ଆଶାରେ ଭୋଜନ ଛାଡନ୍ତୁ ନାହିଁ - ଏହା ଲକ୍ଷଣକୁ ଖରାପ କରେ</string>
+    <string name="luteal_dont_3">ଅଧିକ-ନିର୍ଧାରଣ କରନ୍ତୁ ନାହିଁ କିମ୍ବା ତୀବ୍ର ସାମାଜିକ ଦାୟିତ୍ୱ ପାଇଁ ପ୍ରତିବଦ୍ଧ ହୁଅନ୍ତୁ ନାହିଁ</string>
+    <string name="luteal_dont_4">କମ୍ ଶକ୍ତି, ମନୋଦଶା ପରିବର୍ତ୍ତନ କିମ୍ବା ଲୋଭ ପାଇଁ ନିଜକୁ ଦୋଷ ଦିଅନ୍ତୁ ନାହିଁ</string>
+    <string name="luteal_dont_5">ଗମ୍ଭୀର PMS ଲକ୍ଷଣକୁ ଅଣଦେଖା କରନ୍ତୁ ନାହିଁ - ଯଦି ଏହା ଦୁର୍ବଳ, ତେବେ ଡାକ୍ତରଙ୍କ ସହିତ କଥା ହୁଅନ୍ତୁ</string>
+    <string name="luteal_tip_regular_1">ଏପ୍ସମ୍ ଲୁଣ ସହିତ ଗରମ ସ୍ନାନ ମାଂସପେଶୀ ଟେନସନ୍ ଏବଂ ଫୁଲା ସହଜ କରେ</string>
+    <string name="luteal_tip_regular_2">ଜର୍ନାଲିଂ କିମ୍ବା ହାଲୁକା ସୃଜନଶୀଳ କାମ ଭାବନା ପ୍ରକ୍ରିୟାକରଣରେ ସାହାଯ୍ୟ କରିପାରେ</string>
+    <string name="luteal_tip_regular_3">କମ୍ ଶକ୍ତି ଏବଂ ଭିତରକୁ ଧ୍ୟାନ ଜୈବିକ - ବ୍ୟକ୍ତିଗତ ତ୍ରୁଟି ନୁହେଁ</string>
+    <string name="luteal_tip_regular_4">ଏହି ପର୍ଯ୍ୟାୟ ସାଧାରଣତଃ ମାସିକ ଧର୍ମ ପୂର୍ବରୁ 10-14 ଦିନ ରହେ</string>
+    <string name="luteal_tip_regular_5">ଲୋଭ ମାସିକ 3-5 ଦିନ ପୂର୍ବରୁ ଶିଖରରେ ପହଞ୍ଚେ - ପୂର୍ବରୁ ପୋଷକ ସ୍ନାକ୍ସ ପ୍ରସ୍ତୁତ କରନ୍ତୁ</string>
+    <string name="luteal_tip_regular_6">ଯଦି PMS ଗମ୍ଭୀର, ତେବେ ଆପଣଙ୍କ ଡାକ୍ତରଙ୍କ ସହିତ ଆଲୋଚନା କରିବାକୁ ଲକ୍ଷଣ ଟ୍ରାକ୍ କରିବାକୁ ବିଚାର କରନ୍ତୁ</string>
+    <string name="luteal_tip_athlete_1">ସହନଶୀଳତା ଏବଂ କୌଶଳ ଉପରେ ଧ୍ୟାନ ଦିଅନ୍ତୁ - ପୁନରୁଦ୍ଧାର 20-30% ଅଧିକ ସମୟ ନିଏ</string>
+    <string name="luteal_tip_athlete_2">ପ୍ରୋଜେଷ୍ଟେରନ୍ ଶରୀର ତାପମାତ୍ରା ଏବଂ କ୍ଳାନ୍ତି ବଢାଏ</string>
+    <string name="luteal_tip_athlete_3">ଏହା ଦୁର୍ବଳତା ନୁହେଁ; ଏହା ଦୀର୍ଘକାଳୀନ ପ୍ରଦର୍ଶନ ପାଇଁ ସ୍ମାର୍ଟ ପିରିୟଡାଇଜେସନ୍</string>
+    <string name="luteal_athlete_note">ପ୍ରଶିକ୍ଷଣ ଫୋକସକୁ ଶକ୍ତି କିମ୍ବା ଶକ୍ତି ଅପେକ୍ଷା ସହନଶୀଳତା ଏବଂ କୌଶଳକୁ ସ୍ଥାନାନ୍ତରିତ କରନ୍ତୁ। ପ୍ରୋଜେଷ୍ଟେରନ୍ ପ୍ରାଧାନ୍ୟତା ଶରୀର ତାପମାତ୍ରା ଏବଂ କ୍ଳାନ୍ତି ବଢାଏ। ପୁନରୁଦ୍ଧାର ଅଧିକ ସମୟ ନିଏ - ବିଳମ୍ବ ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟରେ ପରିମାଣ କିମ୍ବା ତୀବ୍ରତା 20-30% ହ୍ରାସ କରନ୍ତୁ। ଏହା ଦୁର୍ବଳତା ନୁହେଁ; ଏହା ଦୀର୍ଘକାଳୀନ ପ୍ରଦର୍ଶନ ପାଇଁ ସ୍ମାର୍ଟ ପିରିୟଡାଇଜେସନ୍।</string>
+    
+    <!-- Language Selection -->
+    <string name="language_english">English</string>
+    <string name="language_hindi">हिंदी</string>
+    <string name="language_oriya">ଓଡ଼ିଆ</string>
+    
+    <!-- Insights Screen - Cycle Overview -->
+    <string name="insights_cycle_avg_length">ପ୍ରାୟ 28 ଦିନ</string>
+    <string name="insights_cycle_avg_bleeding">ପ୍ରାୟ 4-5 ଦିନ</string>
+    <string name="insights_cycle_still_learning">ଏବେ ଶିଖୁଛି</string>
+    
+    <!-- Insights Screen - Pattern Insights - Menstrual Phase -->
+    <string name="insight_menstrual_pain_first_days">ଯନ୍ତ୍ରଣା ସ୍ତର ସାଧାରଣତଃ ଆପଣଙ୍କ ମାସିକର ଦିନ 1-2 ରେ ସର୍ବାଧିକ ହୁଏ, ତା\'ପରେ ଧୀରେ ଧୀରେ କମିଯାଏ।</string>
+    <string name="insight_menstrual_energy_low">ମାସିକ ଧର୍ମ ସମୟରେ ଆପଣଙ୍କର ଶକ୍ତି ସାଧାରଣତଃ କମିଯାଏ। ଏହା ସମ୍ପୂର୍ଣ୍ଣ ସାଧାରଣ।</string>
+    <string name="insight_menstrual_mood_improves">ମାସିକ ଶେଷ ହେବା ପରେ ମନୋଦଶା ଏବଂ ଶକ୍ତି ସାଧାରଣତଃ ଯଥେଷ୍ଟ ବୃଦ୍ଧି ପାଏ।</string>
+    <string name="insight_menstrual_athlete_recovery">ଆଥଲେଟ୍ମାନଙ୍କ ପାଇଁ: ମାସିକ ପର୍ଯ୍ୟାୟ ହେଉଛି ଆପଣଙ୍କର ସକ୍ରିୟ ପୁନରୁଦ୍ଧାର ୱିଣ୍ଡୋ। ଆପଣ ବିଶ୍ରାମ ନେବା ସମୟରେ ମାଂସପେଶୀ ସର୍ବୋତ୍ତମ ମରାମତି ହୁଏ।</string>
+    
+    <!-- Insights Screen - Pattern Insights - Follicular Phase -->
+    <string name="insight_follicular_energy_rise">ଆପଣଙ୍କର ଫଲିକ୍ୟୁଲାର ପର୍ଯ୍ୟାୟରେ ଶକ୍ତି ସ୍ତର ସ୍ଥିର ଭାବରେ ବୃଦ୍ଧି ପାଏ। ଏହି ଦିନଗୁଡିକରେ ଆପଣ ଅଧିକ ଉତ୍ପାଦନଶୀଳ ଅଟନ୍ତି।</string>
+    <string name="insight_follicular_mood_positive">ଫଲିକ୍ୟୁଲାର ପର୍ଯ୍ୟାୟରେ ଆପଣଙ୍କର ମନୋଦଶା ଅଧିକ ସକାରାତ୍ମକ ଏବଂ ସ୍ଥିର ହୋଇଥାଏ।</string>
+    <string name="insight_follicular_sleep_better">ଏହି ପର୍ଯ୍ୟାୟରେ ନିଦ୍ରାର ଗୁଣବତ୍ତା ପ୍ରାୟତଃ ଭଲ ହୋଇଥାଏ। ଆପଣ ଅଧିକ ସତେଜ ଅନୁଭବ କରି ଉଠନ୍ତି।</string>
+    <string name="insight_follicular_athlete_strength">ଆଥଲେଟ୍ମାନଙ୍କ ପାଇଁ: ଫଲିକ୍ୟୁଲାର ପର୍ଯ୍ୟାୟ ହେଉଛି ଶକ୍ତି ଲାଭ ଏବଂ କୌଶଳ ନିର୍ମାଣ ପାଇଁ ପ୍ରଧାନ ସମୟ। ଆପଣଙ୍କ ଶରୀର ବର୍ତ୍ତମାନ ପ୍ରଶିକ୍ଷଣକୁ ସର୍ବୋତ୍ତମ ପ୍ରତିକ୍ରିୟା କରେ।</string>
+    
+    <!-- Insights Screen - Pattern Insights - Ovulation Phase -->
+    <string name="insight_ovulation_peak_energy">ଆପଣ ଓଭ୍ୟୁଲେସନ୍ ଆଖପାଖରେ ଶିଖର ଶକ୍ତି ଏବଂ ଆତ୍ମବିଶ୍ୱାସରେ ପହଞ୍ଚନ୍ତି। ଏହି ୱିଣ୍ଡୋକୁ ରଣନୀତିକ ଭାବରେ ବ୍ୟବହାର କରନ୍ତୁ।</string>
+    <string name="insight_ovulation_social_ease">ଓଭ୍ୟୁଲେସନ୍ ସମୟରେ ସାମାଜିକ ସମ୍ପର୍କ ସହଜ ଅନୁଭବ ହୁଏ। ଏହି ଦିନଗୁଡିକରେ ଆପଣ ଅଧିକ ବହିର୍ମୁଖୀ।</string>
+    <string name="insight_ovulation_skin_glow">ଓଭ୍ୟୁଲେସନ୍ ପର୍ଯ୍ୟାୟରେ ଆପଣଙ୍କର ଚର୍ମ ପ୍ରାୟତଃ ସ୍ୱଚ୍ଛ ଏବଂ ଉଜ୍ଜ୍ୱଳ ଦେଖାଯାଏ।</string>
+    <string name="insight_ovulation_athlete_peak_warning">ଆଥଲେଟ୍ମାନଙ୍କ ପାଇଁ: ଶିଖର ପ୍ରଦର୍ଶନ ୱିଣ୍ଡୋ କିନ୍ତୁ ଉଚ୍ଚ ଆଘାତ ଝୁଙ୍କି। ଭଲ ଭାବରେ ଗରମ କରନ୍ତୁ—ଲିଗାମେଣ୍ଟ ବର୍ତ୍ତମାନ ଅଧିକ ଶୁଖିଲା।</string>
+    
+    <!-- Insights Screen - Pattern Insights - Luteal Phase -->
+    <string name="insight_luteal_energy_decrease">ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟ ମାଧ୍ୟମରେ ଶକ୍ତି ଧୀରେ ଧୀରେ କମିଯାଏ। ବିଶ୍ରାମ ଅଧିକ ମହତ୍ୱପୂର୍ଣ୍ଣ ହୋଇଯାଏ।</string>
+    <string name="insight_luteal_cravings">ମିଠା କିମ୍ବା କାର୍ବ ପାଇଁ ଲୋଭ ବିଳମ୍ବ ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟରେ ଶିଖରରେ ପହଞ୍ଚେ। ଏହା ହରମୋନାଲ, ଇଚ୍ଛାଶକ୍ତିର ଅଭାବ ନୁହେଁ।</string>
+    <string name="insight_luteal_mood_sensitive">ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟରେ ଆପଣ ଭାବନାତ୍ମକ ଭାବରେ ଅଧିକ ସମ୍ବେଦନଶୀଳ। ଅତିରିକ୍ତ ଆତ୍ମ-ଯତ୍ନ ସାହାଯ୍ୟ କରେ।</string>
+    <string name="insight_luteal_bloating">ଆପଣଙ୍କ ମାସିକର 5-7 ଦିନ ପୂର୍ବରୁ ଫୁଲିବା ଏବଂ ଜଳ ସଂରକ୍ଷଣ ପ୍ରାୟତଃ ଦେଖାଯାଏ।</string>
+    <string name="insight_luteal_athlete_endurance">ଆଥଲେଟ୍ମାନଙ୍କ ପାଇଁ: ସହନଶୀଳତା କାର୍ଯ୍ୟ ଏବଂ କୌଶଳ ଡ୍ରିଲକୁ ସ୍ଥାନାନ୍ତର କରନ୍ତୁ। ପୁନରୁଦ୍ଧାର ଅଧିକ ସମୟ ନିଏ—ପ୍ରଶିକ୍ଷଣ ପରିମାଣ 20-30% ହ୍ରାସ କରନ୍ତୁ।</string>
+    
+    <!-- Insights Screen - Mock Pattern Insights -->
+    <string name="insight_mock_energy_luteal">ଆପଣଙ୍କର ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟରେ ଶକ୍ତି ସ୍ତର କମ୍ ହେବାକୁ ଲାଗେ। ଏହା ହରମୋନାଲ ଏବଂ ସମ୍ପୂର୍ଣ୍ଣ ସାଧାରଣ।</string>
+    <string name="insight_mock_pain_period">ଯନ୍ତ୍ରଣା ସାଧାରଣତଃ ଆପଣଙ୍କ ମାସିକର ପ୍ରଥମ 1-2 ଦିନରେ ଅଧିକ ହୁଏ, ତା\'ପରେ କମିଯାଏ।</string>
+    <string name="insight_mock_energy_post_period">ଆପଣଙ୍କ ମାସିକ ଶେଷ ହେବା ପରେ ଆପଣଙ୍କର ଶକ୍ତି ଯଥେଷ୍ଟ ଉନ୍ନତି ହୁଏ। ତଦନୁଯାୟୀ ଯୋଜନା କରନ୍ତୁ।</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Menstrual Phase -->
+    <string name="reflection_menstrual_title">ଆପଣଙ୍କର ଶେଷ ଚକ୍ର</string>
+    <string name="reflection_menstrual_text">ଆପଣ ଆପଣଙ୍କର ଶେଷ ଚକ୍ରକୁ ସଚେତନତା ଏବଂ ଆତ୍ମ-ଯତ୍ନ ସହିତ ନେଭିଗେଟ୍ କରିଛନ୍ତି। ଯେଉଁ ଦିନଗୁଡିକରେ ଆପଣ ଆବଶ୍ୟକ ସମୟରେ ବିଶ୍ରାମ ନେଇଛନ୍ତି ସେ ଏକ ପାର୍ଥକ୍ୟ ସୃଷ୍ଟି କରିଛି।</string>
+    <string name="reflection_menstrual_encouragement">ପ୍ରତ୍ୟେକ ଚକ୍ର ଆପଣଙ୍କୁ ଆପଣଙ୍କ ଶରୀର ବିଷୟରେ କିଛି ଶିଖାଏ 🌸</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Follicular Phase -->
+    <string name="reflection_follicular_title">ଆପଣଙ୍କର ପ୍ୟାଟର୍ନ ଦେଖିବା</string>
+    <string name="reflection_follicular_text">ଆପଣଙ୍କର ଫଲିକ୍ୟୁଲାର ପର୍ଯ୍ୟାୟ ଶକ୍ତି ସଂଗତ ହୋଇଛି। ଏହି ପ୍ରାକୃତିକ ଲୟ ସହିତ ମହତ୍ୱପୂର୍ଣ୍ଣ କାର୍ଯ୍ୟଗୁଡିକର ସମୟ ନିର୍ଦ୍ଧାରଣ କରିବାକୁ ଆପଣ ଶିଖୁଛନ୍ତି।</string>
+    <string name="reflection_follicular_encouragement">ଆପଣଙ୍କର ଚକ୍ର ବୁଝିବା ସଶକ୍ତିକରଣ 🌱</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Ovulation Phase -->
+    <string name="reflection_ovulation_title">ଶିଖର ପର୍ଯ୍ୟାୟ ଜ୍ଞାନ</string>
+    <string name="reflection_ovulation_text">ଆପଣଙ୍କର ଓଭ୍ୟୁଲେସନ୍ ପର୍ଯ୍ୟାୟ ଏହି ଚକ୍ରରେ ସ୍ୱଚ୍ଛତା ଏବଂ ଶକ୍ତି ଆଣିଛି। ଆପଣ ଆପଣଙ୍କର ଉଚ୍ଚ-ପ୍ରଦର୍ଶନ ୱିଣ୍ଡୋର ସର୍ବାଧିକ ଲାଭ ନେଇଛନ୍ତି।</string>
+    <string name="reflection_ovulation_encouragement">ଆପଣ ଆପଣଙ୍କର ଶରୀର ସହିତ କାମ କରିବାକୁ ଶିଖୁଛନ୍ତି, ଏହାର ବିରୁଦ୍ଧରେ ନୁହେଁ ✨</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Luteal Phase -->
+    <string name="reflection_luteal_title">ଆପଣଙ୍କର ଶେଷ ଚକ୍ର</string>
+    <string name="reflection_luteal_text">ଲୁଟିଆଲ୍ ପର୍ଯ୍ୟାୟରେ କିଛି ଚ୍ୟାଲେଞ୍ଜିଂ ଦିନ ଥିଲା, ବିଶେଷକରି ଶେଷ ଆଡକୁ। ଆପଣ ନିଜ ପାଇଁ ତଥାପି ଦେଖାଦେଇଛନ୍ତି—ଏହା ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ।</string>
+    <string name="reflection_luteal_encouragement">ପ୍ରତ୍ୟେକ ଚକ୍ର ଭିନ୍ନ, ଏବଂ ଏହା ସମ୍ପୂର୍ଣ୍ଣ ସାଧାରଣ 🌸</string>
+    
+    <!-- Insights Screen - Cycle Reflections - Mock -->
+    <string name="reflection_mock_title">ଆପଣଙ୍କର ଶେଷ ଚକ୍ର</string>
+    <string name="reflection_mock_text">ଆପଣଙ୍କର ଶେଷ ଚକ୍ରରେ କିଛି କଠିନ ଦିନ ଥିଲା, ବିଶେଷକରି ଆପଣଙ୍କ ମାସିକ ଆଖପାଖରେ। ଆପଣ ଆପଣଙ୍କର ଶରୀର ଶୁଣିଛନ୍ତି ଏବଂ ଏହା ଗୁରୁତ୍ୱପୂର୍ଣ୍ଣ।</string>
+    <string name="reflection_mock_encouragement">ପ୍ରତ୍ୟେକ ଚକ୍ର ଆମକୁ ନିଜ ବିଷୟରେ କିଛି ଶିଖାଏ 🌸</string>
+    
+    <!-- Insights Screen - Educational Articles -->
+    <string name="article_menstrual_phase">ଭାରତରେ ମାସିକ ଧର୍ମ ବୁଝିବା</string>
+    <string name="article_luteal_phase">PMS କାହିଁକି ହୁଏ ଏବଂ ଏହାକୁ କିପରି ପରିଚାଳନା କରିବେ</string>
+    <string name="article_energy_changes">ଆପଣଙ୍କ ଚକ୍ର ମାଧ୍ୟମରେ ଶକ୍ତି</string>
+    <string name="article_movement_cycle">ବ୍ୟାୟାମ ଏବଂ ଆପଣଙ୍କର ମାସିକ ଚକ୍ର</string>
+    <string name="article_nutrition_phases">ପ୍ରତ୍ୟେକ ପର୍ଯ୍ୟାୟ ପାଇଁ ଭାରତୀୟ ଖାଦ୍ୟ</string>
+    <string name="article_pcos_awareness">PCOS: ସଙ୍କେତ ଏବଂ ଡାକ୍ତରଙ୍କୁ କେବେ ଦେଖାଇବେ</string>
+    <string name="article_athlete_periodization">ଆଥଲେଟ୍ମାନଙ୍କ ପାଇଁ ଚକ୍ର-ଆଧାରିତ ପ୍ରଶିକ୍ଷଣ</string>
+    <string name="article_injury_prevention">ଆପଣଙ୍କ ଚକ୍ରରେ ଆଘାତକୁ ରୋକିବା</string>
+    
+    <!-- Insights Screen - Safety Insights -->
+    <string name="safety_insight_severe_pain">ଆପଣ ନିକଟରେ ଅନେକ ଥର ଗଭୀର ଯନ୍ତ୍ରଣା କିମ୍ବା ଅତ୍ୟଧିକ ଭାରୀ ପ୍ରବାହ ଲଗ୍ କରିଛନ୍ତି। ଏହା ସାଧାରଣ ହୋଇପାରେ, କିନ୍ତୁ ଲଗାତାର ଲକ୍ଷଣ ଧ୍ୟାନ ଯୋଗ୍ୟ।</string>
+    <string name="safety_insight_suggestion">PCOS, ଏଣ୍ଡୋମେଟ୍ରିଓସିସ୍ କିମ୍ବା ଫାଇବ୍ରଏଡ୍ ପରି ସ୍ଥିତିକୁ ବାଦ ଦେବାକୁ ସ୍ତ୍ରୀ ରୋଗ ବିଶେଷଜ୍ଞଙ୍କ ସହିତ ଏ ବିଷୟରେ ଆଲୋଚନା କରିବାକୁ ବିଚାର କରନ୍ତୁ।</string>
+    
+    <!-- Common UI Strings -->
+    <string name="loading">ଲୋଡ୍ ହେଉଛି...</string>
+    
+    <!-- Error Messages -->
+    <string name="error_load_phase_info">ପର୍ଯ୍ୟାୟ ସୂଚନା ଲୋଡ୍ କରିବାରେ ବିଫଳ</string>
+    <string name="error_phone_required">ଦୟାକରି ଫୋନ୍ ନମ୍ବର ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="error_send_otp">OTP ପଠାଇବାରେ ବିଫଳ</string>
+    <string name="error_otp_required">ଦୟାକରି OTP କୋଡ୍ ପ୍ରବେଶ କରନ୍ତୁ</string>
+    <string name="error_verify_otp">OTP ଯାଞ୍ଚ କରିବାରେ ବିଫଳ</string>
+    <string name="error_sign_out">ସାଇନ୍ ଆଉଟ୍ କରିବାରେ ବିଫଳ</string>
+    <string name="error_onboarding">ଅନବୋର୍ଡିଂ ସମ୍ପୂର୍ଣ୍ଣ କରିବାରେ ବିଫଳ</string>
+    
+    <!-- Log Screen - Flow Levels -->
+    <string name="flow_level_light">ହାଲୁକା</string>
+    <string name="flow_level_medium">ମଧ୍ୟମ</string>
+    <string name="flow_level_heavy">ଭାରୀ</string>
+    <string name="flow_level_very_heavy">ବହୁତ ଭାରୀ</string>
+    
+    <!-- Log Screen - Pain Levels -->
+    <string name="pain_level_none">କୌଣସି ଯନ୍ତ୍ରଣା ନାହିଁ</string>
+    <string name="pain_level_mild">ହାଲୁକା</string>
+    <string name="pain_level_moderate">ମଧ୍ୟମ</string>
+    <string name="pain_level_severe">ଗମ୍ଭୀର</string>
+    
+    <!-- Log Screen - Energy Levels -->
+    <string name="energy_level_low">କମ୍</string>
+    <string name="energy_level_okay">ଠିକ୍ ଅଛି</string>
+    <string name="energy_level_good">ଭଲ</string>
+    <string name="energy_level_high">ଉଚ୍ଚ</string>
+    
+    <!-- Log Screen - Mood Levels -->
+    <string name="mood_level_low">କମ୍</string>
+    <string name="mood_level_neutral">ନିରପେକ୍ଷ</string>
+    <string name="mood_level_good">ଭଲ</string>
+    <string name="mood_level_great">ବହୁତ ଭଲ</string>
+</resources>

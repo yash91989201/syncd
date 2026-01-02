@@ -1,5 +1,6 @@
 package com.example.syncd.composables.navbar
 
+import androidx.annotation.StringRes
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.automirrored.filled.MenuBook
@@ -17,8 +18,10 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
 
@@ -26,7 +29,7 @@ data class BottomNavItem(
     val screen: Screen,
     val selectedIcon: ImageVector,
     val unselectedIcon: ImageVector,
-    val title: String,
+    @StringRes val titleResId: Int,
 )
 
 val TOP_LEVEL_DESTINATIONS = listOf(
@@ -34,25 +37,25 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         screen = Screen.Home,
         selectedIcon = Icons.Filled.Home,
         unselectedIcon = Icons.Outlined.Home,
-        title = "Home"
+        titleResId = R.string.nav_home
     ),
     BottomNavItem(
         screen = Screen.Log,
         selectedIcon = Icons.Filled.DateRange,
         unselectedIcon = Icons.Outlined.DateRange,
-        title = "Log"
+        titleResId = R.string.nav_log
     ),
     BottomNavItem(
         screen = Screen.TodayGuide,
         selectedIcon = Icons.AutoMirrored.Filled.MenuBook,
         unselectedIcon = Icons.AutoMirrored.Outlined.MenuBook,
-        title = "Guide"
+        titleResId = R.string.nav_guide
     ),
     BottomNavItem(
         screen = Screen.Insights,
         selectedIcon = Icons.AutoMirrored.Filled.List,
         unselectedIcon = Icons.AutoMirrored.Outlined.List,
-        title = "Insights"
+        titleResId = R.string.nav_insights
     ),
 )
 
@@ -76,12 +79,12 @@ fun NavBar(
                 icon = {
                     Icon(
                         imageVector = if (isSelected) item.selectedIcon else item.unselectedIcon,
-                        contentDescription = item.title
+                        contentDescription = stringResource(item.titleResId)
                     )
                 },
                 label = {
                     Text(
-                        text = item.title,
+                        text = stringResource(item.titleResId),
                         style = MaterialTheme.typography.labelMedium,
                         fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
                     )

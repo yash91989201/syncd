@@ -71,15 +71,60 @@ import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.hapticfeedback.HapticFeedbackType
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalHapticFeedback
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
 import org.koin.compose.koinInject
 import org.koin.compose.viewmodel.koinViewModel
+
+@Composable
+fun getFlowLevelLabel(level: FlowLevel): String = when (level) {
+    FlowLevel.LIGHT -> stringResource(R.string.log_flow_light)
+    FlowLevel.MEDIUM -> stringResource(R.string.log_flow_medium)
+    FlowLevel.HEAVY -> stringResource(R.string.log_flow_heavy)
+    FlowLevel.VERY_HEAVY -> stringResource(R.string.log_flow_very_heavy)
+}
+
+@Composable
+fun getDisplayDate(selectedDate: java.time.LocalDate): String {
+    val today = java.time.LocalDate.now()
+    return when (selectedDate) {
+        today -> stringResource(R.string.log_today)
+        today.minusDays(1) -> stringResource(R.string.log_yesterday)
+        else -> selectedDate.format(java.time.format.DateTimeFormatter.ofPattern("MMM d, yyyy"))
+    }
+}
+
+@Composable
+fun getPainLevelLabel(level: PainLevel): String = when (level) {
+    PainLevel.NONE -> stringResource(R.string.log_pain_none)
+    PainLevel.MILD -> stringResource(R.string.log_pain_mild)
+    PainLevel.MODERATE -> stringResource(R.string.log_pain_moderate)
+    PainLevel.SEVERE -> stringResource(R.string.log_pain_severe)
+}
+
+@Composable
+fun getEnergyLevelLabel(level: EnergyLevel): String = when (level) {
+    EnergyLevel.LOW -> stringResource(R.string.log_energy_low)
+    EnergyLevel.OKAY -> stringResource(R.string.log_energy_okay)
+    EnergyLevel.GOOD -> stringResource(R.string.log_energy_good)
+    EnergyLevel.HIGH -> stringResource(R.string.log_energy_high)
+}
+
+@Composable
+fun getMoodLevelLabel(level: MoodLevel): String = when (level) {
+    MoodLevel.LOW -> stringResource(R.string.log_mood_low)
+    MoodLevel.NEUTRAL -> stringResource(R.string.log_mood_neutral)
+    MoodLevel.GOOD -> stringResource(R.string.log_mood_good)
+    MoodLevel.GREAT -> stringResource(R.string.log_mood_great)
+}
+
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
@@ -144,20 +189,20 @@ fun LogScreen() {
                     IconButton(onClick = { navigator.goBack() }) {
                         Icon(
                             imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
+                            contentDescription = stringResource(R.string.log_back),
                             tint = MaterialTheme.colorScheme.onSurface
                         )
                     }
 
                     Column(modifier = Modifier.weight(1f)) {
                         Text(
-                            text = "Daily Log",
+                            text = stringResource(R.string.log_title),
                             style = MaterialTheme.typography.titleLarge,
                             fontWeight = FontWeight.Bold,
                             color = MaterialTheme.colorScheme.onSurface
                         )
                         Text(
-                            text = "Track your wellness",
+                            text = stringResource(R.string.log_subtitle),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
@@ -184,7 +229,7 @@ fun LogScreen() {
                                 tint = MaterialTheme.colorScheme.primary
                             )
                             Text(
-                                text = state.displayDate,
+                                text = getDisplayDate(state.selectedDate),
                                 style = MaterialTheme.typography.labelLarge,
                                 fontWeight = FontWeight.SemiBold,
                                 color = MaterialTheme.colorScheme.onSurface
@@ -223,7 +268,7 @@ fun LogScreen() {
                                 verticalAlignment = Alignment.CenterVertically
                             ) {
                                 Text(
-                                    text = "Log progress",
+                                    text = stringResource(R.string.log_progress),
                                     style = MaterialTheme.typography.labelLarge,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant,
                                     fontWeight = FontWeight.Medium
@@ -262,8 +307,8 @@ fun LogScreen() {
                     if (state.showFlowSection) {
                         AnimatedVisibility(visible = true, enter = enterAnimation) {
                             LogSection(
-                                title = "Flow",
-                                subtitle = "How heavy is it today?",
+                                title = stringResource(R.string.log_flow_title),
+                                subtitle = stringResource(R.string.log_flow_subtitle),
                                 content = {
                                     FlowRow(
                                         horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -272,7 +317,7 @@ fun LogScreen() {
                                     ) {
                                         FlowLevel.entries.forEach { level ->
                                             EmojiOptionChip(
-                                                text = level.label,
+                                                text = getFlowLevelLabel(level),
                                                 emoji = getFlowEmoji(level),
                                                 isSelected = state.selectedFlow == level,
                                                 onClick = {
@@ -293,8 +338,8 @@ fun LogScreen() {
                         enter = enterAnimation
                     ) {
                         LogSection(
-                            title = "Pain",
-                            subtitle = "Any physical discomfort?",
+                            title = stringResource(R.string.log_pain_title),
+                            subtitle = stringResource(R.string.log_pain_subtitle),
                             content = {
                                 FlowRow(
                                     horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -303,7 +348,7 @@ fun LogScreen() {
                                 ) {
                                     PainLevel.entries.forEach { level ->
                                         EmojiOptionChip(
-                                            text = level.label,
+                                            text = getPainLevelLabel(level),
                                             emoji = getPainEmoji(level),
                                             isSelected = state.selectedPain == level,
                                             onClick = {
@@ -323,8 +368,8 @@ fun LogScreen() {
                         enter = enterAnimation
                     ) {
                         LogSection(
-                            title = "Energy",
-                            subtitle = "How are your energy levels?",
+                            title = stringResource(R.string.log_energy_title),
+                            subtitle = stringResource(R.string.log_energy_subtitle),
                             content = {
                                 FlowRow(
                                     horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -333,7 +378,7 @@ fun LogScreen() {
                                 ) {
                                     EnergyLevel.entries.forEach { level ->
                                         EmojiOptionChip(
-                                            text = level.label,
+                                            text = getEnergyLevelLabel(level),
                                             emoji = getEnergyEmoji(level),
                                             isSelected = state.selectedEnergy == level,
                                             onClick = {
@@ -353,8 +398,8 @@ fun LogScreen() {
                         enter = enterAnimation
                     ) {
                         LogSection(
-                            title = "Mood",
-                            subtitle = "How are you feeling mentally?",
+                            title = stringResource(R.string.log_mood_title),
+                            subtitle = stringResource(R.string.log_mood_subtitle),
                             content = {
                                 FlowRow(
                                     horizontalArrangement = Arrangement.spacedBy(10.dp),
@@ -363,7 +408,7 @@ fun LogScreen() {
                                 ) {
                                     MoodLevel.entries.forEach { level ->
                                         EmojiOptionChip(
-                                            text = level.label,
+                                            text = getMoodLevelLabel(level),
                                             emoji = getMoodEmoji(level),
                                             isSelected = state.selectedMood == level,
                                             onClick = {
@@ -409,7 +454,7 @@ fun LogScreen() {
                                     }
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
-                                        text = "Notes",
+                                        text = stringResource(R.string.log_notes_title),
                                         style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSurface
@@ -421,7 +466,7 @@ fun LogScreen() {
                                     onValueChange = { viewModel.onUnusualNotesChanged(it) },
                                     placeholder = {
                                         Text(
-                                            "Anything else you'd like to remember? Symptoms, medications, or just thoughts.",
+                                            stringResource(R.string.log_notes_placeholder),
                                             style = MaterialTheme.typography.bodyMedium,
                                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.5f)
                                         )
@@ -446,7 +491,7 @@ fun LogScreen() {
                                 )
 
                                 Text(
-                                    text = "${state.unusualNotes.length} chars",
+                                    text = stringResource(R.string.log_chars, state.unusualNotes.length),
                                     style = MaterialTheme.typography.labelSmall,
                                     color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f),
                                     modifier = Modifier.align(Alignment.End)
@@ -487,7 +532,7 @@ fun LogScreen() {
                             )
                         } else {
                             Text(
-                                text = if (state.hasExistingLog) "Update Log" else "Save Log",
+                                text = if (state.hasExistingLog) stringResource(R.string.log_update) else stringResource(R.string.log_save),
                                 style = MaterialTheme.typography.titleMedium,
                                 fontWeight = FontWeight.Bold
                             )
@@ -536,7 +581,7 @@ fun LogScreen() {
                     }
                     Spacer(modifier = Modifier.height(20.dp))
                     Text(
-                        text = "Log Saved!",
+                        text = stringResource(R.string.log_saved_title),
                         style = MaterialTheme.typography.headlineSmall,
                         fontWeight = FontWeight.Bold,
                         color = MaterialTheme.colorScheme.inverseOnSurface,
@@ -544,7 +589,7 @@ fun LogScreen() {
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "Thanks for checking in. We've updated your insights.",
+                        text = stringResource(R.string.log_saved_message),
                         style = MaterialTheme.typography.bodyMedium,
                         color = MaterialTheme.colorScheme.inverseOnSurface.copy(alpha = 0.8f),
                         textAlign = TextAlign.Center
@@ -575,12 +620,12 @@ fun LogScreen() {
                             }
                         }
                     ) {
-                        Text("Confirm", fontWeight = FontWeight.SemiBold)
+                        Text(stringResource(R.string.log_date_confirm), fontWeight = FontWeight.SemiBold)
                     }
                 },
                 dismissButton = {
                     TextButton(onClick = { viewModel.toggleDatePicker() }) {
-                        Text("Cancel")
+                        Text(stringResource(R.string.log_date_cancel))
                     }
                 }
             ) {

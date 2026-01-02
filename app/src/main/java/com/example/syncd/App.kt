@@ -6,9 +6,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.navigation3.rememberViewModelStoreNavEntryDecorator
@@ -28,7 +31,11 @@ import org.koin.core.annotation.KoinExperimentalAPI
 @Composable
 @Preview
 fun App() {
-    AppTheme {
+    val context = LocalContext.current
+    val configuration = context.resources.configuration
+    
+    CompositionLocalProvider(LocalConfiguration provides configuration) {
+        AppTheme {
         val navigator = koinInject<Navigator>()
         val authViewModel = koinInject<AuthViewModel>()
         val entryProvider = koinEntryProvider()
@@ -83,5 +90,4 @@ fun App() {
         }
     }
 }
-
-
+}

@@ -30,10 +30,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.example.syncd.R
 import com.example.syncd.auth.presentation.AuthViewModel
 import com.example.syncd.navigation.Navigator
 import org.koin.compose.koinInject
@@ -67,7 +69,7 @@ fun LoginScreen() {
             IconButton(onClick = { navigator.goBack() }) {
                 Icon(
                     imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                    contentDescription = "Back",
+                    contentDescription = stringResource(R.string.login_back),
                     tint = MaterialTheme.colorScheme.onSurface
                 )
             }
@@ -75,7 +77,7 @@ fun LoginScreen() {
             Spacer(modifier = Modifier.height(32.dp))
 
             Text(
-                text = "What's your number?",
+                text = stringResource(R.string.login_title),
                 style = MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onSurface
@@ -84,7 +86,7 @@ fun LoginScreen() {
             Spacer(modifier = Modifier.height(8.dp))
             
             Text(
-                text = "We'll send you a code to verify your identity.",
+                text = stringResource(R.string.login_subtitle),
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
@@ -120,7 +122,7 @@ fun LoginScreen() {
                     modifier = Modifier.weight(1f),
                     placeholder = { 
                         Text(
-                            "Phone Number",
+                            stringResource(R.string.login_phone_placeholder),
                             color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)
                         )
                     },
@@ -181,7 +183,7 @@ fun LoginScreen() {
                     )
                 } else {
                     Text(
-                        text = "Send Code",
+                        text = stringResource(R.string.login_send_code),
                         style = MaterialTheme.typography.titleMedium,
                         fontWeight = FontWeight.Bold
                     )

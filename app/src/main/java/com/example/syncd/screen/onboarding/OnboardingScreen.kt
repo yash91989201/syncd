@@ -71,10 +71,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
+import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
 import org.koin.compose.koinInject
@@ -137,7 +139,11 @@ fun OnboardingScreen() {
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "Step ${state.currentStepIndex + 1} of ${state.totalSteps}",
+                            text = stringResource(
+                                R.string.onboarding_step_indicator,
+                                state.currentStepIndex + 1,
+                                state.totalSteps
+                            ),
                             style = MaterialTheme.typography.labelLarge,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                             fontWeight = FontWeight.Medium
@@ -148,7 +154,10 @@ fun OnboardingScreen() {
                             color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
                         ) {
                             Text(
-                                text = "${((state.currentStepIndex + 1) / state.totalSteps.toFloat() * 100).toInt()}%",
+                                text = stringResource(
+                                    R.string.onboarding_progress_percent,
+                                    ((state.currentStepIndex + 1) / state.totalSteps.toFloat() * 100).toInt()
+                                ),
                                 style = MaterialTheme.typography.labelLarge,
                                 color = MaterialTheme.colorScheme.primary,
                                 fontWeight = FontWeight.Bold,
@@ -232,13 +241,13 @@ fun OnboardingScreen() {
                                     ) {
                                         Icon(
                                             imageVector = Icons.Default.Info,
-                                            contentDescription = "Info",
+                                            contentDescription = stringResource(R.string.onboarding_info),
                                             tint = MaterialTheme.colorScheme.secondary,
                                             modifier = Modifier.size(18.dp)
                                         )
                                         Spacer(modifier = Modifier.width(10.dp))
                                         Text(
-                                            text = "Why we ask this?",
+                                            text = stringResource(R.string.onboarding_why_ask),
                                             style = MaterialTheme.typography.bodyMedium,
                                             color = MaterialTheme.colorScheme.onSecondaryContainer,
                                             fontWeight = FontWeight.Medium
@@ -281,7 +290,9 @@ fun OnboardingScreen() {
                                                         value = state.customSport,
                                                         onValueChange = { viewModel.onCustomSportChanged(it) },
                                                         modifier = Modifier.fillMaxWidth(),
-                                                        placeholder = { Text("Enter your sport") },
+                                                        placeholder = { 
+                                                            Text(stringResource(R.string.onboarding_custom_sport_placeholder)) 
+                                                        },
                                                         shape = RoundedCornerShape(16.dp),
                                                         singleLine = true,
                                                         keyboardOptions = KeyboardOptions(
@@ -335,7 +346,7 @@ fun OnboardingScreen() {
                                 Box(contentAlignment = Alignment.Center) {
                                     Icon(
                                         imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                                        contentDescription = "Back",
+                                        contentDescription = stringResource(R.string.onboarding_back),
                                         tint = MaterialTheme.colorScheme.onSurfaceVariant
                                     )
                                 }
@@ -370,7 +381,10 @@ fun OnboardingScreen() {
                                 )
                             } else {
                                 Text(
-                                    text = if (state.currentStepIndex == state.totalSteps - 1) "Finish" else "Next",
+                                    text = if (state.currentStepIndex == state.totalSteps - 1) 
+                                        stringResource(R.string.onboarding_finish) 
+                                    else 
+                                        stringResource(R.string.onboarding_next),
                                     fontWeight = FontWeight.Bold,
                                     style = MaterialTheme.typography.titleMedium
                                 )
@@ -456,7 +470,7 @@ fun OptionCard(
                     ) {
                         Icon(
                             imageVector = Icons.Default.Check,
-                            contentDescription = "Selected",
+                            contentDescription = stringResource(R.string.onboarding_selected),
                             tint = MaterialTheme.colorScheme.onPrimary,
                             modifier = Modifier.size(18.dp)
                         )
@@ -511,7 +525,7 @@ fun LastPeriodDatePicker(
                             .toLocalDate()
                             .format(java.time.format.DateTimeFormatter.ofPattern("MMMM d, yyyy"))
                     } else {
-                        "Select a date"
+                        stringResource(R.string.onboarding_date_picker_select)
                     },
                     style = MaterialTheme.typography.titleLarge,
                     fontWeight = FontWeight.SemiBold,

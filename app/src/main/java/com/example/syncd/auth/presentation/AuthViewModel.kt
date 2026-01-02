@@ -1,7 +1,9 @@
 package com.example.syncd.auth.presentation
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.syncd.R
 import com.example.syncd.auth.data.model.User
 import com.example.syncd.auth.data.repository.AuthRepository
 import com.example.syncd.data.UserPreferences
@@ -27,11 +29,14 @@ data class AuthUiState(
 )
 
 class AuthViewModel(
+    application: Application,
     private val authRepository: AuthRepository,
     private val navigator: Navigator,
     private val userPreferences: UserPreferences,
     private val onboardingRepository: OnboardingRepository
-) : ViewModel() {
+) : AndroidViewModel(application) {
+
+    private val context = application.applicationContext
     
     private val _uiState = MutableStateFlow(AuthUiState())
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
@@ -52,7 +57,7 @@ class AuthViewModel(
     fun sendOtp() {
         val phoneNumber = _uiState.value.phoneNumber
         if (phoneNumber.isBlank()) {
-            _uiState.update { it.copy(error = "Please enter a phone number") }
+            _uiState.update { it.copy(error = context.getString(R.string.error_phone_required)) }
             return
         }
         
@@ -68,7 +73,7 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: "Failed to send OTP"
+                            error = throwable.message ?: context.getString(R.string.error_send_otp)
                         )
                     }
                 }
@@ -80,7 +85,7 @@ class AuthViewModel(
         val code = _uiState.value.otpCode
         
         if (code.isBlank()) {
-            _uiState.update { it.copy(error = "Please enter the OTP code") }
+            _uiState.update { it.copy(error = context.getString(R.string.error_otp_required)) }
             return
         }
         
@@ -105,7 +110,7 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: "Failed to verify OTP"
+                            error = throwable.message ?: context.getString(R.string.error_verify_otp)
                         )
                     }
                 }
@@ -126,7 +131,7 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: "Failed to sign out"
+                            error = throwable.message ?: context.getString(R.string.error_sign_out)
                         )
                     }
                 }

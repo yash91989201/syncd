@@ -1,7 +1,9 @@
 package com.example.syncd.screen.insights
 
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.syncd.R
 import com.example.syncd.data.repository.UserProfileRepository
 import com.example.syncd.screen.home.data.repository.HomeRepository
 import com.example.syncd.screen.log.data.repository.LogRepository
@@ -11,9 +13,9 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
 
 data class CycleOverview(
-    val averageCycleLength: String = "around 28 days",
-    val averageBleedingDays: String = "about 4–5 days",
-    val currentPhase: String = "Luteal Phase"
+    val averageCycleLength: String = "",
+    val averageBleedingDays: String = "",
+    val currentPhase: String = ""
 )
 
 data class PatternInsight(
@@ -49,10 +51,13 @@ data class InsightsState(
 )
 
 class InsightsViewModel(
+    application: Application,
     private val homeRepository: HomeRepository,
     private val logRepository: LogRepository,
     private val userProfileRepository: UserProfileRepository
-) : ViewModel() {
+) : AndroidViewModel(application) {
+
+    private val context = application.applicationContext
 
     private val _state = MutableStateFlow(InsightsState())
     val state: StateFlow<InsightsState> = _state.asStateFlow()
@@ -69,13 +74,13 @@ class InsightsViewModel(
             homeRepository.getPhaseInfo()
                 .onSuccess { phaseInfo ->
                     if (phaseInfo != null) {
-                        val currentPhase = when (phaseInfo.phase) {
-                            "menstrual" -> "Menstrual Phase"
-                            "follicular" -> "Follicular Phase"
-                            "ovulation" -> "Ovulation Phase"
-                            "luteal" -> "Luteal Phase"
-                            else -> "Day ${phaseInfo.dayOfCycle}"
-                        }
+                val currentPhase = when (phaseInfo.phase) {
+                    "menstrual" -> context.getString(R.string.phase_menstrual)
+                    "follicular" -> context.getString(R.string.phase_follicular)
+                    "ovulation" -> context.getString(R.string.phase_ovulation)
+                    "luteal" -> context.getString(R.string.phase_luteal)
+                    else -> "Day ${phaseInfo.dayOfCycle}"
+                }
 
                         logRepository.listLogs()
                             .onSuccess { logs ->
@@ -90,11 +95,11 @@ class InsightsViewModel(
                                 _state.value = createMockInsightsState(currentPhase, isAthlete)
                             }
                     } else {
-                        _state.value = createMockInsightsState("Luteal Phase", isAthlete)
+                    _state.value = createMockInsightsState(context.getString(R.string.phase_luteal), isAthlete)
                     }
                 }
                 .onFailure {
-                    _state.value = createMockInsightsState("Luteal Phase", isAthlete)
+                    _state.value = createMockInsightsState(context.getString(R.string.phase_luteal), isAthlete)
                 }
         }
     }
@@ -107,8 +112,8 @@ class InsightsViewModel(
     ): InsightsState {
         return InsightsState(
             cycleOverview = CycleOverview(
-                averageCycleLength = "around 28 days",
-                averageBleedingDays = "about 4–5 days",
+                averageCycleLength = context.getString(R.string.insights_cycle_avg_length),
+                averageBleedingDays = context.getString(R.string.insights_cycle_avg_bleeding),
                 currentPhase = currentPhase
             ),
             patterns = generatePatternsForPhase(phase, logCount, isAthlete),
@@ -128,17 +133,17 @@ class InsightsViewModel(
                     listOf(
                         PatternInsight(
                             id = "pain_first_days",
-                            text = "Pain levels are usually highest on Day 1-2 of your period, then gradually reduce.",
+                            text = context.getString(R.string.insight_menstrual_pain_first_days),
                             emoji = "💫"
                         ),
                         PatternInsight(
                             id = "energy_low_menstrual",
-                            text = "Your energy typically dips during menstruation. This is completely normal.",
+                            text = context.getString(R.string.insight_menstrual_energy_low),
                             emoji = "🔋"
                         ),
                         PatternInsight(
                             id = "mood_improves_post",
-                            text = "Mood and energy usually lift noticeably after your period ends.",
+                            text = context.getString(R.string.insight_menstrual_mood_improves),
                             emoji = "🌱"
                         )
                     )
@@ -148,7 +153,7 @@ class InsightsViewModel(
                     basePatterns.add(
                         PatternInsight(
                             id = "athlete_recovery",
-                            text = "For athletes: Menstrual phase is your active recovery window. Muscles repair best when you rest.",
+                            text = context.getString(R.string.insight_menstrual_athlete_recovery),
                             emoji = "🏃‍♀️"
                         )
                     )
@@ -159,17 +164,17 @@ class InsightsViewModel(
                     listOf(
                         PatternInsight(
                             id = "energy_follicular",
-                            text = "Energy levels rise steadily during your follicular phase. You're more productive these days.",
+                            text = context.getString(R.string.insight_follicular_energy_rise),
                             emoji = "✨"
                         ),
                         PatternInsight(
                             id = "mood_positive",
-                            text = "Your mood tends to be more positive and stable in the follicular phase.",
+                            text = context.getString(R.string.insight_follicular_mood_positive),
                             emoji = "🌸"
                         ),
                         PatternInsight(
                             id = "sleep_better",
-                            text = "Sleep quality is often better in this phase. You wake up feeling more refreshed.",
+                            text = context.getString(R.string.insight_follicular_sleep_better),
                             emoji = "😴"
                         )
                     )
@@ -179,7 +184,7 @@ class InsightsViewModel(
                     basePatterns.add(
                         PatternInsight(
                             id = "athlete_strength",
-                            text = "For athletes: Follicular phase is prime time for strength gains and skill-building. Your body adapts best to training now.",
+                            text = context.getString(R.string.insight_follicular_athlete_strength),
                             emoji = "💪"
                         )
                     )
@@ -190,17 +195,17 @@ class InsightsViewModel(
                     listOf(
                         PatternInsight(
                             id = "peak_energy",
-                            text = "You hit peak energy and confidence around ovulation. Use this window strategically.",
+                            text = context.getString(R.string.insight_ovulation_peak_energy),
                             emoji = "⚡"
                         ),
                         PatternInsight(
                             id = "social_ease",
-                            text = "Social interactions feel easier during ovulation. You're more outgoing these days.",
+                            text = context.getString(R.string.insight_ovulation_social_ease),
                             emoji = "💬"
                         ),
                         PatternInsight(
                             id = "skin_glow",
-                            text = "Your skin often looks clearer and brighter during the ovulation phase.",
+                            text = context.getString(R.string.insight_ovulation_skin_glow),
                             emoji = "✨"
                         )
                     )
@@ -210,7 +215,7 @@ class InsightsViewModel(
                     basePatterns.add(
                         PatternInsight(
                             id = "athlete_peak_warning",
-                            text = "For athletes: Peak performance window BUT higher injury risk. Warm up thoroughly—ligaments are more lax now.",
+                            text = context.getString(R.string.insight_ovulation_athlete_peak_warning),
                             emoji = "⚠️"
                         )
                     )
@@ -221,22 +226,22 @@ class InsightsViewModel(
                     listOf(
                         PatternInsight(
                             id = "energy_luteal",
-                            text = "Energy gradually decreases through the luteal phase. Rest becomes more important.",
+                            text = context.getString(R.string.insight_luteal_energy_decrease),
                             emoji = "🔋"
                         ),
                         PatternInsight(
                             id = "cravings_luteal",
-                            text = "Cravings for sweets or carbs peak in late luteal phase. This is hormonal, not lack of willpower.",
+                            text = context.getString(R.string.insight_luteal_cravings),
                             emoji = "🍫"
                         ),
                         PatternInsight(
                             id = "mood_sensitive",
-                            text = "You're more emotionally sensitive in the luteal phase. Extra self-care helps.",
+                            text = context.getString(R.string.insight_luteal_mood_sensitive),
                             emoji = "💭"
                         ),
                         PatternInsight(
                             id = "bloating_common",
-                            text = "Bloating and water retention often appear 5-7 days before your period.",
+                            text = context.getString(R.string.insight_luteal_bloating),
                             emoji = "💧"
                         )
                     )
@@ -246,7 +251,7 @@ class InsightsViewModel(
                     basePatterns.add(
                         PatternInsight(
                             id = "athlete_endurance",
-                            text = "For athletes: Shift to endurance work and technique drills. Recovery takes longer—reduce training volume by 20-30%.",
+                            text = context.getString(R.string.insight_luteal_athlete_endurance),
                             emoji = "🏃‍♀️"
                         )
                     )
@@ -260,24 +265,24 @@ class InsightsViewModel(
     private fun generateReflectionForPhase(phase: String): CycleReflection {
         return when (phase) {
             "menstrual" -> CycleReflection(
-                title = "Your Last Cycle",
-                text = "You navigated your last cycle with awareness and self-care. The days you rested when needed made a difference.",
-                encouragement = "Every cycle teaches you something about your body 🌸"
+                title = context.getString(R.string.reflection_menstrual_title),
+                text = context.getString(R.string.reflection_menstrual_text),
+                encouragement = context.getString(R.string.reflection_menstrual_encouragement)
             )
             "follicular" -> CycleReflection(
-                title = "Observing Your Patterns",
-                text = "Your follicular phase energy has been consistent. You're learning to time important tasks with this natural rhythm.",
-                encouragement = "Understanding your cycle is empowering 🌱"
+                title = context.getString(R.string.reflection_follicular_title),
+                text = context.getString(R.string.reflection_follicular_text),
+                encouragement = context.getString(R.string.reflection_follicular_encouragement)
             )
             "ovulation" -> CycleReflection(
-                title = "Peak Phase Insights",
-                text = "Your ovulation phase brought clarity and energy this cycle. You made the most of your high-performance window.",
-                encouragement = "You're learning to work with your body, not against it ✨"
+                title = context.getString(R.string.reflection_ovulation_title),
+                text = context.getString(R.string.reflection_ovulation_text),
+                encouragement = context.getString(R.string.reflection_ovulation_encouragement)
             )
             else -> CycleReflection(
-                title = "Your Last Cycle",
-                text = "The luteal phase had some challenging days, especially toward the end. You showed up for yourself anyway—that matters.",
-                encouragement = "Every cycle is different, and that's completely normal 🌸"
+                title = context.getString(R.string.reflection_luteal_title),
+                text = context.getString(R.string.reflection_luteal_text),
+                encouragement = context.getString(R.string.reflection_luteal_encouragement)
             )
         }
     }
@@ -286,32 +291,32 @@ class InsightsViewModel(
         val baseArticles = listOf(
             EducationalArticle(
                 id = "menstrual_phase",
-                title = "Understanding Menstruation in India",
+                title = context.getString(R.string.article_menstrual_phase),
                 emoji = "🩸"
             ),
             EducationalArticle(
                 id = "luteal_phase",
-                title = "Why PMS Happens & How to Manage It",
+                title = context.getString(R.string.article_luteal_phase),
                 emoji = "🌙"
             ),
             EducationalArticle(
                 id = "energy_changes",
-                title = "Energy Through Your Cycle",
+                title = context.getString(R.string.article_energy_changes),
                 emoji = "⚡"
             ),
             EducationalArticle(
                 id = "movement_cycle",
-                title = "Exercise & Your Menstrual Cycle",
+                title = context.getString(R.string.article_movement_cycle),
                 emoji = "🏃"
             ),
             EducationalArticle(
                 id = "nutrition_phases",
-                title = "Indian Foods for Each Phase",
+                title = context.getString(R.string.article_nutrition_phases),
                 emoji = "🍲"
             ),
             EducationalArticle(
                 id = "pcos_awareness",
-                title = "PCOS: Signs & When to See a Doctor",
+                title = context.getString(R.string.article_pcos_awareness),
                 emoji = "⚕️"
             )
         )
@@ -320,12 +325,12 @@ class InsightsViewModel(
             listOf(
                 EducationalArticle(
                     id = "athlete_periodization",
-                    title = "Cycle-Based Training for Athletes",
+                    title = context.getString(R.string.article_athlete_periodization),
                     emoji = "💪"
                 ),
                 EducationalArticle(
                     id = "injury_prevention",
-                    title = "Preventing Injuries Across Your Cycle",
+                    title = context.getString(R.string.article_injury_prevention),
                     emoji = "⚠️"
                 )
             )
@@ -342,16 +347,16 @@ class InsightsViewModel(
 
     private fun generateSafetyInsight(): SafetyInsight {
         return SafetyInsight(
-            text = "You've logged severe pain or very heavy flow multiple times recently. This can be normal, but persistent symptoms deserve attention.",
-            suggestion = "Consider discussing this with a gynecologist to rule out conditions like PCOS, endometriosis or fibroids."
+            text = context.getString(R.string.safety_insight_severe_pain),
+            suggestion = context.getString(R.string.safety_insight_suggestion)
         )
     }
 
     private fun createLowDataState(currentPhase: String): InsightsState {
         return InsightsState(
             cycleOverview = CycleOverview(
-                averageCycleLength = "still learning",
-                averageBleedingDays = "still learning",
+                averageCycleLength = context.getString(R.string.insights_cycle_still_learning),
+                averageBleedingDays = context.getString(R.string.insights_cycle_still_learning),
                 currentPhase = currentPhase
             ),
             patterns = emptyList(),
@@ -365,32 +370,32 @@ class InsightsViewModel(
     private fun createMockInsightsState(currentPhase: String, isAthlete: Boolean = false): InsightsState {
         return InsightsState(
             cycleOverview = CycleOverview(
-                averageCycleLength = "around 28 days",
-                averageBleedingDays = "about 4–5 days",
+                averageCycleLength = context.getString(R.string.insights_cycle_avg_length),
+                averageBleedingDays = context.getString(R.string.insights_cycle_avg_bleeding),
                 currentPhase = currentPhase
             ),
             patterns = listOf(
                 PatternInsight(
                     id = "energy_luteal",
-                    text = "Energy levels tend to be lower during your luteal phase. This is hormonal and completely normal.",
+                    text = context.getString(R.string.insight_mock_energy_luteal),
                     emoji = "🔋"
                 ),
                 PatternInsight(
                     id = "pain_period",
-                    text = "Pain is usually stronger in the first 1–2 days of your period, then eases up.",
+                    text = context.getString(R.string.insight_mock_pain_period),
                     emoji = "💫"
                 ),
                 PatternInsight(
                     id = "energy_post_period",
-                    text = "Your energy improves noticeably after your period ends. Plan accordingly.",
+                    text = context.getString(R.string.insight_mock_energy_post_period),
                     emoji = "✨"
                 )
             ),
             hasEnoughData = true,
             lastCycleReflection = CycleReflection(
-                title = "Your Last Cycle",
-                text = "Your last cycle had a few tough days, especially around your period. You listened to your body and that matters.",
-                encouragement = "Every cycle teaches us something about ourselves 🌸"
+                title = context.getString(R.string.reflection_mock_title),
+                text = context.getString(R.string.reflection_mock_text),
+                encouragement = context.getString(R.string.reflection_mock_encouragement)
             ),
             educationalArticles = getEducationalArticles(isAthlete),
             safetyInsight = null
