@@ -89,12 +89,16 @@ class AuthViewModel(
             
             authRepository.verifyOtp(phoneNumber, code)
                 .onSuccess { response ->
-                    _uiState.update { 
-                        it.copy(
-                            isLoading = false,
-                            currentUser = response.user,
-                            isAuthenticated = response.user != null
-                        )
+                    if (response.user != null) {
+                        checkOnboardingStatus(response.user)
+                    } else {
+                        _uiState.update { 
+                            it.copy(
+                                isLoading = false,
+                                currentUser = null,
+                                isAuthenticated = false
+                            )
+                        }
                     }
                 }
                 .onFailure { throwable ->
@@ -167,6 +171,7 @@ class AuthViewModel(
                     currentUser = user,
                     isAuthenticated = true,
                     isCheckingSession = false,
+                    isLoading = false,
                     hasCompletedOnboarding = true
                 )
             }
@@ -183,6 +188,7 @@ class AuthViewModel(
                         currentUser = user,
                         isAuthenticated = true,
                         isCheckingSession = false,
+                        isLoading = false,
                         hasCompletedOnboarding = statusResponse.json.complete
                     )
                 }
@@ -193,6 +199,7 @@ class AuthViewModel(
                         currentUser = user,
                         isAuthenticated = true,
                         isCheckingSession = false,
+                        isLoading = false,
                         hasCompletedOnboarding = false
                     )
                 }

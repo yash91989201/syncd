@@ -42,6 +42,9 @@ import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.DatePicker
+import androidx.compose.material3.DatePickerDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.LinearProgressIndicator
@@ -49,11 +52,13 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SelectableDates
 import androidx.compose.material3.SnackbarDuration
 import androidx.compose.material3.SnackbarHost
 import androidx.compose.material3.SnackbarHostState
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -223,48 +228,58 @@ fun OnboardingScreen() {
 
                         Spacer(modifier = Modifier.height(32.dp))
 
-                        LazyColumn(
-                            verticalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            items(step.options, key = { it.id }) { option ->
-                                val isSelected = state.selectedOptionId == option.id
-                                OptionCard(
-                                    text = option.text,
-                                    isSelected = isSelected,
-                                    onClick = { viewModel.onOptionSelected(option.id) }
+                        when (step.stepType) {
+                            StepType.DATE_PICKER -> {
+                                LastPeriodDatePicker(
+                                    selectedDateMillis = state.lastPeriodDate,
+                                    onDateSelected = { viewModel.onLastPeriodDateSelected(it) }
                                 )
                             }
-
-                            item {
-                                AnimatedVisibility(
-                                    visible = state.showCustomSportInput,
-                                    enter = expandVertically() + fadeIn(),
-                                    exit = shrinkVertically() + fadeOut()
+                            StepType.OPTIONS -> {
+                                LazyColumn(
+                                    verticalArrangement = Arrangement.spacedBy(12.dp)
                                 ) {
-                                    Column {
-                                        Spacer(modifier = Modifier.height(16.dp))
-                                        OutlinedTextField(
-                                            value = state.customSport,
-                                            onValueChange = { viewModel.onCustomSportChanged(it) },
-                                            modifier = Modifier.fillMaxWidth(),
-                                            placeholder = { Text("Enter your sport") },
-                                            shape = RoundedCornerShape(16.dp),
-                                            singleLine = true,
-                                            keyboardOptions = KeyboardOptions(
-                                                capitalization = KeyboardCapitalization.Sentences,
-                                                imeAction = ImeAction.Done
-                                            ),
-                                            keyboardActions = KeyboardActions(
-                                                onDone = { viewModel.onNext() }
-                                            ),
-                                            colors = OutlinedTextFieldDefaults.colors(
-                                                focusedBorderColor = MaterialTheme.colorScheme.primary,
-                                                unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-                                                focusedContainerColor = MaterialTheme.colorScheme.surface,
-                                                unfocusedContainerColor = MaterialTheme.colorScheme.surface
-                                            )
+                                    items(step.options, key = { it.id }) { option ->
+                                        val isSelected = state.selectedOptionId == option.id
+                                        OptionCard(
+                                            text = option.text,
+                                            isSelected = isSelected,
+                                            onClick = { viewModel.onOptionSelected(option.id) }
                                         )
-                                        Spacer(modifier = Modifier.height(24.dp))
+                                    }
+
+                                    item {
+                                        AnimatedVisibility(
+                                            visible = state.showCustomSportInput,
+                                            enter = expandVertically() + fadeIn(),
+                                            exit = shrinkVertically() + fadeOut()
+                                        ) {
+                                            Column {
+                                                Spacer(modifier = Modifier.height(16.dp))
+                                                OutlinedTextField(
+                                                    value = state.customSport,
+                                                    onValueChange = { viewModel.onCustomSportChanged(it) },
+                                                    modifier = Modifier.fillMaxWidth(),
+                                                    placeholder = { Text("Enter your sport") },
+                                                    shape = RoundedCornerShape(16.dp),
+                                                    singleLine = true,
+                                                    keyboardOptions = KeyboardOptions(
+                                                        capitalization = KeyboardCapitalization.Sentences,
+                                                        imeAction = ImeAction.Done
+                                                    ),
+                                                    keyboardActions = KeyboardActions(
+                                                        onDone = { viewModel.onNext() }
+                                                    ),
+                                                    colors = OutlinedTextFieldDefaults.colors(
+                                                        focusedBorderColor = MaterialTheme.colorScheme.primary,
+                                                        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
+                                                        focusedContainerColor = MaterialTheme.colorScheme.surface,
+                                                        unfocusedContainerColor = MaterialTheme.colorScheme.surface
+                                                    )
+                                                )
+                                                Spacer(modifier = Modifier.height(24.dp))
+                                            }
+                                        }
                                     }
                                 }
                             }
@@ -415,4 +430,60 @@ fun OptionCard(
             }
         }
     }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun LastPeriodDatePicker(
+    selectedDateMillis: Long?,
+    onDateSelected: (Long) -> Unit
+) {
+    val today = System.currentTimeMillis()
+    val datePickerState = rememberDatePickerState(
+        initialSelectedDateMillis = selectedDateMillis,
+        selectableDates = object : SelectableDates {
+            override fun isSelectableDate(utcTimeMillis: Long): Boolean {
+                return utcTimeMillis <= today
+            }
+
+            override fun isSelectableYear(year: Int): Boolean {
+                return year <= java.time.Year.now().value
+            }
+        }
+    )
+
+    LaunchedEffect(datePickerState.selectedDateMillis) {
+        datePickerState.selectedDateMillis?.let { millis ->
+            onDateSelected(millis)
+        }
+    }
+
+    DatePicker(
+        state = datePickerState,
+        modifier = Modifier.fillMaxWidth(),
+        showModeToggle = false,
+        title = null,
+        headline = {
+            Text(
+                text = if (selectedDateMillis != null) {
+                    java.time.Instant.ofEpochMilli(selectedDateMillis)
+                        .atZone(java.time.ZoneId.systemDefault())
+                        .toLocalDate()
+                        .format(java.time.format.DateTimeFormatter.ofPattern("MMMM d, yyyy"))
+                } else {
+                    "Select a date"
+                },
+                style = MaterialTheme.typography.titleLarge,
+                fontWeight = FontWeight.SemiBold,
+                modifier = Modifier.padding(start = 16.dp, bottom = 12.dp)
+            )
+        },
+        colors = DatePickerDefaults.colors(
+            containerColor = MaterialTheme.colorScheme.surface,
+            selectedDayContainerColor = MaterialTheme.colorScheme.primary,
+            selectedDayContentColor = MaterialTheme.colorScheme.onPrimary,
+            todayContentColor = MaterialTheme.colorScheme.primary,
+            todayDateBorderColor = MaterialTheme.colorScheme.primary
+        )
+    )
 }

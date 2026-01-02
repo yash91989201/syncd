@@ -2,7 +2,9 @@ package com.example.syncd.composables.navbar
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.automirrored.outlined.List
+import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.outlined.DateRange
@@ -39,6 +41,12 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         selectedIcon = Icons.Filled.DateRange,
         unselectedIcon = Icons.Outlined.DateRange,
         title = "Log"
+    ),
+    BottomNavItem(
+        screen = Screen.TodayGuide,
+        selectedIcon = Icons.AutoMirrored.Filled.MenuBook,
+        unselectedIcon = Icons.AutoMirrored.Outlined.MenuBook,
+        title = "Guide"
     ),
     BottomNavItem(
         screen = Screen.Insights,

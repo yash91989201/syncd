@@ -14,4 +14,14 @@ object ApiConfig {
         const val COMPLETE = "/rpc/onboarding/complete"
         const val IS_COMPLETE = "/rpc/onboarding/isComplete"
     }
+    
+    object DailyLog {
+        const val CREATE = "/rpc/dailyLog/create"
+        const val UPDATE = "/rpc/dailyLog/update"
+        const val LIST = "/rpc/dailyLog/list"
+    }
+    
+    object Cycle {
+        const val GET_PHASE_INFO = "/rpc/cycle/getPhaseInfo"
+    }
 }

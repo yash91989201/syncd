@@ -7,6 +7,8 @@ import com.example.syncd.screen.guide.TodayGuideViewModel
 import com.example.syncd.screen.home.HomeViewModel
 import com.example.syncd.screen.insights.InsightsViewModel
 import com.example.syncd.screen.log.LogViewModel
+import com.example.syncd.screen.home.data.repository.HomeRepository
+import com.example.syncd.screen.log.data.repository.LogRepository
 import com.example.syncd.screen.onboarding.OnboardingViewModel
 import com.example.syncd.screen.onboarding.data.repository.OnboardingRepository
 import org.koin.core.KoinApplication
@@ -26,7 +28,8 @@ val onboardingModule = module {
 }
 
 val logModule = module {
-    viewModel { LogViewModel() }
+    single { LogRepository(get()) }
+    viewModel { LogViewModel(get()) }
 }
 
 val guideModule = module {
@@ -38,9 +41,8 @@ val insightsModule = module {
 }
 
 val homeModule = module {
-    viewModel {
-        HomeViewModel(get())
-    }
+    single { HomeRepository(get()) }
+    viewModel { HomeViewModel(get()) }
 }
 
 fun initializeKoin(

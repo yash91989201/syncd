@@ -34,7 +34,8 @@ data class CycleProfile(
     val cycleLength: String,
     val bleedingDays: String,
     val flowIntensity: String,
-    val painLevel: String
+    val painLevel: String,
+    val lastPeriod: String
 )
 
 @Serializable

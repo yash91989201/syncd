@@ -19,24 +19,31 @@ import kotlinx.coroutines.launch
 object StepIds {
     const val AGE_GROUP = 1
     const val CYCLE_STAGE = 2
-    const val CYCLE_LENGTH = 3
-    const val BLEEDING_DAYS = 4
-    const val FLOW_INTENSITY = 5
-    const val PAIN_LEVEL = 6
-    const val HEALTH_CONDITION = 7
-    const val HORMONAL_MEDICATION = 8
-    const val IS_ATHLETE = 9
-    const val TRAINING_FREQUENCY = 10
-    const val SPORT = 11
-    const val PHYSICAL_ACTIVITY = 12
+    const val LAST_PERIOD = 3
+    const val CYCLE_LENGTH = 4
+    const val BLEEDING_DAYS = 5
+    const val FLOW_INTENSITY = 6
+    const val PAIN_LEVEL = 7
+    const val HEALTH_CONDITION = 8
+    const val HORMONAL_MEDICATION = 9
+    const val IS_ATHLETE = 10
+    const val TRAINING_FREQUENCY = 11
+    const val SPORT = 12
+    const val PHYSICAL_ACTIVITY = 13
+}
+
+enum class StepType {
+    OPTIONS,
+    DATE_PICKER
 }
 
 data class OnboardingStep(
     val id: Int,
     val question: String,
     val helperText: String? = null,
-    val options: List<OnboardingOption>,
-    val allowCustomInput: Boolean = false
+    val options: List<OnboardingOption> = emptyList(),
+    val allowCustomInput: Boolean = false,
+    val stepType: StepType = StepType.OPTIONS
 )
 
 data class OnboardingOption(
@@ -49,6 +56,7 @@ data class OnboardingState(
     val currentStepIndex: Int = 0,
     val answers: Map<Int, String> = emptyMap(),
     val customSport: String = "",
+    val lastPeriodDate: Long? = null,
     val isComplete: Boolean = false,
     val isLoading: Boolean = false,
     val error: String? = null
@@ -60,6 +68,9 @@ data class OnboardingState(
 
     val canProceed: Boolean
         get() {
+            if (currentStep.stepType == StepType.DATE_PICKER) {
+                return lastPeriodDate != null
+            }
             val currentAnswer = selectedOptionId ?: return false
             if (currentStep.id == StepIds.SPORT && currentAnswer == "not_listed") {
                 return customSport.isNotBlank()
@@ -101,6 +112,12 @@ class OnboardingViewModel(
                 OnboardingOption("postpartum", "Postpartum"),
                 OnboardingOption("perimenopause", "Perimenopause")
             )
+        ),
+        OnboardingStep(
+            id = StepIds.LAST_PERIOD,
+            question = "When did your last period start?",
+            helperText = "This helps us calculate your cycle phases accurately.",
+            stepType = StepType.DATE_PICKER
         ),
         OnboardingStep(
             id = StepIds.CYCLE_LENGTH,
@@ -252,6 +269,10 @@ class OnboardingViewModel(
         _state.update { it.copy(customSport = sport) }
     }
 
+    fun onLastPeriodDateSelected(dateMillis: Long) {
+        _state.update { it.copy(lastPeriodDate = dateMillis) }
+    }
+
     private fun rebuildStepsBasedOnAthleteAnswer(answer: String) {
         val newSteps = when (answer) {
             "yes" -> baseSteps + athleteSteps
@@ -325,11 +346,19 @@ class OnboardingViewModel(
             medication = answers[StepIds.HORMONAL_MEDICATION] ?: "none"
         )
 
+        val lastPeriodDate = _state.value.lastPeriodDate!!.let { millis ->
+            java.time.Instant.ofEpochMilli(millis)
+                .atZone(java.time.ZoneId.systemDefault())
+                .toLocalDate()
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"))
+        }
+
         val cycleProfile = CycleProfile(
             cycleLength = answers[StepIds.CYCLE_LENGTH] ?: "unknown",
             bleedingDays = answers[StepIds.BLEEDING_DAYS] ?: "3_4",
             flowIntensity = answers[StepIds.FLOW_INTENSITY] ?: "medium",
-            painLevel = answers[StepIds.PAIN_LEVEL] ?: "none"
+            painLevel = answers[StepIds.PAIN_LEVEL] ?: "none",
+            lastPeriod = lastPeriodDate
         )
 
         val athleteProfile = if (isAthlete) {
