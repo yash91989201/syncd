@@ -3,6 +3,7 @@ package com.example.syncd.screen.home
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.syncd.data.repository.UserProfileRepository
 import com.example.syncd.screen.home.data.model.PhaseInfo
 import com.example.syncd.screen.home.data.repository.HomeRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +14,8 @@ import kotlinx.coroutines.launch
 data class HomeUiState(
     val isLoading: Boolean = true,
     val error: String? = null,
-    val phaseInfo: PhaseInfo? = null
+    val phaseInfo: PhaseInfo? = null,
+    val isAthlete: Boolean = false
 ) {
     val phaseName: String
         get() = when (phaseInfo?.phase) {
@@ -35,7 +37,8 @@ data class HomeUiState(
 }
 
 class HomeViewModel(
-    private val homeRepository: HomeRepository
+    private val homeRepository: HomeRepository,
+    private val userProfileRepository: UserProfileRepository
 ) : ViewModel() {
 
     private val _uiState = MutableStateFlow(HomeUiState())
@@ -49,11 +52,15 @@ class HomeViewModel(
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true, error = null)
             
+            val userProfile = userProfileRepository.getUserProfile().getOrNull()
+            val isAthlete = userProfile?.userProfile?.isAthlete ?: false
+            
             homeRepository.getPhaseInfo()
                 .onSuccess { phaseInfo ->
                     _uiState.value = _uiState.value.copy(
                         isLoading = false,
                         phaseInfo = phaseInfo,
+                        isAthlete = isAthlete,
                         error = null
                     )
                 }

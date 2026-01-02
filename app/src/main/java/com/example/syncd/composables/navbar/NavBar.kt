@@ -63,7 +63,7 @@ fun NavBar(
 ) {
     NavigationBar(
         containerColor = MaterialTheme.colorScheme.surface,
-        tonalElevation = 0.dp
+        tonalElevation = 2.dp
     ) {
         TOP_LEVEL_DESTINATIONS.forEach { item ->
             val isSelected = currentScreen == item.screen
@@ -82,13 +82,14 @@ fun NavBar(
                 label = {
                     Text(
                         text = item.title,
-                        fontWeight = if (isSelected) FontWeight.SemiBold else FontWeight.Normal
+                        style = MaterialTheme.typography.labelMedium,
+                        fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
                     selectedIconColor = MaterialTheme.colorScheme.primary,
                     selectedTextColor = MaterialTheme.colorScheme.primary,
-                    indicatorColor = MaterialTheme.colorScheme.primaryContainer,
+                    indicatorColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.7f),
                     unselectedIconColor = MaterialTheme.colorScheme.onSurfaceVariant,
                     unselectedTextColor = MaterialTheme.colorScheme.onSurfaceVariant
                 )

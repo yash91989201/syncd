@@ -24,4 +24,8 @@ object ApiConfig {
     object Cycle {
         const val GET_PHASE_INFO = "/rpc/cycle/getPhaseInfo"
     }
+    
+    object User {
+        const val PROFILE = "/rpc/userProfile/get"
+    }
 }

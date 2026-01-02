@@ -14,6 +14,7 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -68,6 +69,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.StrokeCap
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -102,182 +104,202 @@ fun OnboardingScreen() {
         }
     }
 
+    val backgroundGradient = Brush.verticalGradient(
+        colors = listOf(
+            MaterialTheme.colorScheme.surface,
+            MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.08f),
+            MaterialTheme.colorScheme.surface
+        )
+    )
+
     Scaffold(
         snackbarHost = { SnackbarHost(snackbarHostState) }
     ) { paddingValues ->
-        Column(
+        Box(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(paddingValues)
-                .statusBarsPadding()
+                .background(backgroundGradient)
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(horizontal = 20.dp, vertical = 20.dp)
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .statusBarsPadding()
             ) {
-                Row(
-                    modifier = Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically
+                Column(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 24.dp, vertical = 20.dp)
                 ) {
-                    Text(
-                        text = "Step ${state.currentStepIndex + 1} of ${state.totalSteps}",
-                        style = MaterialTheme.typography.labelLarge,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        fontWeight = FontWeight.Medium
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            text = "Step ${state.currentStepIndex + 1} of ${state.totalSteps}",
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant,
+                            fontWeight = FontWeight.Medium
+                        )
+
+                        Surface(
+                            shape = RoundedCornerShape(12.dp),
+                            color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
+                        ) {
+                            Text(
+                                text = "${((state.currentStepIndex + 1) / state.totalSteps.toFloat() * 100).toInt()}%",
+                                style = MaterialTheme.typography.labelLarge,
+                                color = MaterialTheme.colorScheme.primary,
+                                fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(horizontal = 12.dp, vertical = 4.dp)
+                            )
+                        }
+                    }
+
+                    Spacer(modifier = Modifier.height(16.dp))
+
+                    val animatedProgress by animateFloatAsState(
+                        targetValue = (state.currentStepIndex + 1) / state.totalSteps.toFloat(),
+                        animationSpec = tween(durationMillis = 400),
+                        label = "progress"
                     )
 
-                    Text(
-                        text = "${((state.currentStepIndex + 1) / state.totalSteps.toFloat() * 100).toInt()}%",
-                        style = MaterialTheme.typography.labelLarge,
+                    LinearProgressIndicator(
+                        progress = { animatedProgress },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(10.dp)
+                            .clip(RoundedCornerShape(5.dp)),
                         color = MaterialTheme.colorScheme.primary,
-                        fontWeight = FontWeight.Bold
+                        trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
+                        strokeCap = StrokeCap.Round
                     )
                 }
 
-                Spacer(modifier = Modifier.height(12.dp))
-
-                val animatedProgress by animateFloatAsState(
-                    targetValue = (state.currentStepIndex + 1) / state.totalSteps.toFloat(),
-                    animationSpec = tween(durationMillis = 300),
-                    label = "progress"
-                )
-
-                LinearProgressIndicator(
-                    progress = { animatedProgress },
+                Column(
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(8.dp)
-                        .clip(RoundedCornerShape(4.dp)),
-                    color = MaterialTheme.colorScheme.primary,
-                    trackColor = MaterialTheme.colorScheme.surfaceContainerHighest,
-                    strokeCap = StrokeCap.Round
-                )
-            }
+                        .weight(1f)
+                        .padding(horizontal = 24.dp),
+                ) {
+                    Spacer(modifier = Modifier.height(24.dp))
 
-            Column(
-                modifier = Modifier
-                    .weight(1f)
-                    .padding(horizontal = 20.dp),
-            ) {
-                Spacer(modifier = Modifier.height(32.dp))
+                    val currentStep = state.currentStep
 
-                val currentStep = state.currentStep
-
-                AnimatedContent(
-                    targetState = currentStep,
-                    transitionSpec = {
-                        if (targetState.id > initialState.id) {
-                            (slideInHorizontally { width -> width } + fadeIn(
-                                animationSpec = tween(300)
-                            )) togetherWith
-                                    slideOutHorizontally { width -> -width } + fadeOut(
-                                animationSpec = tween(300)
-                            )
-                        } else {
-                            (slideInHorizontally { width -> -width } + fadeIn(
-                                animationSpec = tween(300)
-                            )) togetherWith
-                                    slideOutHorizontally { width -> width } + fadeOut(
-                                animationSpec = tween(300)
-                            )
-                        }.using(SizeTransform(clip = false))
-                    },
-                    label = "step_transition"
-                ) { step ->
-                    Column(
-                        modifier = Modifier.fillMaxSize()
-                    ) {
-                        Text(
-                            text = step.question,
-                            style = MaterialTheme.typography.headlineMedium,
-                            fontWeight = FontWeight.Bold,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            lineHeight = MaterialTheme.typography.headlineMedium.lineHeight
-                        )
-
-                        if (step.helperText != null) {
-                            Spacer(modifier = Modifier.height(16.dp))
-                            Surface(
-                                onClick = { },
-                                modifier = Modifier.clip(RoundedCornerShape(8.dp)),
-                                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
-                                shape = RoundedCornerShape(8.dp)
-                            ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Default.Info,
-                                        contentDescription = "Info",
-                                        tint = MaterialTheme.colorScheme.primary,
-                                        modifier = Modifier.size(18.dp)
-                                    )
-                                    Spacer(modifier = Modifier.width(8.dp))
-                                    Text(
-                                        text = "Why we ask this?",
-                                        style = MaterialTheme.typography.bodyMedium,
-                                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                                        fontWeight = FontWeight.Medium
-                                    )
-                                }
-                            }
-                        }
-
-                        Spacer(modifier = Modifier.height(32.dp))
-
-                        when (step.stepType) {
-                            StepType.DATE_PICKER -> {
-                                LastPeriodDatePicker(
-                                    selectedDateMillis = state.lastPeriodDate,
-                                    onDateSelected = { viewModel.onLastPeriodDateSelected(it) }
+                    AnimatedContent(
+                        targetState = currentStep,
+                        transitionSpec = {
+                            if (targetState.id > initialState.id) {
+                                (slideInHorizontally { width -> width } + fadeIn(
+                                    animationSpec = tween(300)
+                                )) togetherWith
+                                        slideOutHorizontally { width -> -width } + fadeOut(
+                                    animationSpec = tween(300)
                                 )
-                            }
-                            StepType.OPTIONS -> {
-                                LazyColumn(
-                                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                            } else {
+                                (slideInHorizontally { width -> -width } + fadeIn(
+                                    animationSpec = tween(300)
+                                )) togetherWith
+                                        slideOutHorizontally { width -> width } + fadeOut(
+                                    animationSpec = tween(300)
+                                )
+                            }.using(SizeTransform(clip = false))
+                        },
+                        label = "step_transition"
+                    ) { step ->
+                        Column(
+                            modifier = Modifier.fillMaxSize()
+                        ) {
+                            Text(
+                                text = step.question,
+                                style = MaterialTheme.typography.headlineMedium,
+                                fontWeight = FontWeight.Bold,
+                                color = MaterialTheme.colorScheme.onSurface,
+                                lineHeight = MaterialTheme.typography.headlineMedium.lineHeight
+                            )
+
+                            if (step.helperText != null) {
+                                Spacer(modifier = Modifier.height(16.dp))
+                                Surface(
+                                    onClick = { },
+                                    modifier = Modifier.clip(RoundedCornerShape(12.dp)),
+                                    color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.4f),
+                                    shape = RoundedCornerShape(12.dp)
                                 ) {
-                                    items(step.options, key = { it.id }) { option ->
-                                        val isSelected = state.selectedOptionId == option.id
-                                        OptionCard(
-                                            text = option.text,
-                                            isSelected = isSelected,
-                                            onClick = { viewModel.onOptionSelected(option.id) }
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
+                                    ) {
+                                        Icon(
+                                            imageVector = Icons.Default.Info,
+                                            contentDescription = "Info",
+                                            tint = MaterialTheme.colorScheme.secondary,
+                                            modifier = Modifier.size(18.dp)
+                                        )
+                                        Spacer(modifier = Modifier.width(10.dp))
+                                        Text(
+                                            text = "Why we ask this?",
+                                            style = MaterialTheme.typography.bodyMedium,
+                                            color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                            fontWeight = FontWeight.Medium
                                         )
                                     }
+                                }
+                            }
 
-                                    item {
-                                        AnimatedVisibility(
-                                            visible = state.showCustomSportInput,
-                                            enter = expandVertically() + fadeIn(),
-                                            exit = shrinkVertically() + fadeOut()
-                                        ) {
-                                            Column {
-                                                Spacer(modifier = Modifier.height(16.dp))
-                                                OutlinedTextField(
-                                                    value = state.customSport,
-                                                    onValueChange = { viewModel.onCustomSportChanged(it) },
-                                                    modifier = Modifier.fillMaxWidth(),
-                                                    placeholder = { Text("Enter your sport") },
-                                                    shape = RoundedCornerShape(16.dp),
-                                                    singleLine = true,
-                                                    keyboardOptions = KeyboardOptions(
-                                                        capitalization = KeyboardCapitalization.Sentences,
-                                                        imeAction = ImeAction.Done
-                                                    ),
-                                                    keyboardActions = KeyboardActions(
-                                                        onDone = { viewModel.onNext() }
-                                                    ),
-                                                    colors = OutlinedTextFieldDefaults.colors(
-                                                        focusedBorderColor = MaterialTheme.colorScheme.primary,
-                                                        unfocusedBorderColor = MaterialTheme.colorScheme.outline,
-                                                        focusedContainerColor = MaterialTheme.colorScheme.surface,
-                                                        unfocusedContainerColor = MaterialTheme.colorScheme.surface
+                            Spacer(modifier = Modifier.height(32.dp))
+
+                            when (step.stepType) {
+                                StepType.DATE_PICKER -> {
+                                    LastPeriodDatePicker(
+                                        selectedDateMillis = state.lastPeriodDate,
+                                        onDateSelected = { viewModel.onLastPeriodDateSelected(it) }
+                                    )
+                                }
+                                StepType.OPTIONS -> {
+                                    LazyColumn(
+                                        verticalArrangement = Arrangement.spacedBy(12.dp)
+                                    ) {
+                                        items(step.options, key = { it.id }) { option ->
+                                            val isSelected = state.selectedOptionId == option.id
+                                            OptionCard(
+                                                text = option.text,
+                                                isSelected = isSelected,
+                                                onClick = { viewModel.onOptionSelected(option.id) }
+                                            )
+                                        }
+
+                                        item {
+                                            AnimatedVisibility(
+                                                visible = state.showCustomSportInput,
+                                                enter = expandVertically() + fadeIn(),
+                                                exit = shrinkVertically() + fadeOut()
+                                            ) {
+                                                Column {
+                                                    Spacer(modifier = Modifier.height(16.dp))
+                                                    OutlinedTextField(
+                                                        value = state.customSport,
+                                                        onValueChange = { viewModel.onCustomSportChanged(it) },
+                                                        modifier = Modifier.fillMaxWidth(),
+                                                        placeholder = { Text("Enter your sport") },
+                                                        shape = RoundedCornerShape(16.dp),
+                                                        singleLine = true,
+                                                        keyboardOptions = KeyboardOptions(
+                                                            capitalization = KeyboardCapitalization.Sentences,
+                                                            imeAction = ImeAction.Done
+                                                        ),
+                                                        keyboardActions = KeyboardActions(
+                                                            onDone = { viewModel.onNext() }
+                                                        ),
+                                                        colors = OutlinedTextFieldDefaults.colors(
+                                                            focusedBorderColor = MaterialTheme.colorScheme.primary,
+                                                            unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
+                                                            focusedContainerColor = MaterialTheme.colorScheme.surface,
+                                                            unfocusedContainerColor = MaterialTheme.colorScheme.surface
+                                                        )
                                                     )
-                                                )
-                                                Spacer(modifier = Modifier.height(24.dp))
+                                                    Spacer(modifier = Modifier.height(24.dp))
+                                                }
                                             }
                                         }
                                     }
@@ -286,64 +308,74 @@ fun OnboardingScreen() {
                         }
                     }
                 }
-            }
 
-            Row(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .navigationBarsPadding()
-                    .padding(horizontal = 20.dp, vertical = 16.dp),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                AnimatedVisibility(
-                    visible = state.currentStepIndex > 0,
-                    enter = fadeIn() + expandVertically(),
-                    exit = fadeOut() + shrinkVertically()
+                Surface(
+                    modifier = Modifier.fillMaxWidth(),
+                    color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f),
                 ) {
-                    IconButton(
-                        onClick = { viewModel.onBack() },
-                        modifier = Modifier.size(48.dp)
+                    Row(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .navigationBarsPadding()
+                            .padding(horizontal = 24.dp, vertical = 16.dp),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = "Back",
-                            tint = MaterialTheme.colorScheme.onSurfaceVariant
-                        )
-                    }
-                }
+                        AnimatedVisibility(
+                            visible = state.currentStepIndex > 0,
+                            enter = fadeIn() + expandVertically(),
+                            exit = fadeOut() + shrinkVertically()
+                        ) {
+                            Surface(
+                                onClick = { viewModel.onBack() },
+                                shape = CircleShape,
+                                color = MaterialTheme.colorScheme.surfaceContainerHigh,
+                                modifier = Modifier.size(48.dp)
+                            ) {
+                                Box(contentAlignment = Alignment.Center) {
+                                    Icon(
+                                        imageVector = Icons.AutoMirrored.Filled.ArrowBack,
+                                        contentDescription = "Back",
+                                        tint = MaterialTheme.colorScheme.onSurfaceVariant
+                                    )
+                                }
+                            }
+                        }
 
-                if (state.currentStepIndex == 0) {
-                    Spacer(modifier = Modifier.width(48.dp))
-                }
+                        if (state.currentStepIndex == 0) {
+                            Spacer(modifier = Modifier.width(48.dp))
+                        }
 
-                Spacer(modifier = Modifier.weight(1f))
+                        Spacer(modifier = Modifier.weight(1f))
 
-                Button(
-                    onClick = { viewModel.onNext() },
-                    modifier = Modifier
-                        .height(56.dp)
-                        .width(140.dp),
-                    shape = RoundedCornerShape(28.dp),
-                    enabled = state.canProceed && !state.isLoading,
-                    elevation = ButtonDefaults.buttonElevation(
-                        defaultElevation = 2.dp,
-                        pressedElevation = 4.dp,
-                        disabledElevation = 0.dp
-                    )
-                ) {
-                    if (state.isLoading) {
-                        CircularProgressIndicator(
-                            modifier = Modifier.size(24.dp),
-                            color = MaterialTheme.colorScheme.onPrimary,
-                            strokeWidth = 2.dp
-                        )
-                    } else {
-                        Text(
-                            text = if (state.currentStepIndex == state.totalSteps - 1) "Finish" else "Next",
-                            fontWeight = FontWeight.SemiBold,
-                            style = MaterialTheme.typography.titleMedium
-                        )
+                        Button(
+                            onClick = { viewModel.onNext() },
+                            modifier = Modifier
+                                .height(56.dp)
+                                .width(150.dp),
+                            shape = RoundedCornerShape(28.dp),
+                            enabled = state.canProceed && !state.isLoading,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.primary,
+                                contentColor = MaterialTheme.colorScheme.onPrimary,
+                                disabledContainerColor = MaterialTheme.colorScheme.primary.copy(alpha = 0.4f),
+                                disabledContentColor = MaterialTheme.colorScheme.onPrimary.copy(alpha = 0.6f)
+                            ),
+                        ) {
+                            if (state.isLoading) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(24.dp),
+                                    color = MaterialTheme.colorScheme.onPrimary,
+                                    strokeWidth = 2.dp
+                                )
+                            } else {
+                                Text(
+                                    text = if (state.currentStepIndex == state.totalSteps - 1) "Finish" else "Next",
+                                    fontWeight = FontWeight.Bold,
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            }
+                        }
                     }
                 }
             }
@@ -381,10 +413,13 @@ fun OptionCard(
                 MaterialTheme.colorScheme.primary
             )
         else
-            null,
+            BorderStroke(
+                1.dp,
+                MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.5f)
+            ),
         elevation = CardDefaults.cardElevation(
-            defaultElevation = if (isSelected) 2.dp else 0.dp,
-            pressedElevation = 1.dp
+            defaultElevation = if (isSelected) 4.dp else 0.dp,
+            pressedElevation = 2.dp
         )
     ) {
         Row(
@@ -458,32 +493,38 @@ fun LastPeriodDatePicker(
         }
     }
 
-    DatePicker(
-        state = datePickerState,
-        modifier = Modifier.fillMaxWidth(),
-        showModeToggle = false,
-        title = null,
-        headline = {
-            Text(
-                text = if (selectedDateMillis != null) {
-                    java.time.Instant.ofEpochMilli(selectedDateMillis)
-                        .atZone(java.time.ZoneId.systemDefault())
-                        .toLocalDate()
-                        .format(java.time.format.DateTimeFormatter.ofPattern("MMMM d, yyyy"))
-                } else {
-                    "Select a date"
-                },
-                style = MaterialTheme.typography.titleLarge,
-                fontWeight = FontWeight.SemiBold,
-                modifier = Modifier.padding(start = 16.dp, bottom = 12.dp)
+    Surface(
+        shape = RoundedCornerShape(20.dp),
+        color = MaterialTheme.colorScheme.surfaceContainerLow,
+        modifier = Modifier.fillMaxWidth()
+    ) {
+        DatePicker(
+            state = datePickerState,
+            modifier = Modifier.fillMaxWidth(),
+            showModeToggle = false,
+            title = null,
+            headline = {
+                Text(
+                    text = if (selectedDateMillis != null) {
+                        java.time.Instant.ofEpochMilli(selectedDateMillis)
+                            .atZone(java.time.ZoneId.systemDefault())
+                            .toLocalDate()
+                            .format(java.time.format.DateTimeFormatter.ofPattern("MMMM d, yyyy"))
+                    } else {
+                        "Select a date"
+                    },
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.SemiBold,
+                    modifier = Modifier.padding(start = 16.dp, bottom = 12.dp)
+                )
+            },
+            colors = DatePickerDefaults.colors(
+                containerColor = MaterialTheme.colorScheme.surfaceContainerLow,
+                selectedDayContainerColor = MaterialTheme.colorScheme.primary,
+                selectedDayContentColor = MaterialTheme.colorScheme.onPrimary,
+                todayContentColor = MaterialTheme.colorScheme.primary,
+                todayDateBorderColor = MaterialTheme.colorScheme.primary
             )
-        },
-        colors = DatePickerDefaults.colors(
-            containerColor = MaterialTheme.colorScheme.surface,
-            selectedDayContainerColor = MaterialTheme.colorScheme.primary,
-            selectedDayContentColor = MaterialTheme.colorScheme.onPrimary,
-            todayContentColor = MaterialTheme.colorScheme.primary,
-            todayDateBorderColor = MaterialTheme.colorScheme.primary
         )
-    )
+    }
 }

@@ -3,6 +3,7 @@ package com.example.syncd.di
 import com.example.syncd.auth.data.repository.AuthRepository
 import com.example.syncd.auth.presentation.AuthViewModel
 import com.example.syncd.data.UserPreferences
+import com.example.syncd.data.repository.UserProfileRepository
 import com.example.syncd.screen.guide.TodayGuideViewModel
 import com.example.syncd.screen.home.HomeViewModel
 import com.example.syncd.screen.insights.InsightsViewModel
@@ -20,6 +21,7 @@ val authModule = module {
     single { UserPreferences(get()) }
     single { AuthRepository(get()) }
     single { OnboardingRepository(get()) }
+    single { UserProfileRepository(get()) }
     single { AuthViewModel(get(), get(), get(), get()) }
 }
 
@@ -33,16 +35,16 @@ val logModule = module {
 }
 
 val guideModule = module {
-    viewModel { TodayGuideViewModel() }
+    viewModel { TodayGuideViewModel(get(), get()) }
 }
 
 val insightsModule = module {
-    viewModel { InsightsViewModel() }
+    viewModel { InsightsViewModel(get(), get(), get()) }
 }
 
 val homeModule = module {
     single { HomeRepository(get()) }
-    viewModel { HomeViewModel(get()) }
+    viewModel { HomeViewModel(get(), get()) }
 }
 
 fun initializeKoin(
