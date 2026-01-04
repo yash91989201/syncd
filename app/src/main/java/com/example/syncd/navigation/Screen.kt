@@ -31,4 +31,7 @@ sealed class Screen {
 
     @Serializable
     object Insights: Screen()
+
+    @Serializable
+    object Profile: Screen()
 }

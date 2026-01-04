@@ -23,7 +23,7 @@ data class DosDonts(
 )
 
 data class TodayGuideState(
-    val phaseName: String = "Luteal Phase",
+    val phaseName: String,
     val cycleDay: Int = 23,
     val phaseInsight: String = "",
     val nutritionSection: GuideSection = GuideSection("", emptyList()),
@@ -40,10 +40,10 @@ class TodayGuideViewModel(
     private val userProfileRepository: UserProfileRepository
 ) : AndroidViewModel(application) {
 
+    private val context = application.applicationContext
+    
     private val _state = MutableStateFlow(createGuideForPhase("luteal", 23, isAthlete = false))
     val state: StateFlow<TodayGuideState> = _state.asStateFlow()
-    
-    private val context = application.applicationContext
 
     init {
         loadPhaseData()

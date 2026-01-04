@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
@@ -23,13 +22,10 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
@@ -39,7 +35,6 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontStyle
@@ -72,302 +67,333 @@ fun InsightsScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .statusBarsPadding()
-                .verticalScroll(scrollState)
-                .padding(horizontal = 20.dp, vertical = 24.dp),
-            verticalArrangement = Arrangement.spacedBy(28.dp)
         ) {
-            Column {
-                Text(
-                    text = stringResource(R.string.insights_title),
-                    style = MaterialTheme.typography.headlineLarge,
-                    fontWeight = FontWeight.Bold,
-                    color = MaterialTheme.colorScheme.onSurface
-                )
-                Spacer(modifier = Modifier.height(4.dp))
-                Text(
-                    text = stringResource(R.string.insights_subtitle),
-                    style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
-                )
-            }
-
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                SectionTitle(
-                    text = stringResource(R.string.insights_cycle_glance),
-                    subtitle = stringResource(R.string.insights_based_on_history)
-                )
-                
-                ElevatedCard(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(24.dp),
-                    colors = CardDefaults.elevatedCardColors(
-                        containerColor = MaterialTheme.colorScheme.surface
-                    ),
-                    elevation = CardDefaults.elevatedCardElevation(
-                        defaultElevation = 4.dp
-                    )
+            Surface(
+                modifier = Modifier.fillMaxWidth(),
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)
+            ) {
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 20.dp, vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(16.dp)
-                    ) {
-                        OverviewRow(
-                            label = stringResource(R.string.insights_avg_cycle_length),
-                            value = state.cycleOverview.averageCycleLength
+                    Column(modifier = Modifier.weight(1f)) {
+                        Text(
+                            text = stringResource(R.string.insights_title),
+                            style = MaterialTheme.typography.titleLarge,
+                            fontWeight = FontWeight.Bold,
+                            color = MaterialTheme.colorScheme.onSurface
                         )
-                        HorizontalDivider(
-                            modifier = Modifier.padding(vertical = 4.dp),
-                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
-                        )
-                        OverviewRow(
-                            label = stringResource(R.string.insights_avg_bleeding),
-                            value = state.cycleOverview.averageBleedingDays
-                        )
-                        HorizontalDivider(
-                            modifier = Modifier.padding(vertical = 4.dp),
-                            color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
-                        )
-                        OverviewRow(
-                            label = stringResource(R.string.insights_current_phase),
-                            value = state.cycleOverview.currentPhase,
-                            isHighlighted = true
+                        Text(
+                            text = stringResource(R.string.insights_subtitle),
+                            style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
                 }
             }
 
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                SectionTitle(
-                    text = stringResource(R.string.insights_patterns_title),
-                    subtitle = if (state.hasEnoughData) stringResource(R.string.insights_patterns_count, state.patterns.size) else stringResource(R.string.insights_keep_tracking)
-                )
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState)
+                    .padding(horizontal = 20.dp, vertical = 24.dp),
+                verticalArrangement = Arrangement.spacedBy(28.dp)
+            ) {
 
-                if (state.hasEnoughData) {
-                    state.patterns.forEach { pattern ->
-                        InsightCard(
-                            emoji = pattern.emoji,
-                            text = pattern.text
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    SectionTitle(
+                        text = stringResource(R.string.insights_cycle_glance),
+                        subtitle = stringResource(R.string.insights_based_on_history)
+                    )
+
+                    ElevatedCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(24.dp),
+                        colors = CardDefaults.elevatedCardColors(
+                            containerColor = MaterialTheme.colorScheme.surface
+                        ),
+                        elevation = CardDefaults.elevatedCardElevation(
+                            defaultElevation = 4.dp
                         )
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(20.dp),
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            OverviewRow(
+                                label = stringResource(R.string.insights_avg_cycle_length),
+                                value = state.cycleOverview.averageCycleLength
+                            )
+                            HorizontalDivider(
+                                modifier = Modifier.padding(vertical = 4.dp),
+                                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
+                            )
+                            OverviewRow(
+                                label = stringResource(R.string.insights_avg_bleeding),
+                                value = state.cycleOverview.averageBleedingDays
+                            )
+                            HorizontalDivider(
+                                modifier = Modifier.padding(vertical = 4.dp),
+                                color = MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.3f)
+                            )
+                            OverviewRow(
+                                label = stringResource(R.string.insights_current_phase),
+                                value = state.cycleOverview.currentPhase,
+                                isHighlighted = true
+                            )
+                        }
                     }
-                } else {
+                }
+
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    SectionTitle(
+                        text = stringResource(R.string.insights_patterns_title),
+                        subtitle = if (state.hasEnoughData) stringResource(
+                            R.string.insights_patterns_count,
+                            state.patterns.size
+                        ) else stringResource(R.string.insights_keep_tracking)
+                    )
+
+                    if (state.hasEnoughData) {
+                        state.patterns.forEach { pattern ->
+                            InsightCard(
+                                emoji = pattern.emoji,
+                                text = pattern.text
+                            )
+                        }
+                    } else {
+                        OutlinedCard(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(20.dp),
+                            colors = CardDefaults.outlinedCardColors(
+                                containerColor = MaterialTheme.colorScheme.surfaceContainerLow
+                            ),
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(28.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally
+                            ) {
+                                Text(
+                                    text = "📊",
+                                    style = MaterialTheme.typography.displaySmall
+                                )
+                                Spacer(modifier = Modifier.height(12.dp))
+                                Text(
+                                    text = stringResource(R.string.insights_learning_title),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.SemiBold,
+                                    color = MaterialTheme.colorScheme.onSurface,
+                                    textAlign = TextAlign.Center
+                                )
+                                Spacer(modifier = Modifier.height(4.dp))
+                                Text(
+                                    text = stringResource(R.string.insights_learning_message),
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                    textAlign = TextAlign.Center
+                                )
+                            }
+                        }
+                    }
+                }
+
+                state.lastCycleReflection?.let { reflection ->
+                    Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        SectionTitle(text = stringResource(R.string.insights_last_cycle_reflection))
+
+                        ElevatedCard(
+                            modifier = Modifier.fillMaxWidth(),
+                            shape = RoundedCornerShape(24.dp),
+                            elevation = CardDefaults.elevatedCardElevation(
+                                defaultElevation = 2.dp
+                            )
+                        ) {
+                            Column(
+                                modifier = Modifier.padding(24.dp),
+                                verticalArrangement = Arrangement.spacedBy(16.dp)
+                            ) {
+                                Row(verticalAlignment = Alignment.CenterVertically) {
+                                    Surface(
+                                        shape = CircleShape,
+                                        color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f),
+                                        modifier = Modifier.size(44.dp)
+                                    ) {
+                                        Box(contentAlignment = Alignment.Center) {
+                                            Text(
+                                                text = "💭",
+                                                style = MaterialTheme.typography.titleLarge
+                                            )
+                                        }
+                                    }
+                                    Spacer(modifier = Modifier.width(12.dp))
+                                    Text(
+                                        text = reflection.title,
+                                        style = MaterialTheme.typography.titleMedium,
+                                        fontWeight = FontWeight.Bold,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer
+                                    )
+                                }
+
+                                HorizontalDivider(
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(
+                                        alpha = 0.15f
+                                    )
+                                )
+
+                                Text(
+                                    text = reflection.text,
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSecondaryContainer,
+                                    lineHeight = 24.sp
+                                )
+
+                                Surface(
+                                    shape = RoundedCornerShape(12.dp),
+                                    color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.15f)
+                                ) {
+                                    Text(
+                                        text = reflection.encouragement,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontStyle = FontStyle.Italic,
+                                        color = MaterialTheme.colorScheme.onSecondaryContainer.copy(
+                                            alpha = 0.9f
+                                        ),
+                                        modifier = Modifier.padding(
+                                            horizontal = 14.dp,
+                                            vertical = 10.dp
+                                        )
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                    SectionTitle(
+                        text = stringResource(R.string.insights_learn_about_cycle),
+                        subtitle = stringResource(R.string.insights_swipe_articles)
+                    )
+
+                    LazyRow(
+                        horizontalArrangement = Arrangement.spacedBy(14.dp),
+                        contentPadding = PaddingValues(horizontal = 0.dp)
+                    ) {
+                        items(state.educationalArticles) { article ->
+                            ElevatedCard(
+                                onClick = {},
+                                modifier = Modifier.width(170.dp),
+                                shape = RoundedCornerShape(20.dp),
+                                colors = CardDefaults.elevatedCardColors(
+                                    containerColor = MaterialTheme.colorScheme.surface
+                                ),
+                            ) {
+                                Column(
+                                    modifier = Modifier
+                                        .padding(18.dp)
+                                        .height(110.dp),
+                                    verticalArrangement = Arrangement.SpaceBetween
+                                ) {
+                                    Surface(
+                                        shape = RoundedCornerShape(12.dp),
+                                        color = MaterialTheme.colorScheme.primaryContainer.copy(
+                                            alpha = 0.4f
+                                        ),
+                                        modifier = Modifier.size(44.dp)
+                                    ) {
+                                        Box(contentAlignment = Alignment.Center) {
+                                            Text(
+                                                text = article.emoji,
+                                                style = MaterialTheme.typography.titleLarge
+                                            )
+                                        }
+                                    }
+                                    Text(
+                                        text = article.title,
+                                        style = MaterialTheme.typography.bodyMedium,
+                                        fontWeight = FontWeight.SemiBold,
+                                        maxLines = 3,
+                                        color = MaterialTheme.colorScheme.onSurface,
+                                        lineHeight = 20.sp
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
+
+                state.safetyInsight?.let { safety ->
                     OutlinedCard(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(20.dp),
                         colors = CardDefaults.outlinedCardColors(
-                            containerColor = MaterialTheme.colorScheme.surfaceContainerLow
+                            containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.1f)
                         ),
                     ) {
                         Column(
-                            modifier = Modifier.padding(28.dp),
-                            horizontalAlignment = Alignment.CenterHorizontally
+                            modifier = Modifier.padding(20.dp),
+                            verticalArrangement = Arrangement.spacedBy(12.dp)
                         ) {
-                            Text(
-                                text = "📊",
-                                style = MaterialTheme.typography.displaySmall
-                            )
-                            Spacer(modifier = Modifier.height(12.dp))
-                            Text(
-                                text = stringResource(R.string.insights_learning_title),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.onSurface,
-                                textAlign = TextAlign.Center
-                            )
-                            Spacer(modifier = Modifier.height(4.dp))
-                            Text(
-                                text = stringResource(R.string.insights_learning_message),
-                                style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                                textAlign = TextAlign.Center
-                            )
-                        }
-                    }
-                }
-            }
-
-            state.lastCycleReflection?.let { reflection ->
-                Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                    SectionTitle(text = stringResource(R.string.insights_last_cycle_reflection))
-                    
-                    ElevatedCard(
-                        modifier = Modifier.fillMaxWidth(),
-                        shape = RoundedCornerShape(24.dp),
-                        elevation = CardDefaults.elevatedCardElevation(
-                            defaultElevation = 2.dp
-                        )
-                    ) {
-                        Column(
-                            modifier = Modifier.padding(24.dp),
-                            verticalArrangement = Arrangement.spacedBy(16.dp)
-                        ) {
-                            Row(verticalAlignment = Alignment.CenterVertically) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                horizontalArrangement = Arrangement.spacedBy(12.dp)
+                            ) {
                                 Surface(
                                     shape = CircleShape,
-                                    color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.2f),
-                                    modifier = Modifier.size(44.dp)
+                                    color = MaterialTheme.colorScheme.error.copy(alpha = 0.15f),
+                                    modifier = Modifier.size(40.dp)
                                 ) {
                                     Box(contentAlignment = Alignment.Center) {
-                                        Text(
-                                            text = "💭",
-                                            style = MaterialTheme.typography.titleLarge
+                                        Icon(
+                                            imageVector = Icons.Outlined.Info,
+                                            contentDescription = stringResource(R.string.insights_safety_alert),
+                                            tint = MaterialTheme.colorScheme.error,
+                                            modifier = Modifier.size(22.dp)
                                         )
                                     }
                                 }
-                                Spacer(modifier = Modifier.width(12.dp))
                                 Text(
-                                    text = reflection.title,
+                                    text = stringResource(R.string.insights_health_notice),
                                     style = MaterialTheme.typography.titleMedium,
                                     fontWeight = FontWeight.Bold,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer
+                                    color = MaterialTheme.colorScheme.error
                                 )
                             }
-                            
+
                             HorizontalDivider(
-                                color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.15f)
+                                color = MaterialTheme.colorScheme.error.copy(alpha = 0.2f)
                             )
-                            
+
                             Text(
-                                text = reflection.text,
+                                text = safety.text,
                                 style = MaterialTheme.typography.bodyMedium,
-                                color = MaterialTheme.colorScheme.onSecondaryContainer,
-                                lineHeight = 24.sp
+                                color = MaterialTheme.colorScheme.onSurface,
+                                lineHeight = 22.sp
                             )
-                            
+
                             Surface(
                                 shape = RoundedCornerShape(12.dp),
-                                color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.15f)
+                                color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
                             ) {
                                 Text(
-                                    text = reflection.encouragement,
-                                    style = MaterialTheme.typography.bodyMedium,
-                                    fontStyle = FontStyle.Italic,
-                                    color = MaterialTheme.colorScheme.onSecondaryContainer.copy(alpha = 0.9f),
-                                    modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
-                                )
-                            }
-                        }
-                    }
-                }
-            }
-
-            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                SectionTitle(
-                    text = stringResource(R.string.insights_learn_about_cycle),
-                    subtitle = stringResource(R.string.insights_swipe_articles)
-                )
-                
-                LazyRow(
-                    horizontalArrangement = Arrangement.spacedBy(14.dp),
-                    contentPadding = PaddingValues(horizontal = 0.dp)
-                ) {
-                    items(state.educationalArticles) { article ->
-                        ElevatedCard(
-                            onClick = {},
-                            modifier = Modifier.width(170.dp),
-                            shape = RoundedCornerShape(20.dp),
-                            colors = CardDefaults.elevatedCardColors(
-                                containerColor = MaterialTheme.colorScheme.surface
-                            ),
-                        ) {
-                            Column(
-                                modifier = Modifier
-                                    .padding(18.dp)
-                                    .height(110.dp),
-                                verticalArrangement = Arrangement.SpaceBetween
-                            ) {
-                                Surface(
-                                    shape = RoundedCornerShape(12.dp),
-                                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f),
-                                    modifier = Modifier.size(44.dp)
-                                ) {
-                                    Box(contentAlignment = Alignment.Center) {
-                                        Text(
-                                            text = article.emoji,
-                                            style = MaterialTheme.typography.titleLarge
-                                        )
-                                    }
-                                }
-                                Text(
-                                    text = article.title,
+                                    text = safety.suggestion,
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.SemiBold,
-                                    maxLines = 3,
-                                    color = MaterialTheme.colorScheme.onSurface,
-                                    lineHeight = 20.sp
+                                    color = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.padding(
+                                        horizontal = 14.dp,
+                                        vertical = 10.dp
+                                    )
                                 )
                             }
                         }
                     }
                 }
-            }
 
-            state.safetyInsight?.let { safety ->
-                OutlinedCard(
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(20.dp),
-                    colors = CardDefaults.outlinedCardColors(
-                        containerColor = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.1f)
-                    ),
-                ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp),
-                        verticalArrangement = Arrangement.spacedBy(12.dp)
-                    ) {
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.spacedBy(12.dp)
-                        ) {
-                            Surface(
-                                shape = CircleShape,
-                                color = MaterialTheme.colorScheme.error.copy(alpha = 0.15f),
-                                modifier = Modifier.size(40.dp)
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Icon(
-                                        imageVector = Icons.Outlined.Info,
-                                        contentDescription = stringResource(R.string.insights_safety_alert),
-                                        tint = MaterialTheme.colorScheme.error,
-                                        modifier = Modifier.size(22.dp)
-                                    )
-                                }
-                            }
-                            Text(
-                                text = stringResource(R.string.insights_health_notice),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.error
-                            )
-                        }
-                        
-                        HorizontalDivider(
-                            color = MaterialTheme.colorScheme.error.copy(alpha = 0.2f)
-                        )
-                        
-                        Text(
-                            text = safety.text,
-                            style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onSurface,
-                            lineHeight = 22.sp
-                        )
-                        
-                        Surface(
-                            shape = RoundedCornerShape(12.dp),
-                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
-                        ) {
-                            Text(
-                                text = safety.suggestion,
-                                style = MaterialTheme.typography.bodyMedium,
-                                fontWeight = FontWeight.SemiBold,
-                                color = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.padding(horizontal = 14.dp, vertical = 10.dp)
-                            )
-                        }
-                    }
-                }
+                Spacer(modifier = Modifier.height(32.dp))
             }
-            
-            Spacer(modifier = Modifier.height(32.dp))
         }
     }
 }

@@ -12,6 +12,7 @@ import com.example.syncd.screen.home.data.repository.HomeRepository
 import com.example.syncd.screen.log.data.repository.LogRepository
 import com.example.syncd.screen.onboarding.OnboardingViewModel
 import com.example.syncd.screen.onboarding.data.repository.OnboardingRepository
+import com.example.syncd.screen.profile.ProfileViewModel
 import com.example.syncd.utils.LocaleManager
 import org.koin.core.KoinApplication
 import org.koin.core.context.startKoin
@@ -28,7 +29,7 @@ val authModule = module {
 }
 
 val onboardingModule = module {
-    viewModel { OnboardingViewModel(get(), get()) }
+    viewModel { OnboardingViewModel(get(), get(), get()) }
 }
 
 val logModule = module {
@@ -49,6 +50,10 @@ val homeModule = module {
     viewModel { HomeViewModel(get(), get(), get()) }
 }
 
+val profileModule = module {
+    viewModel { ProfileViewModel(get(), get()) }
+}
+
 fun initializeKoin(
     config: (KoinApplication.() -> Unit)? = null,
 ) {
@@ -62,7 +67,8 @@ fun initializeKoin(
             logModule,
             guideModule,
             insightsModule,
-            homeModule
+            homeModule,
+            profileModule
         )
     }
 }

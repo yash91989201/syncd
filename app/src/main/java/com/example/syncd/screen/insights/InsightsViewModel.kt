@@ -79,7 +79,7 @@ class InsightsViewModel(
                     "follicular" -> context.getString(R.string.phase_follicular)
                     "ovulation" -> context.getString(R.string.phase_ovulation)
                     "luteal" -> context.getString(R.string.phase_luteal)
-                    else -> "Day ${phaseInfo.dayOfCycle}"
+                    else -> context.getString(R.string.insights_day_of_cycle, phaseInfo.dayOfCycle)
                 }
 
                         logRepository.listLogs()

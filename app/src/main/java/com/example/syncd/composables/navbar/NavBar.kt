@@ -8,8 +8,10 @@ import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.automirrored.outlined.MenuBook
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Home
+import androidx.compose.material.icons.filled.Person
 import androidx.compose.material.icons.outlined.DateRange
 import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -56,6 +58,12 @@ val TOP_LEVEL_DESTINATIONS = listOf(
         selectedIcon = Icons.AutoMirrored.Filled.List,
         unselectedIcon = Icons.AutoMirrored.Outlined.List,
         titleResId = R.string.nav_insights
+    ),
+    BottomNavItem(
+        screen = Screen.Profile,
+        selectedIcon = Icons.Filled.Person,
+        unselectedIcon = Icons.Outlined.Person,
+        titleResId = R.string.nav_profile
     ),
 )
 

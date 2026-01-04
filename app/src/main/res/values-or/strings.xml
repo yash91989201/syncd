@@ -325,6 +325,17 @@
     <string name="language_english">English</string>
     <string name="language_hindi">हिंदी</string>
     <string name="language_oriya">ଓଡ଼ିଆ</string>
+
+    <!-- Navigation Bar -->
+    <string name="nav_profile">ପ୍ରୋଫାଇଲ୍</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">ପ୍ରୋଫାଇଲ୍</string>
+    <string name="profile_subtitle">ନିଜ ସୂଚନା ସମ୍ପାଦନ କରନ୍ତୁ</string>
+    <string name="profile_basic_details">ମୌଳିକ ବିବରଣୀ</string>
+    <string name="profile_save">ପରିବର୍ତ୍ତନ ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="profile_account_section">ଆକାଉଣ୍ଟ</string>
+    <string name="profile_logout">ଲଗ୍ ଆଉଟ୍</string>
     
     <!-- Insights Screen - Cycle Overview -->
     <string name="insights_cycle_avg_length">ପ୍ରାୟ 28 ଦିନ</string>
@@ -435,4 +446,116 @@
     <string name="mood_level_neutral">ନିରପେକ୍ଷ</string>
     <string name="mood_level_good">ଭଲ</string>
     <string name="mood_level_great">ବହୁତ ଭଲ</string>
+
+    <!-- Profile / Onboarding Questions & Options (shared) -->
+    <string name="qa_age_group_question">ଆପଣଙ୍କ ବୟସ କେଉଁ ଶ୍ରେଣୀରେ ପଡ଼େ?</string>
+    <string name="qa_age_under_18">18 ରୁ କମ୍</string>
+    <string name="qa_age_18_24">18 - 24</string>
+    <string name="qa_age_25_34">25 - 34</string>
+    <string name="qa_age_35_44">35 - 44</string>
+    <string name="qa_age_45_plus">45+</string>
+
+    <string name="qa_cycle_stage_question">ଆପଣଙ୍କ ଚକ୍ର ଅବସ୍ଥା ବିଷୟରେ କଣ ସଠିକ୍ ଭାବରେ ମେଳ ଖାଏ?</string>
+    <string name="qa_cycle_stage_helper">ଏହା ଆମକୁ ଆପଣଙ୍କ ପର୍ଯ୍ୟାୟଗୁଡ଼ିକ ସଠିକ୍ ଭାବେ ପୂର୍ବାନୁମାନ କରିବାରେ ସାହାଯ୍ୟ କରେ।</string>
+    <string name="qa_cycle_stage_regular">ନିୟମିତ ମାସିକ</string>
+    <string name="qa_cycle_stage_irregular">ଅନିୟମିତ ମାସିକ</string>
+    <string name="qa_cycle_stage_trying_to_conceive">ଗର୍ଭଧାରଣ ପାଇଁ ଚେଷ୍ଟା କରୁଛି</string>
+    <string name="qa_cycle_stage_pregnant">ଗର୍ଭବତୀ</string>
+    <string name="qa_cycle_stage_postpartum">ପ୍ରସବ ପରବର୍ତ୍ତୀ</string>
+    <string name="qa_cycle_stage_perimenopause">ପେରିମେନୋପଜ୍</string>
+
+    <string name="qa_last_period_question">ଆପଣଙ୍କ ପଛ ମାସିକ କେବେ ଆରମ୍ଭ ହେଲା?</string>
+    <string name="qa_last_period_helper">ଏହା ଆମକୁ ଆପଣଙ୍କ ଚକ୍ର ପର୍ଯ୍ୟାୟଗୁଡ଼ିକ ସଠିକ୍ ଭାବେ ଗଣନା କରିବାରେ ସାହାଯ୍ୟ କରେ।</string>
+
+    <string name="qa_cycle_length_question">ଆପଣଙ୍କ ସାଧାରଣ ଚକ୍ର କେତେ ଦିନର?</string>
+    <string name="qa_cycle_length_helper">ମାସିକର ପ୍ରଥମ ଦିନରୁ ପରବର୍ତ୍ତୀ ମାସିକର ଆଗଦିନ ପର୍ଯ୍ୟନ୍ତ ଗଣନା କରନ୍ତୁ।</string>
+    <string name="qa_cycle_length_unknown">ମୋତେ ଜଣା ନାହିଁ</string>
+    <string name="qa_cycle_length_short">ଛୋଟ (&lt; 25 ଦିନ)</string>
+    <string name="qa_cycle_length_average">ସାଧାରଣ (25-28 ଦିନ)</string>
+    <string name="qa_cycle_length_long">ଲମ୍ବା (29-32 ଦିନ)</string>
+    <string name="qa_cycle_length_very_long">ଅତି ଲମ୍ବା (&gt; 32 ଦିନ)</string>
+
+    <string name="qa_bleeding_days_question">ସାଧାରଣତଃ ଆପଣଙ୍କ ମାସିକ କେତେ ଦିନ ରହେ?</string>
+    <string name="qa_bleeding_days_short">ଛୋଟ (1-2 ଦିନ)</string>
+    <string name="qa_bleeding_days_medium">ମଧ୍ୟମ (3-4 ଦିନ)</string>
+    <string name="qa_bleeding_days_long">ଲମ୍ବା (5-6 ଦିନ)</string>
+    <string name="qa_bleeding_days_very_long">ଅତି ଲମ୍ବା (7+ ଦିନ)</string>
+
+    <string name="qa_flow_intensity_question">ଆପଣଙ୍କ ପ୍ରବାହକୁ କିପରି ବର୍ଣ୍ଣନା କରିବେ?</string>
+    <string name="qa_flow_light">ହାଲୁକା</string>
+    <string name="qa_flow_medium">ମଧ୍ୟମ</string>
+    <string name="qa_flow_heavy">ଭାରୀ</string>
+    <string name="qa_flow_variable">ପରିବର୍ତ୍ତନ ହୁଏ</string>
+
+    <string name="qa_pain_level_question">ଆପଣଙ୍କ ଚକ୍ର ସମୟରେ ଯନ୍ତ୍ରଣା ହୁଏ କି?</string>
+    <string name="qa_pain_none">ନାହିଁ, ଅତ୍ୟନ୍ତ କମ୍</string>
+    <string name="qa_pain_mild">ହଁ, ହାଲୁକା ଖିଚୁଣି</string>
+    <string name="qa_pain_moderate">ହଁ, ମଧ୍ୟମ ଯନ୍ତ୍ରଣା</string>
+    <string name="qa_pain_severe">ହଁ, ଗମ୍ଭୀର ଯନ୍ତ୍ରଣା</string>
+
+    <string name="qa_health_condition_question">ଆପଣଙ୍କ କୌଣସି ନିର୍ଣ୍ଣୟ ହୋଇଥିବା ସ୍ୱାସ୍ଥ୍ୟ ସମସ୍ୟା ଅଛି କି?</string>
+    <string name="qa_health_condition_helper">ଆମେ ଆପଣଙ୍କ ଗୋପନୀୟତାକୁ ପ୍ରାଥମିକତା ଦେଉଛୁ।</string>
+    <string name="qa_health_condition_none">କିଛି ନାହିଁ</string>
+    <string name="qa_health_condition_pcos">PCOS</string>
+    <string name="qa_health_condition_endometriosis">ଏଣ୍ଡୋମେଟ୍ରିଓସିସ୍</string>
+    <string name="qa_health_condition_thyroid">ଥାଇରଏଡ୍ ସମସ୍ୟା</string>
+    <string name="qa_health_condition_fibroids">ଫାଇବ୍ରଏଡ୍ସ</string>
+    <string name="qa_health_condition_anemia">ଅନିମିଆ</string>
+    <string name="qa_health_condition_diabetes">ଡାଇବେଟିସ୍</string>
+
+    <string name="qa_hormonal_med_question">ଆପଣ ଏବେ କୌଣସି ହରମୋନାଲ ଔଷଧ ନେଉଛନ୍ତି କି?</string>
+    <string name="qa_hormonal_med_none">ନାହିଁ</string>
+    <string name="qa_hormonal_med_pill">ପିଲ୍</string>
+    <string name="qa_hormonal_med_iud">ହରମୋନାଲ IUD</string>
+    <string name="qa_hormonal_med_implant">ଇମ୍ପ୍ଲାଣ୍ଟ / ଇଞ୍ଜେକ୍ସନ୍</string>
+
+    <string name="qa_is_athlete_question">ଆପଣ ନିଜକୁ ଏକ ଆଥଲେଟ୍ ଭାବେ ଚିହ୍ନଟ କରନ୍ତି କି?</string>
+    <string name="qa_yes">ହଁ</string>
+    <string name="qa_no">ନାହିଁ</string>
+
+    <string name="qa_training_frequency_question">ଆପଣ କେତେଥର ଟ୍ରେନିଂ କରନ୍ତି?</string>
+    <string name="qa_training_1_2">ସପ୍ତାହରେ 1-2 ଥର</string>
+    <string name="qa_training_3_4">ସପ୍ତାହରେ 3-4 ଥର</string>
+    <string name="qa_training_5_6">ସପ୍ତାହରେ 5-6 ଥର</string>
+    <string name="qa_training_daily">ପ୍ରତିଦିନ</string>
+    <string name="qa_training_twice_daily">ଦିନକୁ ଦୁଇଥର</string>
+
+    <string name="qa_sport_question">ଆପଣଙ୍କ ମୁଖ୍ୟ ଖେଳ କଉଣସି?</string>
+    <string name="qa_sport_helper">ଆପଣ ସବୁଠୁ ଅଧିକ କରୁଥିବା ଖେଳଟି ବାଛନ୍ତୁ।</string>
+    <string name="qa_sport_cricket">କ୍ରିକେଟ୍</string>
+    <string name="qa_sport_badminton">ବ୍ୟାଡମିଣ୍ଟନ୍</string>
+    <string name="qa_sport_kabaddi">କବଡ଼ି</string>
+    <string name="qa_sport_hockey">ହକି</string>
+    <string name="qa_sport_football">ଫୁଟବଲ୍</string>
+    <string name="qa_sport_tennis">ଟେନିସ୍</string>
+    <string name="qa_sport_volleyball">ଭଲିବଲ୍</string>
+    <string name="qa_sport_basketball">ବାସ୍କେଟବଲ୍</string>
+    <string name="qa_sport_athletics">ଏଥଲେଟିକ୍ସ / ଟ୍ରାକ୍ &amp; ଫିଲ୍ଡ</string>
+    <string name="qa_sport_swimming">ସନ୍ତରଣ</string>
+    <string name="qa_sport_wrestling">କୁସ୍ତି</string>
+    <string name="qa_sport_boxing">ବକ୍ସିଂ</string>
+    <string name="qa_sport_weightlifting">ବେଟଲିଫ୍ଟିଂ</string>
+    <string name="qa_sport_yoga">ଯୋଗ</string>
+    <string name="qa_sport_running">ଦୌଡ଼ / ମାରାଥନ୍</string>
+    <string name="qa_sport_cycling">ସାଇକେଲିଂ</string>
+    <string name="qa_sport_gym">ଜିମ୍ / ଶକ୍ତି ପ୍ରଶିକ୍ଷଣ</string>
+    <string name="qa_sport_not_listed">ତାଲିକାରେ ନାହିଁ</string>
+
+    <string name="qa_physical_activity_question">ଆପଣଙ୍କ ଶାରୀରିକ କାର୍ଯ୍ୟକଳାପକୁ ସବୁଠୁ ଭଲ ଭାବେ କଣ ବର୍ଣ୍ଣନା କରେ?</string>
+    <string name="qa_physical_activity_helper">ଏହା ଆମକୁ ଆପଣଙ୍କ ଅନୁଭବକୁ ବ୍ୟକ୍ତିଗତ କରିବାରେ ସାହାଯ୍ୟ କରେ।</string>
+    <string name="qa_physical_activity_daily_running">ଦିନପ୍ରତିଦିନ ଦୌଡ଼ିବା</string>
+    <string name="qa_physical_activity_gym">ଜିମ୍ / ଫିଟନେସ୍ ୱର୍କଆଉଟ୍</string>
+    <string name="qa_physical_activity_walking">ହାଟିବା / ହାଲୁକା ବ୍ୟାୟାମ</string>
+    <string name="qa_physical_activity_yoga">ଯୋଗ / ଷ୍ଟ୍ରେଚିଂ</string>
+    <string name="qa_physical_activity_none">ନିୟମିତ ଶାରୀରିକ କାର୍ଯ୍ୟକଳାପ ନାହିଁ</string>
+
+    <!-- Generic UI strings used by Profile / Onboarding -->
+    <string name="profile_update_success">ପ୍ରୋଫାଇଲ୍ ସଫଳଭାବେ ଅପଡେଟ୍ ହେଲା</string>
+    <string name="dropdown_select_option">ଏକ ବିକଳ୍ପ ବାଛନ୍ତୁ</string>
+    <string name="error_update_profile_failed">ପ୍ରୋଫାଇଲ୍ ଅପଡେଟ୍ କରିବାରେ ବିଫଳ</string>
+    <string name="error_load_profile_failed">ପ୍ରୋଫାଇଲ୍ ଲୋଡ୍ କରିବାରେ ବିଫଳ</string>
+    <string name="error_complete_onboarding_failed">ଅନବୋର୍ଡିଂ ସମ୍ପୂର୍ଣ୍ଣ କରିବାରେ ବିଫଳ</string>
+
+    <!-- Insights format -->
+    <string name="insights_day_of_cycle">ଦିନ %d</string>
 </resources>

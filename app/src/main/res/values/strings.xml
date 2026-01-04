@@ -1,9 +1,9 @@
 <resources>
-    <string name="app_name">syncd</string>
-    
+    <string name="app_name">Sync\'d</string>
+
     <!-- Welcome Screen -->
     <string name="welcome_app_name">Sync\'d</string>
-    <string name="welcome_tagline">Your cycle, understood.</string>
+    <string name="welcome_tagline">Where cycle meets strength</string>
     <string name="welcome_headline">Understand your cycle.\nFeel in control.</string>
     <string name="welcome_description">Sync\'d helps you understand how your body changes through the month and gently guides you every day.</string>
     <string name="welcome_button_get_started">Get Started</string>
@@ -38,12 +38,16 @@
     <string name="onboarding_selected">Selected</string>
     <string name="onboarding_custom_sport_placeholder">Enter your sport</string>
     <string name="onboarding_date_picker_select">Select a date</string>
+    <string name="onboarding_year">Year</string>
+    <string name="onboarding_month">Month</string>
+    <string name="onboarding_day">Day</string>
     
     <!-- Navigation Bar -->
     <string name="nav_home">Home</string>
     <string name="nav_log">Log</string>
     <string name="nav_guide">Guide</string>
     <string name="nav_insights">Insights</string>
+    <string name="nav_profile">Profile</string>
     
     <!-- Home Screen -->
     <string name="home_todays_insights">TODAY\'S INSIGHTS</string>
@@ -431,4 +435,140 @@
     <string name="mood_level_neutral">Neutral</string>
     <string name="mood_level_good">Good</string>
     <string name="mood_level_great">Great</string>
+    
+    <!-- Profile Screen -->
+    <string name="profile_title">Profile</string>
+    <string name="profile_subtitle">Edit your information</string>
+    <string name="profile_personal_info">Personal Information</string>
+    <string name="profile_name_label">Name</string>
+    <string name="profile_name_placeholder">Enter your name</string>
+    <string name="profile_email_label">Email</string>
+    <string name="profile_email_placeholder">Enter your email</string>
+    <string name="profile_onboarding_info">Onboarding Information</string>
+    <string name="profile_basic_details">Basic Details</string>
+    <string name="profile_save">Save Changes</string>
+    <string name="profile_saving">Saving...</string>
+    <string name="profile_saved">Profile updated successfully</string>
+    <string name="profile_error">Failed to update profile</string>
+    <string name="profile_back">Back</string>
+    <string name="profile_account_section">Account</string>
+    <string name="profile_logout">Log Out</string>
+
+    <!-- Date Picker Strings -->
+    <string name="onboarding_last_period">Last period date</string>
+    <string name="onboarding_select_last_period">Select last period date</string>
+    <string name="action_confirm">Confirm</string>
+    <string name="action_cancel">Cancel</string>
+
+    <!-- Profile / Onboarding Questions & Options (shared) -->
+    <string name="qa_age_group_question">What is your age group?</string>
+    <string name="qa_age_under_18">Under 18</string>
+    <string name="qa_age_18_24">18 - 24</string>
+    <string name="qa_age_25_34">25 - 34</string>
+    <string name="qa_age_35_44">35 - 44</string>
+    <string name="qa_age_45_plus">45+</string>
+
+    <string name="qa_cycle_stage_question">Which best describes your cycle stage?</string>
+    <string name="qa_cycle_stage_helper">This helps us predict your phases accurately.</string>
+    <string name="qa_cycle_stage_regular">Regular periods</string>
+    <string name="qa_cycle_stage_irregular">Irregular periods</string>
+    <string name="qa_cycle_stage_trying_to_conceive">Trying to conceive</string>
+    <string name="qa_cycle_stage_pregnant">Pregnant</string>
+    <string name="qa_cycle_stage_postpartum">Postpartum</string>
+    <string name="qa_cycle_stage_perimenopause">Perimenopause</string>
+
+    <string name="qa_last_period_question">When did your last period start?</string>
+    <string name="qa_last_period_helper">This helps us calculate your cycle phases accurately.</string>
+
+    <string name="qa_cycle_length_question">How long is your typical cycle?</string>
+    <string name="qa_cycle_length_helper">Count from the first day of your period to the day before your next period.</string>
+    <string name="qa_cycle_length_unknown">I don\'t know</string>
+    <string name="qa_cycle_length_short">Short (&lt; 25 days)</string>
+    <string name="qa_cycle_length_average">Average (25-28 days)</string>
+    <string name="qa_cycle_length_long">Long (29-32 days)</string>
+    <string name="qa_cycle_length_very_long">Very Long (&gt; 32 days)</string>
+
+    <string name="qa_bleeding_days_question">How many days does your period usually last?</string>
+    <string name="qa_bleeding_days_short">Short (1-2 days)</string>
+    <string name="qa_bleeding_days_medium">Medium (3-4 days)</string>
+    <string name="qa_bleeding_days_long">Long (5-6 days)</string>
+    <string name="qa_bleeding_days_very_long">Very Long (7+ days)</string>
+
+    <string name="qa_flow_intensity_question">How would you describe your flow?</string>
+    <string name="qa_flow_light">Light</string>
+    <string name="qa_flow_medium">Medium</string>
+    <string name="qa_flow_heavy">Heavy</string>
+    <string name="qa_flow_variable">It varies</string>
+
+    <string name="qa_pain_level_question">Do you experience pain during your cycle?</string>
+    <string name="qa_pain_none">No, rarely</string>
+    <string name="qa_pain_mild">Yes, mild cramps</string>
+    <string name="qa_pain_moderate">Yes, moderate pain</string>
+    <string name="qa_pain_severe">Yes, severe pain</string>
+
+    <string name="qa_health_condition_question">Do you have any diagnosed medical conditions?</string>
+    <string name="qa_health_condition_helper">We prioritize your privacy.</string>
+    <string name="qa_health_condition_none">None</string>
+    <string name="qa_health_condition_pcos">PCOS</string>
+    <string name="qa_health_condition_endometriosis">Endometriosis</string>
+    <string name="qa_health_condition_thyroid">Thyroid issues</string>
+    <string name="qa_health_condition_fibroids">Fibroids</string>
+    <string name="qa_health_condition_anemia">Anemia</string>
+    <string name="qa_health_condition_diabetes">Diabetes</string>
+
+    <string name="qa_hormonal_med_question">Are you currently taking any hormonal medication?</string>
+    <string name="qa_hormonal_med_none">No</string>
+    <string name="qa_hormonal_med_pill">The Pill</string>
+    <string name="qa_hormonal_med_iud">Hormonal IUD</string>
+    <string name="qa_hormonal_med_implant">Implant / Injection</string>
+
+    <string name="qa_is_athlete_question">Do you identify as an athlete?</string>
+    <string name="qa_yes">Yes</string>
+    <string name="qa_no">No</string>
+
+    <string name="qa_training_frequency_question">How often do you train?</string>
+    <string name="qa_training_1_2">1-2 times per week</string>
+    <string name="qa_training_3_4">3-4 times per week</string>
+    <string name="qa_training_5_6">5-6 times per week</string>
+    <string name="qa_training_daily">Every day</string>
+    <string name="qa_training_twice_daily">Twice a day</string>
+
+    <string name="qa_sport_question">What is your primary sport?</string>
+    <string name="qa_sport_helper">Select the sport you practice most frequently.</string>
+    <string name="qa_sport_cricket">Cricket</string>
+    <string name="qa_sport_badminton">Badminton</string>
+    <string name="qa_sport_kabaddi">Kabaddi</string>
+    <string name="qa_sport_hockey">Hockey</string>
+    <string name="qa_sport_football">Football (Soccer)</string>
+    <string name="qa_sport_tennis">Tennis</string>
+    <string name="qa_sport_volleyball">Volleyball</string>
+    <string name="qa_sport_basketball">Basketball</string>
+    <string name="qa_sport_athletics">Athletics / Track &amp; Field</string>
+    <string name="qa_sport_swimming">Swimming</string>
+    <string name="qa_sport_wrestling">Wrestling / Kushti</string>
+    <string name="qa_sport_boxing">Boxing</string>
+    <string name="qa_sport_weightlifting">Weightlifting</string>
+    <string name="qa_sport_yoga">Yoga</string>
+    <string name="qa_sport_running">Running / Marathon</string>
+    <string name="qa_sport_cycling">Cycling</string>
+    <string name="qa_sport_gym">Gym / Strength Training</string>
+    <string name="qa_sport_not_listed">Not listed here</string>
+
+    <string name="qa_physical_activity_question">What best describes your physical activity?</string>
+    <string name="qa_physical_activity_helper">This helps us personalize your experience.</string>
+    <string name="qa_physical_activity_daily_running">Daily running</string>
+    <string name="qa_physical_activity_gym">Gym / Fitness workouts</string>
+    <string name="qa_physical_activity_walking">Walking / Light exercise</string>
+    <string name="qa_physical_activity_yoga">Yoga / Stretching</string>
+    <string name="qa_physical_activity_none">No regular physical activity</string>
+
+    <!-- Generic UI strings used by Profile / Onboarding -->
+    <string name="profile_update_success">Profile updated successfully</string>
+    <string name="dropdown_select_option">Select an option</string>
+    <string name="error_update_profile_failed">Failed to update profile</string>
+    <string name="error_load_profile_failed">Failed to load profile</string>
+    <string name="error_complete_onboarding_failed">Failed to complete onboarding</string>
+
+    <!-- Insights format -->
+    <string name="insights_day_of_cycle">Day %d</string>
 </resources>

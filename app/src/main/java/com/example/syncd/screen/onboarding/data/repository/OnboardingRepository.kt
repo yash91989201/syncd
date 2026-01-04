@@ -1,12 +1,13 @@
 package com.example.syncd.screen.onboarding.data.repository
 
 import com.example.syncd.network.ApiConfig
+import com.example.syncd.screen.onboarding.data.model.OnboardingGetResponse
 import com.example.syncd.screen.onboarding.data.model.OnboardingRequest
 import com.example.syncd.screen.onboarding.data.model.OnboardingResponse
 import com.example.syncd.screen.onboarding.data.model.OnboardingStatusResponse
+import com.example.syncd.screen.onboarding.data.model.OnboardingUpdateRequest
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
-import io.ktor.client.request.get
 import io.ktor.client.request.post
 import io.ktor.client.request.setBody
 
@@ -18,6 +19,20 @@ class OnboardingRepository(
             httpClient.post(ApiConfig.Onboarding.COMPLETE) {
                 setBody(request)
             }.body<OnboardingResponse>()
+        }
+    }
+
+    suspend fun updateOnboarding(request: OnboardingUpdateRequest): Result<OnboardingResponse> {
+        return runCatching {
+            httpClient.post(ApiConfig.Onboarding.UPDATE) {
+                setBody(request)
+            }.body<OnboardingResponse>()
+        }
+    }
+
+    suspend fun getOnboardingData(): Result<OnboardingGetResponse> {
+        return runCatching {
+            httpClient.post(ApiConfig.Onboarding.GET).body<OnboardingGetResponse>()
         }
     }
 

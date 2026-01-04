@@ -1,12 +1,8 @@
 package com.example.syncd.screen.welcome
 
 import androidx.compose.animation.core.Animatable
-import androidx.compose.animation.core.FastOutSlowInEasing
-import androidx.compose.animation.core.RepeatMode
-import androidx.compose.animation.core.animateFloat
-import androidx.compose.animation.core.infiniteRepeatable
-import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -17,11 +13,12 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.offset
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Language
 import androidx.compose.material3.Button
@@ -42,9 +39,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -69,26 +70,7 @@ fun WelcomeScreen() {
     val currentLanguage by localeManager.currentLanguage.collectAsState(initial = LocaleManager.ENGLISH)
     var showLanguageDialog by remember { mutableStateOf(false) }
     
-    val infiniteTransition = rememberInfiniteTransition(label = "blob_animation")
-    val blobScale by infiniteTransition.animateFloat(
-        initialValue = 1f,
-        targetValue = 1.08f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(3000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "blob_scale"
-    )
-    
-    val blobOffset by infiniteTransition.animateFloat(
-        initialValue = 0f,
-        targetValue = 12f,
-        animationSpec = infiniteRepeatable(
-            animation = tween(4000, easing = FastOutSlowInEasing),
-            repeatMode = RepeatMode.Reverse
-        ),
-        label = "blob_offset"
-    )
+    val scrollState = rememberScrollState()
     
     val contentAlpha = remember { Animatable(0f) }
     LaunchedEffect(Unit) {
@@ -105,6 +87,20 @@ fun WelcomeScreen() {
             MaterialTheme.colorScheme.surface
         )
     )
+
+    // Get screen configuration for responsive sizing
+    val configuration = LocalWindowInfo.current
+    val screenHeight = configuration.containerDpSize.height
+    val isCompactScreen = screenHeight < 600.dp
+    
+    // Calculate responsive values
+    val horizontalContentPadding = 24.dp
+    val imageHorizontalPadding = if (isCompactScreen) 12.dp else 20.dp
+    val imageMinHeight = screenHeight * 0.22f
+    val imageMaxHeight = screenHeight * 0.45f // Max 45% of screen height
+    val topSpacing = if (isCompactScreen) 24.dp else 40.dp
+    val sectionSpacing = if (isCompactScreen) 24.dp else 40.dp
+    val bottomSpacing = if (isCompactScreen) 16.dp else 32.dp
 
     Box(
         modifier = Modifier
@@ -127,7 +123,8 @@ fun WelcomeScreen() {
                 tint = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = LocaleManager.supportedLanguages.find { it.code == currentLanguage }?.nativeName ?: "English",
+                text = LocaleManager.supportedLanguages(context).find { it.code == currentLanguage }?.nativeName
+                    ?: stringResource(R.string.language_english),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.SemiBold
@@ -137,94 +134,88 @@ fun WelcomeScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(horizontal = 24.dp)
+                .verticalScroll(scrollState)
+                .padding(top = 56.dp) // Space for language selector
                 .alpha(contentAlpha.value),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Spacer(modifier = Modifier.height(64.dp))
+            Spacer(modifier = Modifier.height(topSpacing))
 
             Text(
                 text = stringResource(R.string.welcome_app_name),
-                style = MaterialTheme.typography.displayLarge,
+                style = MaterialTheme.typography.displayLarge.copy(
+                    fontSize = if (isCompactScreen) 36.sp else 45.sp
+                ),
+                modifier = Modifier.padding(horizontal = horizontalContentPadding),
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.height(4.dp))
             Text(
                 text = stringResource(R.string.welcome_tagline),
-                style = MaterialTheme.typography.bodyLarge,
+                style = MaterialTheme.typography.bodyLarge.copy(
+                    fontSize = if (isCompactScreen) 14.sp else 16.sp
+                ),
+                modifier = Modifier.padding(horizontal = horizontalContentPadding),
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 fontWeight = FontWeight.Medium
             )
 
-            Spacer(modifier = Modifier.weight(0.8f))
+            Spacer(modifier = Modifier.height(sectionSpacing))
 
+            // Responsive image with dedicated padding and min/max height
             Box(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(240.dp),
+                    .padding(horizontal = imageHorizontalPadding),
                 contentAlignment = Alignment.Center
             ) {
-                Surface(
+                Image(
+                    painter = painterResource(id = R.drawable.welcome_image),
+                    contentDescription = stringResource(R.string.welcome_app_name),
                     modifier = Modifier
-                        .size(300.dp, 170.dp)
-                        .scale(blobScale)
-                        .offset(y = (-blobOffset).dp),
-                    shape = RoundedCornerShape(percent = 50),
-                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f)
-                ) {}
-                
-                Surface(
-                    modifier = Modifier
-                        .offset(x = 25.dp, y = 35.dp)
-                        .size(260.dp, 150.dp)
-                        .scale(blobScale * 0.98f)
-                        .offset(y = blobOffset.dp),
-                    shape = RoundedCornerShape(percent = 50),
-                    color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f)
-                ) {}
-                
-                Surface(
-                    modifier = Modifier
-                        .offset(x = (-20).dp, y = 50.dp)
-                        .size(200.dp, 120.dp)
-                        .scale(blobScale * 1.02f),
-                    shape = RoundedCornerShape(percent = 50),
-                    color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.5f)
-                ) {}
+                        .fillMaxWidth()
+                        .heightIn(min = imageMinHeight, max = imageMaxHeight)
+                        .clip(RoundedCornerShape(24.dp)),
+                    contentScale = ContentScale.Fit
+                )
             }
 
-            Spacer(modifier = Modifier.weight(1f))
+            Spacer(modifier = Modifier.height(sectionSpacing))
 
             Text(
                 text = stringResource(R.string.welcome_headline),
                 style = MaterialTheme.typography.headlineMedium.copy(
-                    fontSize = 28.sp,
-                    lineHeight = 38.sp
+                    fontSize = if (isCompactScreen) 18.sp else 22.sp,
+                    lineHeight = if (isCompactScreen) 26.sp else 30.sp
                 ),
+                modifier = Modifier.padding(horizontal = horizontalContentPadding),
                 fontWeight = FontWeight.Bold,
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurface
             )
             
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             
             Text(
                 text = stringResource(R.string.welcome_description),
-                style = MaterialTheme.typography.bodyLarge.copy(
-                    lineHeight = 26.sp
+                style = MaterialTheme.typography.bodyMedium.copy(
+                    fontSize = if (isCompactScreen) 13.sp else 14.sp,
+                    lineHeight = if (isCompactScreen) 18.sp else 20.sp
                 ),
+                modifier = Modifier.padding(horizontal = horizontalContentPadding),
                 textAlign = TextAlign.Center,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )
 
-            Spacer(modifier = Modifier.height(48.dp))
+            Spacer(modifier = Modifier.height(sectionSpacing))
 
             Button(
                 onClick = { navigator.navigateTo(Screen.Login) },
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(60.dp),
+                    .padding(horizontal = horizontalContentPadding)
+                    .height(if (isCompactScreen) 52.dp else 60.dp),
                 shape = RoundedCornerShape(30.dp),
                 colors = ButtonDefaults.buttonColors(
                     containerColor = MaterialTheme.colorScheme.primary,
@@ -237,20 +228,25 @@ fun WelcomeScreen() {
             ) {
                 Text(
                     text = stringResource(R.string.welcome_button_get_started),
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleMedium.copy(
+                        fontSize = if (isCompactScreen) 14.sp else 16.sp
+                    ),
                     fontWeight = FontWeight.Bold
                 )
             }
             
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
             
             Text(
                 text = stringResource(R.string.welcome_time_estimate),
-                style = MaterialTheme.typography.labelLarge,
+                style = MaterialTheme.typography.labelLarge.copy(
+                    fontSize = if (isCompactScreen) 11.sp else 12.sp
+                ),
+                modifier = Modifier.padding(horizontal = horizontalContentPadding),
                 color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f)
             )
             
-            Spacer(modifier = Modifier.height(40.dp))
+            Spacer(modifier = Modifier.height(bottomSpacing))
         }
         
         if (showLanguageDialog) {
@@ -270,11 +266,12 @@ fun WelcomeScreen() {
 }
 
 @Composable
-fun LanguageSelectionDialog(
+private fun LanguageSelectionDialog(
     currentLanguage: String,
     onLanguageSelected: (String) -> Unit,
     onDismiss: () -> Unit
 ) {
+    val context = LocalContext.current
     Dialog(onDismissRequest = onDismiss) {
         Surface(
             shape = RoundedCornerShape(16.dp),
@@ -293,7 +290,7 @@ fun LanguageSelectionDialog(
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
-                LocaleManager.supportedLanguages.forEach { language ->
+                LocaleManager.supportedLanguages(context).forEach { language ->
                     LanguageOption(
                         language = language,
                         isSelected = language.code == currentLanguage,

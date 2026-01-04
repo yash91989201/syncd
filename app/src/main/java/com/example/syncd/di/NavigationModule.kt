@@ -9,6 +9,7 @@ import com.example.syncd.screen.log.LogScreen
 import com.example.syncd.screen.login.LoginScreen
 import com.example.syncd.screen.onboarding.OnboardingScreen
 import com.example.syncd.screen.otp.OTPScreen
+import com.example.syncd.screen.profile.ProfileScreen
 import com.example.syncd.screen.welcome.WelcomeScreen
 import org.koin.core.annotation.KoinExperimentalAPI
 import org.koin.dsl.module
@@ -48,5 +49,9 @@ val navigationModule = module {
 
     navigation<Screen.Insights> {
         InsightsScreen()
+    }
+
+    navigation<Screen.Profile> {
+        ProfileScreen()
     }
 }

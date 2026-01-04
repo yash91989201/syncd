@@ -11,25 +11,21 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Warning
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ElevatedCard
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedCard
 import androidx.compose.material3.Surface
@@ -74,38 +70,18 @@ fun TodayGuideScreen() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .statusBarsPadding()
-                .verticalScroll(scrollState)
-                .padding(horizontal = 20.dp),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
         ) {
             Surface(
                 modifier = Modifier.fillMaxWidth(),
-                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.9f),
-                shape = RoundedCornerShape(16.dp)
+                color = MaterialTheme.colorScheme.surface.copy(alpha = 0.95f)
             ) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 12.dp, horizontal = 8.dp),
+                        .padding(horizontal = 20.dp, vertical = 12.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Surface(
-                        onClick = { navigator.goBack() },
-                        shape = CircleShape,
-                        color = MaterialTheme.colorScheme.surfaceContainerHigh
-                    ) {
-                        Icon(
-                            imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-                            contentDescription = stringResource(R.string.guide_back),
-                            modifier = Modifier.padding(10.dp),
-                            tint = MaterialTheme.colorScheme.onSurface
-                        )
-                    }
-                    Column(
-                        modifier = Modifier.weight(1f),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
+                    Column(modifier = Modifier.weight(1f)) {
                         Text(
                             text = stringResource(R.string.guide_title),
                             style = MaterialTheme.typography.titleLarge,
@@ -118,145 +94,156 @@ fun TodayGuideScreen() {
                             color = MaterialTheme.colorScheme.onSurfaceVariant
                         )
                     }
-                    Box(modifier = Modifier.size(48.dp))
                 }
             }
 
-            Surface(
-                shape = RoundedCornerShape(16.dp),
-                color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f),
-                modifier = Modifier.align(Alignment.CenterHorizontally)
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .verticalScroll(scrollState),
+                verticalArrangement = Arrangement.spacedBy(20.dp)
             ) {
-                Text(
-                    text = stringResource(R.string.guide_phase_day, state.phaseName, state.cycleDay),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onSecondaryContainer,
-                    modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
-                )
-            }
-
-            Surface(
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(20.dp),
-                color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
-                tonalElevation = 1.dp
-            ) {
-                Row(
-                    modifier = Modifier.padding(20.dp),
-                    verticalAlignment = Alignment.Top
+                Surface(
+                    shape = RoundedCornerShape(16.dp),
+                    color = MaterialTheme.colorScheme.secondaryContainer.copy(alpha = 0.6f),
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 ) {
-                    Surface(
-                        shape = CircleShape,
-                        color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
-                        modifier = Modifier.size(40.dp)
-                    ) {
-                        Box(contentAlignment = Alignment.Center) {
-                            Icon(
-                                imageVector = Icons.Outlined.Info,
-                                contentDescription = null,
-                                tint = MaterialTheme.colorScheme.primary,
-                                modifier = Modifier.size(22.dp)
-                            )
-                        }
-                    }
-                    Spacer(modifier = Modifier.width(14.dp))
                     Text(
-                        text = state.phaseInsight,
-                        style = MaterialTheme.typography.bodyMedium,
-                        color = MaterialTheme.colorScheme.onPrimaryContainer,
-                        lineHeight = 22.sp,
-                        modifier = Modifier.padding(top = 8.dp)
+                        text = stringResource(
+                            R.string.guide_phase_day,
+                            state.phaseName,
+                            state.cycleDay
+                        ),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onSecondaryContainer,
+                        modifier = Modifier.padding(horizontal = 20.dp, vertical = 10.dp)
                     )
                 }
-            }
 
-            GuideSection(
-                emoji = "🍲",
-                title = state.nutritionSection.title,
-                items = state.nutritionSection.items,
-                footer = state.nutritionSection.footer
-            )
-
-            GuideSection(
-                emoji = "🏃",
-                title = state.movementSection.title,
-                items = state.movementSection.items,
-                footer = state.movementSection.footer
-            )
-
-            DosDontsSection(dosDonts = state.dosDonts)
-
-            GuideSection(
-                emoji = "💡",
-                title = stringResource(R.string.guide_gentle_tips),
-                items = state.gentleTips,
-                footer = null
-            )
-
-            if (state.isAthlete && state.athleteNote != null) {
                 Surface(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(20.dp),
-                    color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.6f),
+                    color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.5f),
                     tonalElevation = 1.dp
                 ) {
-                    Column(
-                        modifier = Modifier.padding(20.dp)
+                    Row(
+                        modifier = Modifier.padding(20.dp),
+                        verticalAlignment = Alignment.Top
                     ) {
-                        Row(verticalAlignment = Alignment.CenterVertically) {
-                            Surface(
-                                shape = RoundedCornerShape(10.dp),
-                                color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.15f),
-                                modifier = Modifier.size(36.dp)
-                            ) {
-                                Box(contentAlignment = Alignment.Center) {
-                                    Text(
-                                        text = "🏅",
-                                        style = MaterialTheme.typography.titleMedium
-                                    )
-                                }
+                        Surface(
+                            shape = CircleShape,
+                            color = MaterialTheme.colorScheme.primary.copy(alpha = 0.15f),
+                            modifier = Modifier.size(40.dp)
+                        ) {
+                            Box(contentAlignment = Alignment.Center) {
+                                Icon(
+                                    imageVector = Icons.Outlined.Info,
+                                    contentDescription = null,
+                                    tint = MaterialTheme.colorScheme.primary,
+                                    modifier = Modifier.size(22.dp)
+                                )
                             }
-                            Spacer(modifier = Modifier.width(12.dp))
-                            Text(
-                                text = stringResource(R.string.guide_training_note),
-                                style = MaterialTheme.typography.titleMedium,
-                                fontWeight = FontWeight.Bold,
-                                color = MaterialTheme.colorScheme.onTertiaryContainer
-                            )
                         }
-                        Spacer(modifier = Modifier.height(12.dp))
+                        Spacer(modifier = Modifier.width(14.dp))
                         Text(
-                            text = state.athleteNote!!,
+                            text = state.phaseInsight,
                             style = MaterialTheme.typography.bodyMedium,
-                            color = MaterialTheme.colorScheme.onTertiaryContainer,
-                            lineHeight = 22.sp
+                            color = MaterialTheme.colorScheme.onPrimaryContainer,
+                            lineHeight = 22.sp,
+                            modifier = Modifier.padding(top = 8.dp)
                         )
                     }
                 }
-            }
 
-            Spacer(modifier = Modifier.height(8.dp))
-
-            Button(
-                onClick = { navigator.navigateTo(Screen.Log) },
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(56.dp),
-                shape = RoundedCornerShape(28.dp),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = MaterialTheme.colorScheme.primary
+                GuideSection(
+                    emoji = "🍲",
+                    title = state.nutritionSection.title,
+                    items = state.nutritionSection.items,
+                    footer = state.nutritionSection.footer
                 )
-            ) {
-                Text(
-                    text = stringResource(R.string.guide_log_feeling),
-                    style = MaterialTheme.typography.labelLarge,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.onPrimary
-                )
-            }
 
-            Spacer(modifier = Modifier.height(32.dp))
+                GuideSection(
+                    emoji = "🏃",
+                    title = state.movementSection.title,
+                    items = state.movementSection.items,
+                    footer = state.movementSection.footer
+                )
+
+                DosDontsSection(dosDonts = state.dosDonts)
+
+                GuideSection(
+                    emoji = "💡",
+                    title = stringResource(R.string.guide_gentle_tips),
+                    items = state.gentleTips,
+                    footer = null
+                )
+
+                if (state.isAthlete && state.athleteNote != null) {
+                    Surface(
+                        modifier = Modifier.fillMaxWidth(),
+                        shape = RoundedCornerShape(20.dp),
+                        color = MaterialTheme.colorScheme.tertiaryContainer.copy(alpha = 0.6f),
+                        tonalElevation = 1.dp
+                    ) {
+                        Column(
+                            modifier = Modifier.padding(20.dp)
+                        ) {
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Surface(
+                                    shape = RoundedCornerShape(10.dp),
+                                    color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.15f),
+                                    modifier = Modifier.size(36.dp)
+                                ) {
+                                    Box(contentAlignment = Alignment.Center) {
+                                        Text(
+                                            text = "🏅",
+                                            style = MaterialTheme.typography.titleMedium
+                                        )
+                                    }
+                                }
+                                Spacer(modifier = Modifier.width(12.dp))
+                                Text(
+                                    text = stringResource(R.string.guide_training_note),
+                                    style = MaterialTheme.typography.titleMedium,
+                                    fontWeight = FontWeight.Bold,
+                                    color = MaterialTheme.colorScheme.onTertiaryContainer
+                                )
+                            }
+                            Spacer(modifier = Modifier.height(12.dp))
+                            Text(
+                                text = state.athleteNote!!,
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                                lineHeight = 22.sp
+                            )
+                        }
+                    }
+                }
+
+                Spacer(modifier = Modifier.height(8.dp))
+
+                Button(
+                    onClick = { navigator.navigateTo(Screen.Log) },
+                    modifier = Modifier
+                        .fillMaxWidth(0.85f)
+                        .align(Alignment.CenterHorizontally)
+                        .height(56.dp),
+                    shape = RoundedCornerShape(28.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = MaterialTheme.colorScheme.primary
+                    )
+                ) {
+                    Text(
+                        text = stringResource(R.string.guide_log_feeling),
+                        style = MaterialTheme.typography.labelLarge,
+                        fontWeight = FontWeight.SemiBold,
+                        color = MaterialTheme.colorScheme.onPrimary
+                    )
+                }
+
+                Spacer(modifier = Modifier.height(32.dp))
+            }
         }
     }
 }
@@ -371,7 +358,9 @@ fun GuideSection(
                             imageVector = Icons.Outlined.Info,
                             contentDescription = null,
                             tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(20.dp).padding(top = 2.dp)
+                            modifier = Modifier
+                                .size(20.dp)
+                                .padding(top = 2.dp)
                         )
                         Text(
                             text = footer,
@@ -468,7 +457,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                             )
                         }
                     }
-                    
+
                     dosDonts.dos.forEach { item ->
                         Surface(
                             shape = RoundedCornerShape(12.dp),
@@ -504,7 +493,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                         }
                     }
                 }
-                
+
                 Column(
                     modifier = Modifier.weight(1f),
                     verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -533,7 +522,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                             )
                         }
                     }
-                    
+
                     dosDonts.donts.forEach { item ->
                         Surface(
                             shape = RoundedCornerShape(12.dp),

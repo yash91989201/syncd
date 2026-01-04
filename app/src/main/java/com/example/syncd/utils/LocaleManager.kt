@@ -20,10 +20,12 @@ class LocaleManager(private val context: Context) {
         const val HINDI = "hi"
         const val ORIYA = "or"
         
-        val supportedLanguages = listOf(
-            Language(ENGLISH, "English"),
-            Language(HINDI, "हिंदी"),
-            Language(ORIYA, "ଓଡ଼ିଆ")
+        // Do not store localized display names as hardcoded strings.
+        // Use resources so they update when locale changes.
+        fun supportedLanguages(context: Context) = listOf(
+            Language(ENGLISH, context.getString(com.example.syncd.R.string.language_english)),
+            Language(HINDI, context.getString(com.example.syncd.R.string.language_hindi)),
+            Language(ORIYA, context.getString(com.example.syncd.R.string.language_oriya))
         )
         
         fun getSavedLanguage(context: Context): String {

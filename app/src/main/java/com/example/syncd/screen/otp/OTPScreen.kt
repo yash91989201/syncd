@@ -29,8 +29,11 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -50,9 +53,11 @@ fun OTPScreen(phoneNumber: String) {
     val viewModel = koinInject<AuthViewModel>()
     val navigator = koinInject<Navigator>()
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+    val focusRequester = remember { FocusRequester() }
 
     LaunchedEffect(Unit) {
         viewModel.setPhoneNumberForOtp(phoneNumber)
+        focusRequester.requestFocus()
     }
 
     val backgroundGradient = Brush.verticalGradient(
@@ -118,7 +123,8 @@ fun OTPScreen(phoneNumber: String) {
                 onValueChange = { 
                     if (it.length <= 6) viewModel.updateOtpCode(it) 
                 },
-                isError = uiState.error != null
+                isError = uiState.error != null,
+                focusRequester = focusRequester
             )
 
             if (uiState.error != null) {
@@ -154,7 +160,7 @@ fun OTPScreen(phoneNumber: String) {
             Spacer(modifier = Modifier.weight(1f))
 
             Button(
-                onClick = { viewModel.verifyOtp() },
+                onClick = viewModel::verifyOtp,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(60.dp),
@@ -196,12 +202,14 @@ fun OTPScreen(phoneNumber: String) {
 private fun OtpInput(
     value: String,
     onValueChange: (String) -> Unit,
-    isError: Boolean
+    isError: Boolean,
+    focusRequester: FocusRequester
 ) {
     BasicTextField(
         value = value,
         onValueChange = onValueChange,
         keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+        modifier = Modifier.focusRequester(focusRequester),
         decorationBox = {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(10.dp),

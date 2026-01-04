@@ -1,7 +1,7 @@
 package com.example.syncd.network
 
 object ApiConfig {
-    const val BASE_URL = "http://192.168.1.12:3000"
+    const val BASE_URL = "https://api.syncd.projects.yashraj-jaiswal.dev"
     
     object Auth {
         const val SEND_OTP = "/api/auth/phone-number/send-otp"
@@ -12,6 +12,8 @@ object ApiConfig {
     
     object Onboarding {
         const val COMPLETE = "/rpc/onboarding/complete"
+        const val UPDATE = "/rpc/onboarding/update"
+        const val GET = "/rpc/onboarding/get"
         const val IS_COMPLETE = "/rpc/onboarding/isComplete"
     }
     

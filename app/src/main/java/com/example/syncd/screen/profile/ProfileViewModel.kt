@@ -1,99 +1,62 @@
-package com.example.syncd.screen.onboarding
+package com.example.syncd.screen.profile
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.syncd.R
-import com.example.syncd.data.UserPreferences
+import com.example.syncd.data.model.PhysicalActivity
+import com.example.syncd.data.model.TrainingFrequency
+import com.example.syncd.screen.onboarding.OnboardingOption
+import com.example.syncd.screen.onboarding.OnboardingStep
+import com.example.syncd.screen.onboarding.StepIds
+import com.example.syncd.screen.onboarding.StepType
 import com.example.syncd.screen.onboarding.data.model.AthleteProfile
-import com.example.syncd.screen.onboarding.data.model.CycleProfile
-import com.example.syncd.screen.onboarding.data.model.HealthCondition
-import com.example.syncd.screen.onboarding.data.model.OnboardingInput
-import com.example.syncd.screen.onboarding.data.model.OnboardingRequest
-import com.example.syncd.screen.onboarding.data.model.UserProfile
+import com.example.syncd.screen.onboarding.data.model.AthleteProfileUpdate
+import com.example.syncd.screen.onboarding.data.model.CycleProfileUpdate
+import com.example.syncd.screen.onboarding.data.model.HealthConditionUpdate
+import com.example.syncd.screen.onboarding.data.model.OnboardingGetPayload
+import com.example.syncd.screen.onboarding.data.model.OnboardingGetResponse
+import com.example.syncd.screen.onboarding.data.model.OnboardingUpdateInput
+import com.example.syncd.screen.onboarding.data.model.OnboardingUpdateRequest
+import com.example.syncd.screen.onboarding.data.model.UserProfileUpdate
 import com.example.syncd.screen.onboarding.data.repository.OnboardingRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.ZoneId
 
-object StepIds {
-    const val AGE_GROUP = 1
-    const val CYCLE_STAGE = 2
-    const val LAST_PERIOD = 3
-    const val CYCLE_LENGTH = 4
-    const val BLEEDING_DAYS = 5
-    const val FLOW_INTENSITY = 6
-    const val PAIN_LEVEL = 7
-    const val HEALTH_CONDITION = 8
-    const val HORMONAL_MEDICATION = 9
-    const val IS_ATHLETE = 10
-    const val TRAINING_FREQUENCY = 11
-    const val SPORT = 12
-    const val PHYSICAL_ACTIVITY = 13
-}
-
-enum class StepType {
-    OPTIONS,
-    DATE_PICKER
-}
-
-data class OnboardingStep(
-    val id: Int,
-    val question: String,
-    val helperText: String? = null,
-    val options: List<OnboardingOption> = emptyList(),
-    val allowCustomInput: Boolean = false,
-    val stepType: StepType = StepType.OPTIONS
-)
-
-data class OnboardingOption(
-    val id: String,
-    val text: String
-)
-
-data class OnboardingState(
-    val steps: List<OnboardingStep> = emptyList(),
-    val currentStepIndex: Int = 0,
+data class ProfileState(
+    val name: String = "",
+    val email: String = "",
     val answers: Map<Int, String> = emptyMap(),
     val customSport: String = "",
     val lastPeriodDate: Long? = null,
-    val isComplete: Boolean = false,
     val isLoading: Boolean = false,
-    val error: String? = null
+    val isSaved: Boolean = false,
+    val error: String? = null,
+    val baseline: OnboardingSnapshot? = null,
+    val hasChanges: Boolean = false
 ) {
-    val totalSteps: Int get() = steps.size
-    val currentStep: OnboardingStep get() = steps[currentStepIndex]
-
-    val selectedOptionId: String? get() = answers[currentStep.id]
-
-    val canProceed: Boolean
-        get() {
-            if (currentStep.stepType == StepType.DATE_PICKER) {
-                return lastPeriodDate != null
-            }
-            val currentAnswer = selectedOptionId ?: return false
-            if (currentStep.id == StepIds.SPORT && currentAnswer == "not_listed") {
-                return customSport.isNotBlank()
-            }
-            return true
-        }
-
-    val showCustomSportInput: Boolean
-        get() =
-            currentStep.id == StepIds.SPORT && selectedOptionId == "not_listed"
+    val isAthlete: Boolean get() = answers[StepIds.IS_ATHLETE] == "yes"
 }
 
-class OnboardingViewModel(
-    private val userPreferences: UserPreferences,
+data class OnboardingSnapshot(
+    val answers: Map<Int, String>,
+    val customSport: String,
+    val lastPeriodDate: Long?
+)
+
+class ProfileViewModel(
     private val onboardingRepository: OnboardingRepository,
     application: Application
 ) : AndroidViewModel(application) {
 
     private val context = application.applicationContext
 
-    private val baseSteps = listOf(
+    private val allSteps = listOf(
         OnboardingStep(
             id = StepIds.AGE_GROUP,
             question = context.getString(R.string.qa_age_group_question),
@@ -197,10 +160,7 @@ class OnboardingViewModel(
                 OnboardingOption("yes", context.getString(R.string.qa_yes)),
                 OnboardingOption("no", context.getString(R.string.qa_no))
             )
-        )
-    )
-
-    private val athleteSteps = listOf(
+        ),
         OnboardingStep(
             id = StepIds.TRAINING_FREQUENCY,
             question = context.getString(R.string.qa_training_frequency_question),
@@ -237,10 +197,7 @@ class OnboardingViewModel(
                 OnboardingOption("not_listed", context.getString(R.string.qa_sport_not_listed))
             ),
             allowCustomInput = true
-        )
-    )
-
-    private val nonAthleteSteps = listOf(
+        ),
         OnboardingStep(
             id = StepIds.PHYSICAL_ACTIVITY,
             question = context.getString(R.string.qa_physical_activity_question),
@@ -255,114 +212,104 @@ class OnboardingViewModel(
         )
     )
 
-    private val _state = MutableStateFlow(OnboardingState(steps = baseSteps))
-    val state: StateFlow<OnboardingState> = _state.asStateFlow()
+    private val _state = MutableStateFlow(ProfileState())
+    val state: StateFlow<ProfileState> = _state.asStateFlow()
 
-    fun onOptionSelected(optionId: String) {
-        val currentStepId = _state.value.currentStep.id
+    init {
+        loadUserProfile()
+    }
+
+    fun getOnboardingSteps(): List<OnboardingStep> = allSteps
+
+    fun onNameChanged(name: String) {
+        _state.update { it.copy(name = name, isSaved = false, error = null) }
+    }
+
+    fun onEmailChanged(email: String) {
+        _state.update { it.copy(email = email, isSaved = false, error = null) }
+    }
+
+    fun onOptionSelected(stepId: Int, optionId: String) {
         val newAnswers = _state.value.answers.toMutableMap().apply {
-            put(currentStepId, optionId)
+            put(stepId, optionId)
         }
-        _state.update { it.copy(answers = newAnswers, error = null) }
-
-        if (currentStepId == StepIds.IS_ATHLETE) {
-            rebuildStepsBasedOnAthleteAnswer(optionId)
+        _state.update {
+            it.copy(
+                answers = newAnswers,
+                isSaved = false,
+                error = null
+            ).withHasChanges()
         }
     }
 
     fun onCustomSportChanged(sport: String) {
-        _state.update { it.copy(customSport = sport) }
+        _state.update { it.copy(customSport = sport, isSaved = false).withHasChanges() }
     }
 
     fun onLastPeriodDateSelected(dateMillis: Long) {
-        _state.update { it.copy(lastPeriodDate = dateMillis) }
+        _state.update { it.copy(lastPeriodDate = dateMillis, isSaved = false).withHasChanges() }
     }
 
-    private fun rebuildStepsBasedOnAthleteAnswer(answer: String) {
-        val newSteps = when (answer) {
-            "yes" -> baseSteps + athleteSteps
-            "no" -> baseSteps + nonAthleteSteps
-            else -> baseSteps
-        }
-        _state.update { it.copy(steps = newSteps) }
-    }
-
-    fun onNext() {
-        if (_state.value.canProceed) {
-            if (_state.value.currentStepIndex < _state.value.totalSteps - 1) {
-                _state.update { it.copy(currentStepIndex = it.currentStepIndex + 1) }
-            } else {
-                completeOnboarding()
-            }
-        }
-    }
-
-    fun onBack() {
-        if (_state.value.currentStepIndex > 0) {
-            _state.update { it.copy(currentStepIndex = it.currentStepIndex - 1) }
-        }
-    }
-
-    private fun completeOnboarding() {
+    fun saveProfile() {
         viewModelScope.launch {
             _state.update { it.copy(isLoading = true, error = null) }
 
-            val request = buildOnboardingRequest()
+            val request = buildOnboardingUpdateRequest()
 
-            onboardingRepository.completeOnboarding(request)
-                .onSuccess { response ->
-                    response.json.success?.let {
-                        userPreferences.setHasCompletedOnboarding(it)
+            onboardingRepository.updateOnboarding(request)
+                .onSuccess {
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            isSaved = true
+                        ).withBaselineFromCurrent()
                     }
-
-                    _state.update { it.copy(isComplete = true, isLoading = false) }
                 }
                 .onFailure { throwable ->
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            error = throwable.message ?: context.getString(R.string.error_complete_onboarding_failed)
+                            error = throwable.message ?: context.getString(R.string.error_update_profile_failed)
                         )
                     }
                 }
         }
     }
 
-    private fun buildOnboardingRequest(): OnboardingRequest {
+    private fun buildOnboardingUpdateRequest(): OnboardingUpdateRequest {
         val answers = _state.value.answers
-
         val isAthlete = answers[StepIds.IS_ATHLETE] == "yes"
 
         val physicalActivity = if (!isAthlete) {
             answers[StepIds.PHYSICAL_ACTIVITY]
         } else {
-            "none"
+            null
         }
 
-        val userProfile = UserProfile(
-            ageGroup = answers[StepIds.AGE_GROUP] ?: "unknown",
-            cycleStage = answers[StepIds.CYCLE_STAGE] ?: "regular",
+        val userProfile = UserProfileUpdate(
+            ageGroup = answers[StepIds.AGE_GROUP],
+            cycleStage = answers[StepIds.CYCLE_STAGE],
             isAthlete = isAthlete,
             physicalActivity = physicalActivity
         )
 
-        val healthCondition = HealthCondition(
-            condition = answers[StepIds.HEALTH_CONDITION] ?: "none",
-            medication = answers[StepIds.HORMONAL_MEDICATION] ?: "none"
+        val healthCondition = HealthConditionUpdate(
+            condition = answers[StepIds.HEALTH_CONDITION],
+            medication = answers[StepIds.HORMONAL_MEDICATION]
         )
 
-        val lastPeriodDate = _state.value.lastPeriodDate!!.let { millis ->
+        val lastPeriodDate = _state.value.lastPeriodDate?.let { millis ->
             java.time.Instant.ofEpochMilli(millis)
                 .atZone(java.time.ZoneId.systemDefault())
                 .toLocalDate()
                 .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd"))
         }
 
-        val cycleProfile = CycleProfile(
-            cycleLength = answers[StepIds.CYCLE_LENGTH] ?: "unknown",
-            bleedingDays = answers[StepIds.BLEEDING_DAYS] ?: "3_4",
-            flowIntensity = answers[StepIds.FLOW_INTENSITY] ?: "medium",
-            painLevel = answers[StepIds.PAIN_LEVEL] ?: "none",
+        val cycleProfile = CycleProfileUpdate(
+            cycleLength = answers[StepIds.CYCLE_LENGTH],
+            bleedingDays = answers[StepIds.BLEEDING_DAYS],
+            flowIntensity = answers[StepIds.FLOW_INTENSITY],
+            painLevel = answers[StepIds.PAIN_LEVEL],
             lastPeriod = lastPeriodDate
         )
 
@@ -371,19 +318,19 @@ class OnboardingViewModel(
             val sport = if (sportAnswer == "not_listed") {
                 _state.value.customSport
             } else {
-                sportAnswer ?: ""
+                sportAnswer
             }
 
-            AthleteProfile(
-                trainingFrequency = answers[StepIds.TRAINING_FREQUENCY] ?: "3_4_per_week",
+            AthleteProfileUpdate(
+                trainingFrequency = answers[StepIds.TRAINING_FREQUENCY],
                 sport = sport
             )
         } else {
             null
         }
 
-        return OnboardingRequest(
-            json = OnboardingInput(
+        return OnboardingUpdateRequest(
+            json = OnboardingUpdateInput(
                 userProfile = userProfile,
                 healthCondition = healthCondition,
                 cycleProfile = cycleProfile,
@@ -392,7 +339,173 @@ class OnboardingViewModel(
         )
     }
 
+    // NOTE: Profile uses /rpc/onboarding/update via buildOnboardingUpdateRequest().
+    // The old full onboarding request builder is intentionally removed.
+
     fun dismissError() {
         _state.update { it.copy(error = null) }
+    }
+
+    fun dismissSavedMessage() {
+        _state.update { it.copy(isSaved = false) }
+    }
+
+    private fun loadUserProfile() {
+        viewModelScope.launch {
+            _state.update { it.copy(isLoading = true, error = null) }
+
+            onboardingRepository.getOnboardingData()
+                .onSuccess { response ->
+                    val prefilled = buildPrefilledState(response.json)
+                    _state.update {
+                        it.copy(
+                            answers = prefilled.answers,
+                            customSport = prefilled.customSport,
+                            lastPeriodDate = prefilled.lastPeriodDate,
+                            isLoading = false,
+                            error = null
+                        ).withBaselineFromCurrent()
+                    }
+                }
+                .onFailure { throwable ->
+                    _state.update {
+                        it.copy(
+                            isLoading = false,
+                            error = throwable.message ?: context.getString(R.string.error_load_profile_failed)
+                        )
+                    }
+                }
+        }
+    }
+
+    private fun ProfileState.withBaselineFromCurrent(): ProfileState {
+        val snapshot = OnboardingSnapshot(
+            answers = answers,
+            customSport = customSport,
+            lastPeriodDate = lastPeriodDate
+        )
+        return copy(
+            baseline = snapshot,
+            hasChanges = false
+        )
+    }
+
+    private fun ProfileState.withHasChanges(): ProfileState {
+        val base = baseline ?: return copy(hasChanges = true)
+        val current = OnboardingSnapshot(
+            answers = answers,
+            customSport = customSport,
+            lastPeriodDate = lastPeriodDate
+        )
+        return copy(hasChanges = current != base)
+    }
+
+    private fun buildPrefilledState(payload: OnboardingGetPayload): ProfileState {
+        val answers = mutableMapOf<Int, String>()
+
+        payload.userProfile?.let { userProfile ->
+            answers[StepIds.AGE_GROUP] = normalizeOptionId(userProfile.ageGroup)
+            answers[StepIds.CYCLE_STAGE] = normalizeOptionId(userProfile.cycleStage)
+            answers[StepIds.IS_ATHLETE] = if (userProfile.isAthlete) "yes" else "no"
+            if (!userProfile.isAthlete) {
+                userProfile.physicalActivity
+                    ?.let { normalizePhysicalActivityOptionId(it) }
+                    ?.let { answers[StepIds.PHYSICAL_ACTIVITY] = it }
+            }
+        }
+
+        payload.healthCondition?.let { healthCondition ->
+            answers[StepIds.HEALTH_CONDITION] = normalizeOptionId(healthCondition.condition)
+            answers[StepIds.HORMONAL_MEDICATION] = normalizeOptionId(healthCondition.medication)
+        }
+
+        var lastPeriodDateMillis: Long? = null
+        payload.cycleProfile?.let { cycleProfile ->
+            answers[StepIds.CYCLE_LENGTH] = normalizeOptionId(cycleProfile.cycleLength)
+            answers[StepIds.BLEEDING_DAYS] = normalizeOptionId(cycleProfile.bleedingDays)
+            answers[StepIds.FLOW_INTENSITY] = normalizeOptionId(cycleProfile.flowIntensity)
+            answers[StepIds.PAIN_LEVEL] = normalizeOptionId(cycleProfile.painLevel)
+
+            lastPeriodDateMillis = parseLastPeriodToMillis(cycleProfile.lastPeriod.trim())
+        }
+
+        var customSport = ""
+        payload.athleteProfile?.let { athleteProfile ->
+            answers[StepIds.TRAINING_FREQUENCY] = normalizeOptionId(athleteProfile.trainingFrequency)
+
+            val sport = athleteProfile.sport.trim()
+            val knownSportOptionIds = allSteps
+                .firstOrNull { it.id == StepIds.SPORT }
+                ?.options
+                ?.map { it.id }
+                ?.toSet()
+                .orEmpty()
+
+            val sportOptionId = if (sport in knownSportOptionIds) sport else "not_listed"
+            answers[StepIds.SPORT] = sportOptionId
+            if (sportOptionId == "not_listed") {
+                customSport = sport
+            }
+
+            answers[StepIds.IS_ATHLETE] = "yes"
+        }
+
+        return ProfileState(
+            answers = answers,
+            customSport = customSport,
+            lastPeriodDate = lastPeriodDateMillis
+        )
+    }
+
+    private fun normalizePhysicalActivityOptionId(raw: String): String {
+        val normalized = normalizeOptionId(raw)
+        // UI options use "yoga_stretching"; backend/data sometimes uses "yoga".
+        return if (normalized == "yoga") "yoga_stretching" else normalized
+    }
+
+    private fun normalizeOptionId(raw: String): String {
+        return raw.trim().lowercase()
+    }
+
+    private fun parseLastPeriodToMillis(lastPeriod: String): Long? {
+        if (lastPeriod.isBlank()) return null
+        return runCatching {
+            val localDate = LocalDate.parse(lastPeriod)
+            localDate
+                .atStartOfDay(ZoneId.systemDefault())
+                .toInstant()
+                .toEpochMilli()
+        }.getOrNull()
+    }
+
+    private fun com.example.syncd.data.model.AgeGroup.toApiValue(): String = when (this) {
+        com.example.syncd.data.model.AgeGroup.UNDER_18 -> "under_18"
+        com.example.syncd.data.model.AgeGroup.AGE_18_24 -> "18_24"
+        com.example.syncd.data.model.AgeGroup.AGE_25_34 -> "25_34"
+    }
+
+    private fun com.example.syncd.data.model.CycleStage.toApiValue(): String = when (this) {
+        com.example.syncd.data.model.CycleStage.REGULAR -> "regular"
+        com.example.syncd.data.model.CycleStage.IRREGULAR -> "irregular"
+        com.example.syncd.data.model.CycleStage.PREGNANT -> "pregnant"
+        com.example.syncd.data.model.CycleStage.TRYING_TO_CONCEIVE -> "trying_to_conceive"
+        com.example.syncd.data.model.CycleStage.PERIMENOPAUSE -> "perimenopause"
+        com.example.syncd.data.model.CycleStage.POSTPARTUM -> "postpartum"
+    }
+
+    private fun PhysicalActivity.toApiValue(): String = when (this) {
+        PhysicalActivity.DAILY_RUNNING -> "daily_running"
+        PhysicalActivity.GYM_FITNESS -> "gym_fitness"
+        PhysicalActivity.WALKING -> "walking"
+        PhysicalActivity.YOGA -> "yoga_stretching"
+        PhysicalActivity.NONE -> "none"
+    }
+
+    private fun TrainingFrequency.toApiValue(): String = when (this) {
+        TrainingFrequency.ONE_TWO_PER_WEEK -> "1_2_per_week"
+        TrainingFrequency.THREE_FOUR_PER_WEEK -> "3_4_per_week"
+        TrainingFrequency.FIVE_SIX_PER_WEEK -> "5_6_per_week"
+        TrainingFrequency.DAILY -> "daily"
+        TrainingFrequency.TWICE_DAILY -> "twice_daily"
     }
 }

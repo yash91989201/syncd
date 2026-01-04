@@ -322,9 +322,21 @@
     <string name="luteal_athlete_note">प्रशिक्षण फोकस को शक्ति या शक्ति के बजाय सहनशक्ति और तकनीक में स्थानांतरित करें। प्रोजेस्टेरोन प्रभुत्व शरीर के तापमान और थकान को बढ़ाता है। रिकवरी अधिक समय लेती है - देर से ल्यूटियल चरण में मात्रा या तीव्रता को 20-30% कम करें। यह कमजोरी नहीं है; यह दीर्घकालिक प्रदर्शन के लिए स्मार्ट पीरियडाइजेशन है।</string>
     
     <!-- Language Selection -->
-    <string name="language_english">English</string>
+    <string name="language_english">अंग्रेज़ी</string>
     <string name="language_hindi">हिंदी</string>
     <string name="language_oriya">ଓଡ଼ିଆ</string>
+
+    <!-- Navigation Bar -->
+    <string name="nav_profile">प्रोफ़ाइल</string>
+
+    <!-- Profile Screen -->
+    <string name="profile_title">प्रोफ़ाइल</string>
+    <string name="profile_subtitle">अपनी जानकारी संपादित करें</string>
+    <string name="profile_basic_details">मूल विवरण</string>
+    <string name="profile_save">परिवर्तन सहेजें</string>
+    <string name="profile_update_success">प्रोफ़ाइल सफलतापूर्वक अपडेट किया गया</string>
+    <string name="profile_account_section">खाता</string>
+    <string name="profile_logout">लॉग आउट</string>
     
     <!-- Insights Screen - Cycle Overview -->
     <string name="insights_cycle_avg_length">लगभग 28 दिन</string>
