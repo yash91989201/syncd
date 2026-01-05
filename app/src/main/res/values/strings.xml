@@ -410,6 +410,7 @@
     <string name="error_otp_required">Please enter the OTP code</string>
     <string name="error_verify_otp">Failed to verify OTP</string>
     <string name="error_sign_out">Failed to sign out</string>
+    <string name="error_delete_account">Failed to delete account</string>
     <string name="error_onboarding">Failed to complete onboarding</string>
     
     <!-- Log Screen - Flow Levels -->
@@ -453,6 +454,10 @@
     <string name="profile_back">Back</string>
     <string name="profile_account_section">Account</string>
     <string name="profile_logout">Log Out</string>
+    <string name="profile_delete_account">Delete Account</string>
+    <string name="profile_delete_confirm_title">Delete Account?</string>
+    <string name="profile_delete_confirm_message">This will permanently delete your account and all your data. This action cannot be undone.</string>
+    <string name="action_delete">Delete</string>
 
     <!-- Date Picker Strings -->
     <string name="onboarding_last_period">Last period date</string>

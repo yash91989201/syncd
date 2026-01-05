@@ -23,7 +23,7 @@ class AuthRepository(
             }.body<SendOtpResponse>()
         }
     }
-    
+
     suspend fun verifyOtp(phoneNumber: String, code: String): Result<VerifyOtpResponse> {
         return runCatching {
             httpClient.post(ApiConfig.Auth.VERIFY_OTP) {
@@ -31,13 +31,13 @@ class AuthRepository(
             }.body<VerifyOtpResponse>()
         }
     }
-    
+
     suspend fun getSession(): Result<SessionResponse> {
         return runCatching {
             httpClient.get(ApiConfig.Auth.SESSION).body<SessionResponse>()
         }
     }
-    
+
     suspend fun signOut(): Result<SignOutResponse> {
         return runCatching {
             httpClient.post(ApiConfig.Auth.SIGN_OUT).body<SignOutResponse>()

@@ -336,6 +336,11 @@
     <string name="profile_save">ପରିବର୍ତ୍ତନ ସଞ୍ଚୟ କରନ୍ତୁ</string>
     <string name="profile_account_section">ଆକାଉଣ୍ଟ</string>
     <string name="profile_logout">ଲଗ୍ ଆଉଟ୍</string>
+    <string name="profile_delete_account">ଆକାଉଣ୍ଟ ବିଲୋପ କରନ୍ତୁ</string>
+    <string name="profile_delete_confirm_title">ଆକାଉଣ୍ଟ ବିଲୋପ କରିବେ?</string>
+    <string name="profile_delete_confirm_message">ଏହା ଆପଣଙ୍କ ଆକାଉଣ୍ଟ ଏବଂ ସମସ୍ତ ଡାଟା ସ୍ଥାୟୀ ଭାବରେ ବିଲୋପ କରିବ। ଏହି କାର୍ଯ୍ୟ ପୂର୍ବବତ୍ କରାଯାଇପାରିବ ନାହିଁ।</string>
+    <string name="action_delete">ବିଲୋପ କରନ୍ତୁ</string>
+    <string name="error_delete_account">ଆକାଉଣ୍ଟ ବିଲୋପ କରିବାରେ ବିଫଳ</string>
     
     <!-- Insights Screen - Cycle Overview -->
     <string name="insights_cycle_avg_length">ପ୍ରାୟ 28 ଦିନ</string>

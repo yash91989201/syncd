@@ -33,6 +33,7 @@ import androidx.compose.material3.FilterChip
 import androidx.compose.material3.FilterChipDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.SnackbarDuration
@@ -88,6 +89,7 @@ fun ProfileScreen() {
 
     val currentLanguage by localeManager.currentLanguage.collectAsState(initial = LocaleManager.ENGLISH)
     var showLanguageDialog by remember { mutableStateOf(false) }
+    var showDeleteConfirmDialog by remember { mutableStateOf(false) }
 
     LaunchedEffect(state.isSaved) {
         if (state.isSaved) {
@@ -106,6 +108,16 @@ fun ProfileScreen() {
                 duration = SnackbarDuration.Short
             )
             viewModel.dismissError()
+        }
+    }
+
+    LaunchedEffect(authState.error) {
+        authState.error?.let { error ->
+            snackbarHostState.showSnackbar(
+                message = error,
+                duration = SnackbarDuration.Short
+            )
+            authViewModel.clearError()
         }
     }
 
@@ -322,6 +334,35 @@ fun ProfileScreen() {
                                 )
                             }
                         }
+                        
+                        Button(
+                            onClick = { showDeleteConfirmDialog = true },
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(56.dp),
+                            shape = RoundedCornerShape(28.dp),
+                            enabled = !authState.isLoading,
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = MaterialTheme.colorScheme.error,
+                                contentColor = MaterialTheme.colorScheme.onError,
+                                disabledContainerColor = MaterialTheme.colorScheme.error.copy(alpha = 0.4f),
+                                disabledContentColor = MaterialTheme.colorScheme.onError.copy(alpha = 0.6f)
+                            ),
+                        ) {
+                            if (authState.isLoading) {
+                                CircularProgressIndicator(
+                                    modifier = Modifier.size(24.dp),
+                                    color = MaterialTheme.colorScheme.onError,
+                                    strokeWidth = 2.dp
+                                )
+                            } else {
+                                Text(
+                                    text = stringResource(R.string.profile_delete_account),
+                                    fontWeight = FontWeight.Bold,
+                                    style = MaterialTheme.typography.titleMedium
+                                )
+                            }
+                        }
                     }
                     
                     Spacer(modifier = Modifier.height(24.dp))
@@ -341,6 +382,81 @@ fun ProfileScreen() {
                 },
                 onDismiss = { showLanguageDialog = false }
             )
+        }
+        
+        if (showDeleteConfirmDialog) {
+            DeleteConfirmationDialog(
+                onConfirm = {
+                    showDeleteConfirmDialog = false
+                    authViewModel.deleteAccount()
+                },
+                onDismiss = { showDeleteConfirmDialog = false }
+            )
+        }
+    }
+}
+
+
+@Composable
+private fun DeleteConfirmationDialog(
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        Surface(
+            shape = RoundedCornerShape(20.dp),
+            color = MaterialTheme.colorScheme.surface,
+            tonalElevation = 4.dp
+        ) {
+            Column(
+                modifier = Modifier.padding(24.dp),
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(
+                    text = stringResource(R.string.profile_delete_confirm_title),
+                    style = MaterialTheme.typography.titleLarge,
+                    fontWeight = FontWeight.Bold,
+                    color = MaterialTheme.colorScheme.error
+                )
+                
+                Text(
+                    text = stringResource(R.string.profile_delete_confirm_message),
+                    style = MaterialTheme.typography.bodyMedium,
+                    color = MaterialTheme.colorScheme.onSurface
+                )
+                
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    OutlinedButton(
+                        onClick = onDismiss,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_cancel),
+                            style = MaterialTheme.typography.titleSmall
+                        )
+                    }
+                    
+                    Button(
+                        onClick = onConfirm,
+                        modifier = Modifier.weight(1f),
+                        shape = RoundedCornerShape(16.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = MaterialTheme.colorScheme.error,
+                            contentColor = MaterialTheme.colorScheme.onError
+                        )
+                    ) {
+                        Text(
+                            text = stringResource(R.string.action_delete),
+                            style = MaterialTheme.typography.titleSmall,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
         }
     }
 }

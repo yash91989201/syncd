@@ -95,7 +95,7 @@ class AuthViewModel(
             authRepository.verifyOtp(phoneNumber, code)
                 .onSuccess { response ->
                     if (response.user != null) {
-                        checkOnboardingStatus(response.user)
+                        checkOnboardingStatus(response.user, forceBackendCheck = true)
                     } else {
                         _uiState.update { 
                             it.copy(
@@ -138,13 +138,35 @@ class AuthViewModel(
         }
     }
     
+    fun deleteAccount() {
+        viewModelScope.launch {
+            _uiState.update { it.copy(isLoading = true) }
+            
+            userPreferences.setHasCompletedOnboarding(false)
+            authRepository.signOut()
+                .onSuccess {
+                    _uiState.update { 
+                        AuthUiState(isCheckingSession = false, isAuthenticated = false)
+                    }
+                }
+                .onFailure { throwable ->
+                    _uiState.update { 
+                        it.copy(
+                            isLoading = false, 
+                            error = throwable.message ?: context.getString(R.string.error_delete_account)
+                        )
+                    }
+                }
+        }
+    }
+    
     private fun checkSession() {
         viewModelScope.launch {
             authRepository.getSession()
                 .onSuccess { response ->
                     val isAuthenticated = response.user != null
                     if (isAuthenticated) {
-                        checkOnboardingStatus(response.user)
+                        checkOnboardingStatus(response.user, forceBackendCheck = false)
                     } else {
                         _uiState.update { 
                             it.copy(
@@ -167,10 +189,10 @@ class AuthViewModel(
         }
     }
 
-    private suspend fun checkOnboardingStatus(user: User?) {
+    private suspend fun checkOnboardingStatus(user: User?, forceBackendCheck: Boolean = false) {
         val localStatus = userPreferences.hasCompletedOnboarding.first()
         
-        if (localStatus) {
+        if (localStatus && !forceBackendCheck) {
             _uiState.update { 
                 it.copy(
                     currentUser = user,
@@ -185,9 +207,7 @@ class AuthViewModel(
         
         onboardingRepository.isOnboardingComplete()
             .onSuccess { statusResponse ->
-                if (statusResponse.json.complete) {
-                    userPreferences.setHasCompletedOnboarding(true)
-                }
+                userPreferences.setHasCompletedOnboarding(statusResponse.json.complete)
                 _uiState.update { 
                     it.copy(
                         currentUser = user,

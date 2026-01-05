@@ -8,6 +8,7 @@ object ApiConfig {
         const val VERIFY_OTP = "/api/auth/phone-number/verify"
         const val SESSION = "/api/auth/get-session"
         const val SIGN_OUT = "/api/auth/sign-out"
+        const val DELETE_ACCOUNT = "/rpc/account/delete"
     }
     
     object Onboarding {

@@ -337,6 +337,11 @@
     <string name="profile_update_success">प्रोफ़ाइल सफलतापूर्वक अपडेट किया गया</string>
     <string name="profile_account_section">खाता</string>
     <string name="profile_logout">लॉग आउट</string>
+    <string name="profile_delete_account">खाता हटाएं</string>
+    <string name="profile_delete_confirm_title">खाता हटाएं?</string>
+    <string name="profile_delete_confirm_message">इससे आपका खाता और आपका सभी डेटा स्थायी रूप से हटा दिया जाएगा। यह क्रिया पूर्ववत नहीं की जा सकती।</string>
+    <string name="action_delete">हटाएं</string>
+    <string name="error_delete_account">खाता हटाने में विफल</string>
     
     <!-- Insights Screen - Cycle Overview -->
     <string name="insights_cycle_avg_length">लगभग 28 दिन</string>
