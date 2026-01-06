@@ -47,6 +47,13 @@ fun LoginScreen() {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val focusRequester = remember { FocusRequester() }
 
+    // Resolve error message from resource ID or use dynamic error message
+    val errorText = when {
+        uiState.errorResId != null -> stringResource(uiState.errorResId!!)
+        uiState.errorMessage != null -> uiState.errorMessage
+        else -> null
+    }
+
     LaunchedEffect(Unit) {
         focusRequester.requestFocus()
     }
@@ -124,7 +131,7 @@ fun LoginScreen() {
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
                     shape = RoundedCornerShape(12.dp),
-                    isError = uiState.error != null,
+                    isError = errorText != null,
                     colors = OutlinedTextFieldDefaults.colors(
                         focusedBorderColor = MaterialTheme.colorScheme.primary,
                         unfocusedBorderColor = MaterialTheme.colorScheme.outlineVariant,
@@ -134,14 +141,14 @@ fun LoginScreen() {
                 )
             }
 
-            if (uiState.error != null) {
+            if (errorText != null) {
                 Spacer(modifier = Modifier.height(12.dp))
                 Surface(
                     shape = RoundedCornerShape(8.dp),
                     color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.5f)
                 ) {
                     Text(
-                        text = uiState.error!!,
+                        text = errorText,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.error,
                         modifier = Modifier.padding(horizontal = 12.dp, vertical = 8.dp)

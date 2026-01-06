@@ -1,7 +1,7 @@
 package com.example.syncd.screen.profile
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.syncd.R
 import com.example.syncd.data.model.PhysicalActivity
@@ -36,7 +36,8 @@ data class ProfileState(
     val lastPeriodDate: Long? = null,
     val isLoading: Boolean = false,
     val isSaved: Boolean = false,
-    val error: String? = null,
+    @StringRes val errorResId: Int? = null,
+    val errorMessage: String? = null,
     val baseline: OnboardingSnapshot? = null,
     val hasChanges: Boolean = false
 ) {
@@ -50,164 +51,161 @@ data class OnboardingSnapshot(
 )
 
 class ProfileViewModel(
-    private val onboardingRepository: OnboardingRepository,
-    application: Application
-) : AndroidViewModel(application) {
-
-    private val context = application.applicationContext
+    private val onboardingRepository: OnboardingRepository
+) : ViewModel() {
 
     private val allSteps = listOf(
         OnboardingStep(
             id = StepIds.AGE_GROUP,
-            question = context.getString(R.string.qa_age_group_question),
+            questionResId = R.string.qa_age_group_question,
             options = listOf(
-                OnboardingOption("under_18", context.getString(R.string.qa_age_under_18)),
-                OnboardingOption("18_24", context.getString(R.string.qa_age_18_24)),
-                OnboardingOption("25_34", context.getString(R.string.qa_age_25_34)),
-                OnboardingOption("35_44", context.getString(R.string.qa_age_35_44)),
-                OnboardingOption("45_plus", context.getString(R.string.qa_age_45_plus))
+                OnboardingOption("under_18", R.string.qa_age_under_18),
+                OnboardingOption("18_24", R.string.qa_age_18_24),
+                OnboardingOption("25_34", R.string.qa_age_25_34),
+                OnboardingOption("35_44", R.string.qa_age_35_44),
+                OnboardingOption("45_plus", R.string.qa_age_45_plus)
             )
         ),
         OnboardingStep(
             id = StepIds.CYCLE_STAGE,
-            question = context.getString(R.string.qa_cycle_stage_question),
-            helperText = context.getString(R.string.qa_cycle_stage_helper),
+            questionResId = R.string.qa_cycle_stage_question,
+            helperTextResId = R.string.qa_cycle_stage_helper,
             options = listOf(
-                OnboardingOption("regular", context.getString(R.string.qa_cycle_stage_regular)),
-                OnboardingOption("irregular", context.getString(R.string.qa_cycle_stage_irregular)),
-                OnboardingOption("trying_to_conceive", context.getString(R.string.qa_cycle_stage_trying_to_conceive)),
-                OnboardingOption("pregnant", context.getString(R.string.qa_cycle_stage_pregnant)),
-                OnboardingOption("postpartum", context.getString(R.string.qa_cycle_stage_postpartum)),
-                OnboardingOption("perimenopause", context.getString(R.string.qa_cycle_stage_perimenopause))
+                OnboardingOption("regular", R.string.qa_cycle_stage_regular),
+                OnboardingOption("irregular", R.string.qa_cycle_stage_irregular),
+                OnboardingOption("trying_to_conceive", R.string.qa_cycle_stage_trying_to_conceive),
+                OnboardingOption("pregnant", R.string.qa_cycle_stage_pregnant),
+                OnboardingOption("postpartum", R.string.qa_cycle_stage_postpartum),
+                OnboardingOption("perimenopause", R.string.qa_cycle_stage_perimenopause)
             )
         ),
         OnboardingStep(
             id = StepIds.LAST_PERIOD,
-            question = context.getString(R.string.qa_last_period_question),
-            helperText = context.getString(R.string.qa_last_period_helper),
+            questionResId = R.string.qa_last_period_question,
+            helperTextResId = R.string.qa_last_period_helper,
             stepType = StepType.DATE_PICKER
         ),
         OnboardingStep(
             id = StepIds.CYCLE_LENGTH,
-            question = context.getString(R.string.qa_cycle_length_question),
-            helperText = context.getString(R.string.qa_cycle_length_helper),
+            questionResId = R.string.qa_cycle_length_question,
+            helperTextResId = R.string.qa_cycle_length_helper,
             options = listOf(
-                OnboardingOption("unknown", context.getString(R.string.qa_cycle_length_unknown)),
-                OnboardingOption("21_24", context.getString(R.string.qa_cycle_length_short)),
-                OnboardingOption("25_28", context.getString(R.string.qa_cycle_length_average)),
-                OnboardingOption("29_32", context.getString(R.string.qa_cycle_length_long)),
-                OnboardingOption("33_plus", context.getString(R.string.qa_cycle_length_very_long))
+                OnboardingOption("unknown", R.string.qa_cycle_length_unknown),
+                OnboardingOption("21_24", R.string.qa_cycle_length_short),
+                OnboardingOption("25_28", R.string.qa_cycle_length_average),
+                OnboardingOption("29_32", R.string.qa_cycle_length_long),
+                OnboardingOption("33_plus", R.string.qa_cycle_length_very_long)
             )
         ),
         OnboardingStep(
             id = StepIds.BLEEDING_DAYS,
-            question = context.getString(R.string.qa_bleeding_days_question),
+            questionResId = R.string.qa_bleeding_days_question,
             options = listOf(
-                OnboardingOption("1_2", context.getString(R.string.qa_bleeding_days_short)),
-                OnboardingOption("3_4", context.getString(R.string.qa_bleeding_days_medium)),
-                OnboardingOption("5_6", context.getString(R.string.qa_bleeding_days_long)),
-                OnboardingOption("7_plus", context.getString(R.string.qa_bleeding_days_very_long))
+                OnboardingOption("1_2", R.string.qa_bleeding_days_short),
+                OnboardingOption("3_4", R.string.qa_bleeding_days_medium),
+                OnboardingOption("5_6", R.string.qa_bleeding_days_long),
+                OnboardingOption("7_plus", R.string.qa_bleeding_days_very_long)
             )
         ),
         OnboardingStep(
             id = StepIds.FLOW_INTENSITY,
-            question = context.getString(R.string.qa_flow_intensity_question),
+            questionResId = R.string.qa_flow_intensity_question,
             options = listOf(
-                OnboardingOption("light", context.getString(R.string.qa_flow_light)),
-                OnboardingOption("medium", context.getString(R.string.qa_flow_medium)),
-                OnboardingOption("heavy", context.getString(R.string.qa_flow_heavy)),
-                OnboardingOption("variable", context.getString(R.string.qa_flow_variable))
+                OnboardingOption("light", R.string.qa_flow_light),
+                OnboardingOption("medium", R.string.qa_flow_medium),
+                OnboardingOption("heavy", R.string.qa_flow_heavy),
+                OnboardingOption("variable", R.string.qa_flow_variable)
             )
         ),
         OnboardingStep(
             id = StepIds.PAIN_LEVEL,
-            question = context.getString(R.string.qa_pain_level_question),
+            questionResId = R.string.qa_pain_level_question,
             options = listOf(
-                OnboardingOption("none", context.getString(R.string.qa_pain_none)),
-                OnboardingOption("mild", context.getString(R.string.qa_pain_mild)),
-                OnboardingOption("moderate", context.getString(R.string.qa_pain_moderate)),
-                OnboardingOption("severe", context.getString(R.string.qa_pain_severe))
+                OnboardingOption("none", R.string.qa_pain_none),
+                OnboardingOption("mild", R.string.qa_pain_mild),
+                OnboardingOption("moderate", R.string.qa_pain_moderate),
+                OnboardingOption("severe", R.string.qa_pain_severe)
             )
         ),
         OnboardingStep(
             id = StepIds.HEALTH_CONDITION,
-            question = context.getString(R.string.qa_health_condition_question),
-            helperText = context.getString(R.string.qa_health_condition_helper),
+            questionResId = R.string.qa_health_condition_question,
+            helperTextResId = R.string.qa_health_condition_helper,
             options = listOf(
-                OnboardingOption("none", context.getString(R.string.qa_health_condition_none)),
-                OnboardingOption("pcos", context.getString(R.string.qa_health_condition_pcos)),
-                OnboardingOption("endometriosis", context.getString(R.string.qa_health_condition_endometriosis)),
-                OnboardingOption("thyroid", context.getString(R.string.qa_health_condition_thyroid)),
-                OnboardingOption("fibroids", context.getString(R.string.qa_health_condition_fibroids)),
-                OnboardingOption("anemia", context.getString(R.string.qa_health_condition_anemia)),
-                OnboardingOption("diabetes", context.getString(R.string.qa_health_condition_diabetes)),
+                OnboardingOption("none", R.string.qa_health_condition_none),
+                OnboardingOption("pcos", R.string.qa_health_condition_pcos),
+                OnboardingOption("endometriosis", R.string.qa_health_condition_endometriosis),
+                OnboardingOption("thyroid", R.string.qa_health_condition_thyroid),
+                OnboardingOption("fibroids", R.string.qa_health_condition_fibroids),
+                OnboardingOption("anemia", R.string.qa_health_condition_anemia),
+                OnboardingOption("diabetes", R.string.qa_health_condition_diabetes)
             )
         ),
         OnboardingStep(
             id = StepIds.HORMONAL_MEDICATION,
-            question = context.getString(R.string.qa_hormonal_med_question),
+            questionResId = R.string.qa_hormonal_med_question,
             options = listOf(
-                OnboardingOption("none", context.getString(R.string.qa_hormonal_med_none)),
-                OnboardingOption("pill", context.getString(R.string.qa_hormonal_med_pill)),
-                OnboardingOption("iud", context.getString(R.string.qa_hormonal_med_iud)),
-                OnboardingOption("implant", context.getString(R.string.qa_hormonal_med_implant))
+                OnboardingOption("none", R.string.qa_hormonal_med_none),
+                OnboardingOption("pill", R.string.qa_hormonal_med_pill),
+                OnboardingOption("iud", R.string.qa_hormonal_med_iud),
+                OnboardingOption("implant", R.string.qa_hormonal_med_implant)
             )
         ),
         OnboardingStep(
             id = StepIds.IS_ATHLETE,
-            question = context.getString(R.string.qa_is_athlete_question),
+            questionResId = R.string.qa_is_athlete_question,
             options = listOf(
-                OnboardingOption("yes", context.getString(R.string.qa_yes)),
-                OnboardingOption("no", context.getString(R.string.qa_no))
+                OnboardingOption("yes", R.string.qa_yes),
+                OnboardingOption("no", R.string.qa_no)
             )
         ),
         OnboardingStep(
             id = StepIds.TRAINING_FREQUENCY,
-            question = context.getString(R.string.qa_training_frequency_question),
+            questionResId = R.string.qa_training_frequency_question,
             options = listOf(
-                OnboardingOption("1_2_per_week", context.getString(R.string.qa_training_1_2)),
-                OnboardingOption("3_4_per_week", context.getString(R.string.qa_training_3_4)),
-                OnboardingOption("5_6_per_week", context.getString(R.string.qa_training_5_6)),
-                OnboardingOption("daily", context.getString(R.string.qa_training_daily)),
-                OnboardingOption("twice_daily", context.getString(R.string.qa_training_twice_daily))
+                OnboardingOption("1_2_per_week", R.string.qa_training_1_2),
+                OnboardingOption("3_4_per_week", R.string.qa_training_3_4),
+                OnboardingOption("5_6_per_week", R.string.qa_training_5_6),
+                OnboardingOption("daily", R.string.qa_training_daily),
+                OnboardingOption("twice_daily", R.string.qa_training_twice_daily)
             )
         ),
         OnboardingStep(
             id = StepIds.SPORT,
-            question = context.getString(R.string.qa_sport_question),
-            helperText = context.getString(R.string.qa_sport_helper),
+            questionResId = R.string.qa_sport_question,
+            helperTextResId = R.string.qa_sport_helper,
             options = listOf(
-                OnboardingOption("cricket", context.getString(R.string.qa_sport_cricket)),
-                OnboardingOption("badminton", context.getString(R.string.qa_sport_badminton)),
-                OnboardingOption("kabaddi", context.getString(R.string.qa_sport_kabaddi)),
-                OnboardingOption("hockey", context.getString(R.string.qa_sport_hockey)),
-                OnboardingOption("football", context.getString(R.string.qa_sport_football)),
-                OnboardingOption("tennis", context.getString(R.string.qa_sport_tennis)),
-                OnboardingOption("volleyball", context.getString(R.string.qa_sport_volleyball)),
-                OnboardingOption("basketball", context.getString(R.string.qa_sport_basketball)),
-                OnboardingOption("athletics", context.getString(R.string.qa_sport_athletics)),
-                OnboardingOption("swimming", context.getString(R.string.qa_sport_swimming)),
-                OnboardingOption("wrestling", context.getString(R.string.qa_sport_wrestling)),
-                OnboardingOption("boxing", context.getString(R.string.qa_sport_boxing)),
-                OnboardingOption("weightlifting", context.getString(R.string.qa_sport_weightlifting)),
-                OnboardingOption("yoga", context.getString(R.string.qa_sport_yoga)),
-                OnboardingOption("running", context.getString(R.string.qa_sport_running)),
-                OnboardingOption("cycling", context.getString(R.string.qa_sport_cycling)),
-                OnboardingOption("gym", context.getString(R.string.qa_sport_gym)),
-                OnboardingOption("not_listed", context.getString(R.string.qa_sport_not_listed))
+                OnboardingOption("cricket", R.string.qa_sport_cricket),
+                OnboardingOption("badminton", R.string.qa_sport_badminton),
+                OnboardingOption("kabaddi", R.string.qa_sport_kabaddi),
+                OnboardingOption("hockey", R.string.qa_sport_hockey),
+                OnboardingOption("football", R.string.qa_sport_football),
+                OnboardingOption("tennis", R.string.qa_sport_tennis),
+                OnboardingOption("volleyball", R.string.qa_sport_volleyball),
+                OnboardingOption("basketball", R.string.qa_sport_basketball),
+                OnboardingOption("athletics", R.string.qa_sport_athletics),
+                OnboardingOption("swimming", R.string.qa_sport_swimming),
+                OnboardingOption("wrestling", R.string.qa_sport_wrestling),
+                OnboardingOption("boxing", R.string.qa_sport_boxing),
+                OnboardingOption("weightlifting", R.string.qa_sport_weightlifting),
+                OnboardingOption("yoga", R.string.qa_sport_yoga),
+                OnboardingOption("running", R.string.qa_sport_running),
+                OnboardingOption("cycling", R.string.qa_sport_cycling),
+                OnboardingOption("gym", R.string.qa_sport_gym),
+                OnboardingOption("not_listed", R.string.qa_sport_not_listed)
             ),
             allowCustomInput = true
         ),
         OnboardingStep(
             id = StepIds.PHYSICAL_ACTIVITY,
-            question = context.getString(R.string.qa_physical_activity_question),
-            helperText = context.getString(R.string.qa_physical_activity_helper),
+            questionResId = R.string.qa_physical_activity_question,
+            helperTextResId = R.string.qa_physical_activity_helper,
             options = listOf(
-                OnboardingOption("daily_running", context.getString(R.string.qa_physical_activity_daily_running)),
-                OnboardingOption("gym_fitness", context.getString(R.string.qa_physical_activity_gym)),
-                OnboardingOption("walking", context.getString(R.string.qa_physical_activity_walking)),
-                OnboardingOption("yoga_stretching", context.getString(R.string.qa_physical_activity_yoga)),
-                OnboardingOption("none", context.getString(R.string.qa_physical_activity_none))
+                OnboardingOption("daily_running", R.string.qa_physical_activity_daily_running),
+                OnboardingOption("gym_fitness", R.string.qa_physical_activity_gym),
+                OnboardingOption("walking", R.string.qa_physical_activity_walking),
+                OnboardingOption("yoga_stretching", R.string.qa_physical_activity_yoga),
+                OnboardingOption("none", R.string.qa_physical_activity_none)
             )
         )
     )
@@ -222,11 +220,11 @@ class ProfileViewModel(
     fun getOnboardingSteps(): List<OnboardingStep> = allSteps
 
     fun onNameChanged(name: String) {
-        _state.update { it.copy(name = name, isSaved = false, error = null) }
+        _state.update { it.copy(name = name, isSaved = false, errorResId = null, errorMessage = null) }
     }
 
     fun onEmailChanged(email: String) {
-        _state.update { it.copy(email = email, isSaved = false, error = null) }
+        _state.update { it.copy(email = email, isSaved = false, errorResId = null, errorMessage = null) }
     }
 
     fun onOptionSelected(stepId: Int, optionId: String) {
@@ -237,7 +235,8 @@ class ProfileViewModel(
             it.copy(
                 answers = newAnswers,
                 isSaved = false,
-                error = null
+                errorResId = null,
+                errorMessage = null
             ).withHasChanges()
         }
     }
@@ -252,7 +251,7 @@ class ProfileViewModel(
 
     fun saveProfile() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true, error = null) }
+            _state.update { it.copy(isLoading = true, errorResId = null, errorMessage = null) }
 
             val request = buildOnboardingUpdateRequest()
 
@@ -269,7 +268,8 @@ class ProfileViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            error = throwable.message ?: context.getString(R.string.error_update_profile_failed)
+                            errorMessage = throwable.message,
+                            errorResId = if (throwable.message == null) R.string.error_update_profile_failed else null
                         )
                     }
                 }
@@ -339,11 +339,8 @@ class ProfileViewModel(
         )
     }
 
-    // NOTE: Profile uses /rpc/onboarding/update via buildOnboardingUpdateRequest().
-    // The old full onboarding request builder is intentionally removed.
-
     fun dismissError() {
-        _state.update { it.copy(error = null) }
+        _state.update { it.copy(errorResId = null, errorMessage = null) }
     }
 
     fun dismissSavedMessage() {
@@ -352,7 +349,7 @@ class ProfileViewModel(
 
     private fun loadUserProfile() {
         viewModelScope.launch {
-            _state.update { it.copy(isLoading = true, error = null) }
+            _state.update { it.copy(isLoading = true, errorResId = null, errorMessage = null) }
 
             onboardingRepository.getOnboardingData()
                 .onSuccess { response ->
@@ -363,7 +360,8 @@ class ProfileViewModel(
                             customSport = prefilled.customSport,
                             lastPeriodDate = prefilled.lastPeriodDate,
                             isLoading = false,
-                            error = null
+                            errorResId = null,
+                            errorMessage = null
                         ).withBaselineFromCurrent()
                     }
                 }
@@ -371,7 +369,8 @@ class ProfileViewModel(
                     _state.update {
                         it.copy(
                             isLoading = false,
-                            error = throwable.message ?: context.getString(R.string.error_load_profile_failed)
+                            errorMessage = throwable.message,
+                            errorResId = if (throwable.message == null) R.string.error_load_profile_failed else null
                         )
                     }
                 }
@@ -459,7 +458,6 @@ class ProfileViewModel(
 
     private fun normalizePhysicalActivityOptionId(raw: String): String {
         val normalized = normalizeOptionId(raw)
-        // UI options use "yoga_stretching"; backend/data sometimes uses "yoga".
         return if (normalized == "yoga") "yoga_stretching" else normalized
     }
 

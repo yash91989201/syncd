@@ -55,6 +55,13 @@ fun OTPScreen(phoneNumber: String) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val focusRequester = remember { FocusRequester() }
 
+    // Resolve error message from resource ID or use dynamic error message
+    val errorText = when {
+        uiState.errorResId != null -> stringResource(uiState.errorResId!!)
+        uiState.errorMessage != null -> uiState.errorMessage
+        else -> null
+    }
+
     LaunchedEffect(Unit) {
         viewModel.setPhoneNumberForOtp(phoneNumber)
         focusRequester.requestFocus()
@@ -123,18 +130,18 @@ fun OTPScreen(phoneNumber: String) {
                 onValueChange = { 
                     if (it.length <= 6) viewModel.updateOtpCode(it) 
                 },
-                isError = uiState.error != null,
+                isError = errorText != null,
                 focusRequester = focusRequester
             )
 
-            if (uiState.error != null) {
+            if (errorText != null) {
                 Spacer(modifier = Modifier.height(16.dp))
                 Surface(
                     shape = RoundedCornerShape(8.dp),
                     color = MaterialTheme.colorScheme.errorContainer.copy(alpha = 0.5f)
                 ) {
                     Text(
-                        text = uiState.error!!,
+                        text = errorText,
                         style = MaterialTheme.typography.bodySmall,
                         color = MaterialTheme.colorScheme.error,
                         textAlign = TextAlign.Center,

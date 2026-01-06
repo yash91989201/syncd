@@ -44,7 +44,15 @@ fun App() {
         
         val authState by authViewModel.uiState.collectAsStateWithLifecycle()
         
+        // Helper to check if user is on an authenticated screen (post-login screens)
+        val isOnAuthenticatedScreen = currentScreen is Screen.Home ||
+                currentScreen is Screen.Profile ||
+                currentScreen is Screen.Log ||
+                currentScreen is Screen.Insights ||
+                currentScreen is Screen.TodayGuide
+        
         // Handle navigation after splash screen session check completes
+        // Skip navigation if user is already on an authenticated screen (e.g., after language change)
         LaunchedEffect(authState.isCheckingSession, authState.isAuthenticated, authState.hasCompletedOnboarding) {
             if (!authState.isCheckingSession) {
                 when {
@@ -54,10 +62,10 @@ fun App() {
                     authState.isAuthenticated && !authState.hasCompletedOnboarding -> {
                         navigator.setRoot(Screen.Onboarding)
                     }
-
-                    else -> {
+                    authState.isAuthenticated && authState.hasCompletedOnboarding && !isOnAuthenticatedScreen -> {
                         navigator.setRoot(Screen.Home)
                     }
+                    // If already on authenticated screen with valid auth, don't change navigation
                 }
             }
         }

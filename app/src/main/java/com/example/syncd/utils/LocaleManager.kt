@@ -20,12 +20,10 @@ class LocaleManager(private val context: Context) {
         const val HINDI = "hi"
         const val ORIYA = "or"
         
-        // Do not store localized display names as hardcoded strings.
-        // Use resources so they update when locale changes.
-        fun supportedLanguages(context: Context) = listOf(
-            Language(ENGLISH, context.getString(com.example.syncd.R.string.language_english)),
-            Language(HINDI, context.getString(com.example.syncd.R.string.language_hindi)),
-            Language(ORIYA, context.getString(com.example.syncd.R.string.language_oriya))
+        fun supportedLanguages() = listOf(
+            Language(ENGLISH, "English"),
+            Language(HINDI, "हिंदी"),
+            Language(ORIYA, "ଓଡ଼ିଆ")
         )
         
         fun getSavedLanguage(context: Context): String {
@@ -48,14 +46,17 @@ class LocaleManager(private val context: Context) {
     
     val currentLanguage: Flow<String> = context.localeDataStore.data
         .map { preferences ->
-            preferences[LANGUAGE_KEY] ?: ENGLISH
+            preferences[LANGUAGE_KEY] ?: getSavedLanguage(context)
         }
     
+    fun getCurrentLanguageSync(): String = getSavedLanguage(context)
+    
     suspend fun setLanguage(languageCode: String) {
+        // Use commit() instead of apply() to ensure sync write before activity recreate
         context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
             .edit()
             .putString(KEY_LANGUAGE, languageCode)
-            .apply()
+            .commit()
         
         context.localeDataStore.edit { preferences ->
             preferences[LANGUAGE_KEY] = languageCode

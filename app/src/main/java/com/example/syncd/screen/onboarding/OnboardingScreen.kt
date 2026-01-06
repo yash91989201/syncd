@@ -104,8 +104,10 @@ fun OnboardingScreen() {
         }
     }
 
-    LaunchedEffect(state.error) {
-        state.error?.let { error ->
+    // Handle error messages - either from resource ID or direct message
+    val errorMessageText = state.errorResId?.let { stringResource(it) } ?: state.errorMessage
+    LaunchedEffect(state.errorResId, state.errorMessage) {
+        errorMessageText?.let { error ->
             snackbarHostState.showSnackbar(
                 message = error,
                 duration = SnackbarDuration.Short
@@ -227,14 +229,14 @@ fun OnboardingScreen() {
                             modifier = Modifier.fillMaxSize()
                         ) {
                             Text(
-                                text = step.question,
+                                text = stringResource(step.questionResId),
                                 style = MaterialTheme.typography.headlineSmall,
                                 fontWeight = FontWeight.Bold,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 lineHeight = MaterialTheme.typography.headlineSmall.lineHeight
                             )
 
-                            if (step.helperText != null) {
+                            if (step.helperTextResId != null) {
                                 Spacer(modifier = Modifier.height(12.dp))
                                 Surface(
                                     onClick = { },
@@ -283,7 +285,7 @@ fun OnboardingScreen() {
                                         items(step.options, key = { it.id }) { option ->
                                             val isSelected = state.selectedOptionId == option.id
                                             OptionCard(
-                                                text = option.text,
+                                                text = stringResource(option.textResId),
                                                 isSelected = isSelected,
                                                 onClick = { viewModel.onOptionSelected(option.id) }
                                             )

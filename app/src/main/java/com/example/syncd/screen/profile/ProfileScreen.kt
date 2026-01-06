@@ -84,10 +84,10 @@ fun ProfileScreen() {
     val snackbarHostState = remember { SnackbarHostState() }
 
     val context = LocalContext.current
-    val localeManager = remember { LocaleManager(context) }
+    val localeManager = koinInject<LocaleManager>()
     val scope = rememberCoroutineScope()
 
-    val currentLanguage by localeManager.currentLanguage.collectAsState(initial = LocaleManager.ENGLISH)
+    val currentLanguage by localeManager.currentLanguage.collectAsState(initial = localeManager.getCurrentLanguageSync())
     var showLanguageDialog by remember { mutableStateOf(false) }
     var showDeleteConfirmDialog by remember { mutableStateOf(false) }
 
@@ -101,8 +101,15 @@ fun ProfileScreen() {
         }
     }
 
-    LaunchedEffect(state.error) {
-        state.error?.let { error ->
+    LaunchedEffect(state.errorResId, state.errorMessage) {
+        val errorResId = state.errorResId
+        val errorMessage = state.errorMessage
+        val errorText = when {
+            errorMessage != null -> errorMessage
+            errorResId != null -> context.getString(errorResId)
+            else -> null
+        }
+        errorText?.let { error ->
             snackbarHostState.showSnackbar(
                 message = error,
                 duration = SnackbarDuration.Short
@@ -111,8 +118,14 @@ fun ProfileScreen() {
         }
     }
 
-    LaunchedEffect(authState.error) {
-        authState.error?.let { error ->
+    val authErrorText = when {
+        authState.errorResId != null -> stringResource(authState.errorResId!!)
+        authState.errorMessage != null -> authState.errorMessage
+        else -> null
+    }
+
+    LaunchedEffect(authErrorText) {
+        authErrorText?.let { error ->
             snackbarHostState.showSnackbar(
                 message = error,
                 duration = SnackbarDuration.Short
@@ -208,7 +221,7 @@ fun ProfileScreen() {
                                         tint = MaterialTheme.colorScheme.primary
                                     )
                                     Text(
-                                        text = LocaleManager.supportedLanguages(context)
+                                        text = LocaleManager.supportedLanguages()
                                             .find { it.code == currentLanguage }
                                             ?.nativeName
                                             ?: stringResource(R.string.language_english),
@@ -377,7 +390,7 @@ fun ProfileScreen() {
                     scope.launch {
                         localeManager.setLanguage(languageCode)
                         showLanguageDialog = false
-                        (context as? MainActivity)?.recreate()
+                        (context as? MainActivity)?.restartActivity()
                     }
                 },
                 onDismiss = { showLanguageDialog = false }
@@ -487,7 +500,7 @@ private fun LanguageSelectionDialog(
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                LocaleManager.supportedLanguages(context).forEach { language ->
+                LocaleManager.supportedLanguages().forEach { language ->
                     LanguageOption(
                         language = language,
                         isSelected = language.code == currentLanguage,
@@ -569,7 +582,7 @@ fun OnboardingQuestionSection(
         modifier = Modifier.fillMaxWidth()
     ) {
         Text(
-            text = step.question,
+            text = stringResource(step.questionResId),
             style = MaterialTheme.typography.titleMedium,
             fontWeight = FontWeight.SemiBold,
             color = MaterialTheme.colorScheme.onSurface
@@ -600,7 +613,7 @@ fun OnboardingQuestionSection(
                                     onClick = { onOptionSelected(option.id) },
                                     label = {
                                         Text(
-                                            text = option.text,
+                                            text = stringResource(option.textResId),
                                             style = MaterialTheme.typography.bodyMedium
                                         )
                                     },
@@ -645,7 +658,7 @@ fun OnboardingQuestionSection(
                                     onClick = { onOptionSelected(option.id) },
                                     label = {
                                         Text(
-                                            text = option.text,
+                                            text = stringResource(option.textResId),
                                             style = MaterialTheme.typography.bodySmall
                                         )
                                     },
@@ -680,6 +693,7 @@ fun OnboardingQuestionSection(
                     else -> {
                         var expanded by remember { mutableStateOf(false) }
                         val selectedOption = step.options.find { it.id == selectedOptionId }
+                        val selectedOptionText = selectedOption?.let { stringResource(it.textResId) }
 
                         Box {
                             Surface(
@@ -696,7 +710,7 @@ fun OnboardingQuestionSection(
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        text = selectedOption?.text ?: stringResource(R.string.dropdown_select_option),
+                                        text = selectedOptionText ?: stringResource(R.string.dropdown_select_option),
                                         style = MaterialTheme.typography.bodyLarge,
                                         fontWeight = if (selectedOption != null) FontWeight.SemiBold else FontWeight.Normal,
                                         color = if (selectedOption != null)
@@ -721,7 +735,7 @@ fun OnboardingQuestionSection(
                                     DropdownMenuItem(
                                         text = {
                                             Text(
-                                                text = option.text,
+                                                text = stringResource(option.textResId),
                                                 fontWeight = if (option.id == selectedOptionId)
                                                     FontWeight.Bold
                                                 else

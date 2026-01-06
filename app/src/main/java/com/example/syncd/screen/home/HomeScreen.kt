@@ -53,6 +53,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.content.Intent
+import android.net.Uri
+import androidx.compose.ui.platform.LocalContext
 import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
 import com.example.syncd.navigation.Screen
@@ -66,6 +69,7 @@ fun HomeScreen(
     navigator: Navigator = koinInject()
 ) {
     val uiState by viewModel.uiState.collectAsState()
+    val phaseName = stringResource(uiState.phaseNameResId)
     
     val baseColor = uiState.phaseColor
     val gradientColors = listOf(
@@ -84,9 +88,12 @@ fun HomeScreen(
                 LoadingState(baseColor)
             }
 
-            uiState.error != null -> {
+            uiState.errorResId != null || uiState.errorMessage != null -> {
+                val errorText = uiState.errorMessage 
+                    ?: uiState.errorResId?.let { stringResource(it) }
+                    ?: stringResource(R.string.home_error_something_wrong)
                 ErrorState(
-                    message = uiState.error ?: stringResource(R.string.home_error_something_wrong),
+                    message = errorText,
                     onRetry = { viewModel.loadPhaseInfo() }
                 )
             }
@@ -94,7 +101,8 @@ fun HomeScreen(
             uiState.phaseInfo != null -> {
                 SuccessContent(
                     phaseInfo = uiState.phaseInfo!!,
-                    phaseName = uiState.phaseName,
+                    phase = uiState.phase,
+                    phaseName = phaseName,
                     phaseColor = uiState.phaseColor,
                     isAthlete = uiState.isAthlete,
                     onViewFullGuide = { navigator.navigateTo(Screen.TodayGuide) }
@@ -114,12 +122,14 @@ fun HomeScreen(
 @Composable
 private fun SuccessContent(
     phaseInfo: PhaseInfo,
+    phase: String,
     phaseName: String,
     phaseColor: Color,
     isAthlete: Boolean,
     onViewFullGuide: () -> Unit
 ) {
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
     
     Column(
         modifier = Modifier
@@ -200,11 +210,36 @@ private fun SuccessContent(
         Spacer(modifier = Modifier.height(28.dp))
         
         TodayGuideSection(
+            phase = phase,
             phaseName = phaseName,
             phaseColor = phaseColor,
             isAthlete = isAthlete,
             onViewFullGuide = onViewFullGuide
         )
+        
+        Spacer(modifier = Modifier.height(24.dp))
+        
+        // Help Button
+        Button(
+            onClick = {
+                val intent = Intent(Intent.ACTION_DIAL).apply {
+                    data = Uri.parse("tel:181")
+                }
+                context.startActivity(intent)
+            },
+            modifier = Modifier.fillMaxWidth(),
+            colors = ButtonDefaults.buttonColors(
+                containerColor = MaterialTheme.colorScheme.errorContainer,
+                contentColor = MaterialTheme.colorScheme.onErrorContainer
+            ),
+            shape = RoundedCornerShape(16.dp)
+        ) {
+            Text(
+                text = stringResource(R.string.home_help_button),
+                style = MaterialTheme.typography.labelLarge,
+                fontWeight = FontWeight.SemiBold
+            )
+        }
         
         Spacer(modifier = Modifier.height(32.dp))
     }
@@ -331,12 +366,13 @@ private fun InfoCard(
 
 @Composable
 private fun TodayGuideSection(
+    phase: String,
     phaseName: String,
     phaseColor: Color,
     isAthlete: Boolean,
     onViewFullGuide: () -> Unit
 ) {
-    val guideContent = getGuideContentForPhase(phaseName, isAthlete)
+    val guideContent = getGuideContentForPhase(phase, isAthlete)
     
     Column(
         modifier = Modifier.fillMaxWidth(),
@@ -750,9 +786,9 @@ private data class GuidePreviewContent(
 )
 
 @Composable
-private fun getGuideContentForPhase(phaseName: String, isAthlete: Boolean = false): GuidePreviewContent {
-    return when {
-        phaseName.contains("Menstrual", ignoreCase = true) -> GuidePreviewContent(
+private fun getGuideContentForPhase(phase: String, isAthlete: Boolean = false): GuidePreviewContent {
+    return when (phase.lowercase()) {
+        "menstrual" -> GuidePreviewContent(
             phaseInsight = stringResource(R.string.menstrual_insight),
             nutritionTips = listOf(
                 stringResource(R.string.menstrual_nutrition_1),
@@ -789,7 +825,7 @@ private fun getGuideContentForPhase(phaseName: String, isAthlete: Boolean = fals
                 stringResource(R.string.menstrual_tip_regular_3)
             )
         )
-        phaseName.contains("Follicular", ignoreCase = true) -> GuidePreviewContent(
+        "follicular" -> GuidePreviewContent(
             phaseInsight = stringResource(R.string.follicular_insight),
             nutritionTips = listOf(
                 stringResource(R.string.follicular_nutrition_1),
@@ -826,7 +862,7 @@ private fun getGuideContentForPhase(phaseName: String, isAthlete: Boolean = fals
                 stringResource(R.string.follicular_tip_regular_3)
             )
         )
-        phaseName.contains("Ovulation", ignoreCase = true) -> GuidePreviewContent(
+        "ovulation" -> GuidePreviewContent(
             phaseInsight = stringResource(R.string.ovulation_insight),
             nutritionTips = listOf(
                 stringResource(R.string.ovulation_nutrition_1),

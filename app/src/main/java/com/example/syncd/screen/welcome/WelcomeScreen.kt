@@ -52,6 +52,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.zIndex
 import com.example.syncd.MainActivity
 import com.example.syncd.R
 import com.example.syncd.navigation.Navigator
@@ -64,10 +65,10 @@ import org.koin.compose.koinInject
 fun WelcomeScreen() {
     val navigator = koinInject<Navigator>()
     val context = LocalContext.current
-    val localeManager = remember { LocaleManager(context) }
+    val localeManager = koinInject<LocaleManager>()
     val scope = rememberCoroutineScope()
     
-    val currentLanguage by localeManager.currentLanguage.collectAsState(initial = LocaleManager.ENGLISH)
+    val currentLanguage by localeManager.currentLanguage.collectAsState(initial = localeManager.getCurrentLanguageSync())
     var showLanguageDialog by remember { mutableStateOf(false) }
     
     val scrollState = rememberScrollState()
@@ -111,6 +112,7 @@ fun WelcomeScreen() {
         Row(
             modifier = Modifier
                 .align(Alignment.TopEnd)
+                .zIndex(1f)
                 .padding(16.dp)
                 .clickable { showLanguageDialog = true }
                 .padding(8.dp),
@@ -123,7 +125,7 @@ fun WelcomeScreen() {
                 tint = MaterialTheme.colorScheme.primary
             )
             Text(
-                text = LocaleManager.supportedLanguages(context).find { it.code == currentLanguage }?.nativeName
+                text = LocaleManager.supportedLanguages().find { it.code == currentLanguage }?.nativeName
                     ?: stringResource(R.string.language_english),
                 style = MaterialTheme.typography.labelLarge,
                 color = MaterialTheme.colorScheme.primary,
@@ -256,7 +258,7 @@ fun WelcomeScreen() {
                     scope.launch {
                         localeManager.setLanguage(languageCode)
                         showLanguageDialog = false
-                        (context as? MainActivity)?.recreate()
+                        (context as? MainActivity)?.restartActivity()
                     }
                 },
                 onDismiss = { showLanguageDialog = false }
@@ -290,7 +292,7 @@ private fun LanguageSelectionDialog(
                 
                 Spacer(modifier = Modifier.height(16.dp))
                 
-                LocaleManager.supportedLanguages(context).forEach { language ->
+                LocaleManager.supportedLanguages().forEach { language ->
                     LanguageOption(
                         language = language,
                         isSelected = language.code == currentLanguage,

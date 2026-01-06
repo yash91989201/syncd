@@ -1,7 +1,7 @@
 package com.example.syncd.auth.presentation
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
+import androidx.annotation.StringRes
+import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.syncd.R
 import com.example.syncd.auth.data.model.User
@@ -22,22 +22,20 @@ data class AuthUiState(
     val otpCode: String = "",
     val isLoading: Boolean = false,
     val isCheckingSession: Boolean = true,
-    val error: String? = null,
+    @StringRes val errorResId: Int? = null,
+    val errorMessage: String? = null, // For dynamic error messages from backend
     val currentUser: User? = null,
     val isAuthenticated: Boolean = false,
     val hasCompletedOnboarding: Boolean = false
 )
 
 class AuthViewModel(
-    application: Application,
     private val authRepository: AuthRepository,
     private val navigator: Navigator,
     private val userPreferences: UserPreferences,
     private val onboardingRepository: OnboardingRepository
-) : AndroidViewModel(application) {
+) : ViewModel() {
 
-    private val context = application.applicationContext
-    
     private val _uiState = MutableStateFlow(AuthUiState())
     val uiState: StateFlow<AuthUiState> = _uiState.asStateFlow()
     
@@ -47,22 +45,22 @@ class AuthViewModel(
     
     fun updatePhoneNumber(phone: String) {
         val numericOnly = phone.filter { it.isDigit() }.take(10)
-        _uiState.update { it.copy(phoneNumber = numericOnly, error = null) }
+        _uiState.update { it.copy(phoneNumber = numericOnly, errorResId = null, errorMessage = null) }
     }
     
     fun updateOtpCode(code: String) {
-        _uiState.update { it.copy(otpCode = code, error = null) }
+        _uiState.update { it.copy(otpCode = code, errorResId = null, errorMessage = null) }
     }
     
     fun sendOtp() {
         val phoneNumber = _uiState.value.phoneNumber
         if (phoneNumber.isBlank()) {
-            _uiState.update { it.copy(error = context.getString(R.string.error_phone_required)) }
+            _uiState.update { it.copy(errorResId = R.string.error_phone_required, errorMessage = null) }
             return
         }
         
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null) }
+            _uiState.update { it.copy(isLoading = true, errorResId = null, errorMessage = null) }
             
             authRepository.sendOtp(phoneNumber)
                 .onSuccess {
@@ -73,7 +71,8 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: context.getString(R.string.error_send_otp)
+                            errorResId = if (throwable.message == null) R.string.error_send_otp else null,
+                            errorMessage = throwable.message
                         )
                     }
                 }
@@ -85,12 +84,12 @@ class AuthViewModel(
         val code = _uiState.value.otpCode
         
         if (code.isBlank()) {
-            _uiState.update { it.copy(error = context.getString(R.string.error_otp_required)) }
+            _uiState.update { it.copy(errorResId = R.string.error_otp_required, errorMessage = null) }
             return
         }
         
         viewModelScope.launch {
-            _uiState.update { it.copy(isLoading = true, error = null) }
+            _uiState.update { it.copy(isLoading = true, errorResId = null, errorMessage = null) }
             
             authRepository.verifyOtp(phoneNumber, code)
                 .onSuccess { response ->
@@ -110,7 +109,8 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: context.getString(R.string.error_verify_otp)
+                            errorResId = if (throwable.message == null) R.string.error_verify_otp else null,
+                            errorMessage = throwable.message
                         )
                     }
                 }
@@ -131,7 +131,8 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: context.getString(R.string.error_sign_out)
+                            errorResId = if (throwable.message == null) R.string.error_sign_out else null,
+                            errorMessage = throwable.message
                         )
                     }
                 }
@@ -153,7 +154,8 @@ class AuthViewModel(
                     _uiState.update { 
                         it.copy(
                             isLoading = false, 
-                            error = throwable.message ?: context.getString(R.string.error_delete_account)
+                            errorResId = if (throwable.message == null) R.string.error_delete_account else null,
+                            errorMessage = throwable.message
                         )
                     }
                 }
@@ -225,7 +227,7 @@ class AuthViewModel(
                         isAuthenticated = true,
                         isCheckingSession = false,
                         isLoading = false,
-                        hasCompletedOnboarding = false
+                        hasCompletedOnboarding = localStatus
                     )
                 }
             }
@@ -239,7 +241,7 @@ class AuthViewModel(
     }
     
     fun clearError() {
-        _uiState.update { it.copy(error = null) }
+        _uiState.update { it.copy(errorResId = null, errorMessage = null) }
     }
     
     fun setPhoneNumberForOtp(phoneNumber: String) {

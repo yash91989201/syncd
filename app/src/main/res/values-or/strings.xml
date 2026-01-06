@@ -39,6 +39,15 @@
     <string name="onboarding_custom_sport_placeholder">ଆପଣଙ୍କ ଖେଳ ପ୍ରବେଶ କରନ୍ତୁ</string>
     <string name="onboarding_date_picker_select">ଏକ ତାରିଖ ବାଛନ୍ତୁ</string>
     
+    <!-- Date Picker -->
+    <string name="onboarding_year">ବର୍ଷ</string>
+    <string name="onboarding_month">ମାସ</string>
+    <string name="onboarding_day">ଦିନ</string>
+    <string name="onboarding_last_period">ଶେଷ ମାସିକ</string>
+    <string name="onboarding_select_last_period">ଆପଣଙ୍କ ଶେଷ ମାସିକ ତାରିଖ ବାଛନ୍ତୁ</string>
+    <string name="action_confirm">ନିଶ୍ଚିତ</string>
+    <string name="action_cancel">ବାତିଲ୍</string>
+
     <!-- Navigation Bar -->
     <string name="nav_home">ମୁଖ୍ୟ</string>
     <string name="nav_log">ଲଗ୍</string>
@@ -66,6 +75,7 @@
     <string name="home_error_no_data">କୌଣସି ଚକ୍ର ତଥ୍ୟ ଉପଲବ୍ଧ ନାହିଁ</string>
     <string name="home_error_something_wrong">କିଛି ଭୁଲ ହୋଇଗଲା</string>
     <string name="home_try_again">ପୁନର୍ବାର ଚେଷ୍ଟା କରନ୍ତୁ</string>
+    <string name="home_help_button">ସାହାଯ୍ୟ</string>
     
     <!-- Today Guide Screen -->
     <string name="guide_title">ଆଜିର ମାର୍ଗଦର୍ଶନ</string>
@@ -334,6 +344,16 @@
     <string name="profile_subtitle">ନିଜ ସୂଚନା ସମ୍ପାଦନ କରନ୍ତୁ</string>
     <string name="profile_basic_details">ମୌଳିକ ବିବରଣୀ</string>
     <string name="profile_save">ପରିବର୍ତ୍ତନ ସଞ୍ଚୟ କରନ୍ତୁ</string>
+    <string name="profile_personal_info">ବ୍ୟକ୍ତିଗତ ସୂଚନା</string>
+    <string name="profile_name_label">ନାମ</string>
+    <string name="profile_name_placeholder">ଆପଣଙ୍କ ନାମ ଲେଖନ୍ତୁ</string>
+    <string name="profile_email_label">ଇମେଲ୍</string>
+    <string name="profile_email_placeholder">ଆପଣଙ୍କ ଇମେଲ୍ ଲେଖନ୍ତୁ</string>
+    <string name="profile_onboarding_info">ଅନବୋର୍ଡିଂ ସୂଚନା</string>
+    <string name="profile_saving">ସଞ୍ଚୟ ହେଉଛି...</string>
+    <string name="profile_saved">ସଞ୍ଚୟ ହେଲା</string>
+    <string name="profile_error">ତ୍ରୁଟି</string>
+    <string name="profile_back">ପଛକୁ</string>
     <string name="profile_account_section">ଆକାଉଣ୍ଟ</string>
     <string name="profile_logout">ଲଗ୍ ଆଉଟ୍</string>
     <string name="profile_delete_account">ଆକାଉଣ୍ଟ ବିଲୋପ କରନ୍ତୁ</string>

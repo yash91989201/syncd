@@ -1,6 +1,7 @@
 package com.example.syncd
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -42,5 +43,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             App()
         }
+    }
+    
+    fun restartActivity() {
+        val intent = Intent(this, MainActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
+        finish()
     }
 }

@@ -25,11 +25,11 @@ val authModule = module {
     single { AuthRepository(get()) }
     single { OnboardingRepository(get()) }
     single { UserProfileRepository(get()) }
-    single { AuthViewModel(get(), get(), get(), get(), get()) }
+    single { AuthViewModel(get(), get(), get(), get()) }
 }
 
 val onboardingModule = module {
-    viewModel { OnboardingViewModel(get(), get(), get()) }
+    viewModel { OnboardingViewModel(get(), get()) }
 }
 
 val logModule = module {
@@ -38,20 +38,20 @@ val logModule = module {
 }
 
 val guideModule = module {
-    viewModel { TodayGuideViewModel(get(), get(), get()) }
+    viewModel { TodayGuideViewModel(get(), get()) }
 }
 
 val insightsModule = module {
-    viewModel { InsightsViewModel(get(), get(), get(), get()) }
+    viewModel { InsightsViewModel(get(), get(), get()) }
 }
 
 val homeModule = module {
     single { HomeRepository(get()) }
-    viewModel { HomeViewModel(get(), get(), get()) }
+    viewModel { HomeViewModel(get(), get()) }
 }
 
 val profileModule = module {
-    viewModel { ProfileViewModel(get(), get()) }
+    viewModel { ProfileViewModel(get()) }
 }
 
 fun initializeKoin(

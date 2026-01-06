@@ -124,7 +124,8 @@ fun InsightsScreen() {
                         ) {
                             OverviewRow(
                                 label = stringResource(R.string.insights_avg_cycle_length),
-                                value = state.cycleOverview.averageCycleLength
+                                value = if (state.cycleOverview.averageCycleLengthResId != 0) 
+                                    stringResource(state.cycleOverview.averageCycleLengthResId) else ""
                             )
                             HorizontalDivider(
                                 modifier = Modifier.padding(vertical = 4.dp),
@@ -132,7 +133,8 @@ fun InsightsScreen() {
                             )
                             OverviewRow(
                                 label = stringResource(R.string.insights_avg_bleeding),
-                                value = state.cycleOverview.averageBleedingDays
+                                value = if (state.cycleOverview.averageBleedingDaysResId != 0) 
+                                    stringResource(state.cycleOverview.averageBleedingDaysResId) else ""
                             )
                             HorizontalDivider(
                                 modifier = Modifier.padding(vertical = 4.dp),
@@ -140,7 +142,14 @@ fun InsightsScreen() {
                             )
                             OverviewRow(
                                 label = stringResource(R.string.insights_current_phase),
-                                value = state.cycleOverview.currentPhase,
+                                value = if (state.cycleOverview.currentPhaseResId != 0) {
+                                    val args = state.cycleOverview.currentPhaseArgs
+                                    if (args != null) {
+                                        stringResource(state.cycleOverview.currentPhaseResId, *args)
+                                    } else {
+                                        stringResource(state.cycleOverview.currentPhaseResId)
+                                    }
+                                } else "",
                                 isHighlighted = true
                             )
                         }
@@ -160,7 +169,7 @@ fun InsightsScreen() {
                         state.patterns.forEach { pattern ->
                             InsightCard(
                                 emoji = pattern.emoji,
-                                text = pattern.text
+                                text = stringResource(pattern.textResId)
                             )
                         }
                     } else {
@@ -229,7 +238,7 @@ fun InsightsScreen() {
                                     }
                                     Spacer(modifier = Modifier.width(12.dp))
                                     Text(
-                                        text = reflection.title,
+                                        text = stringResource(reflection.titleResId),
                                         style = MaterialTheme.typography.titleMedium,
                                         fontWeight = FontWeight.Bold,
                                         color = MaterialTheme.colorScheme.onSecondaryContainer
@@ -243,7 +252,7 @@ fun InsightsScreen() {
                                 )
 
                                 Text(
-                                    text = reflection.text,
+                                    text = stringResource(reflection.textResId),
                                     style = MaterialTheme.typography.bodyMedium,
                                     color = MaterialTheme.colorScheme.onSecondaryContainer,
                                     lineHeight = 24.sp
@@ -254,7 +263,7 @@ fun InsightsScreen() {
                                     color = MaterialTheme.colorScheme.secondary.copy(alpha = 0.15f)
                                 ) {
                                     Text(
-                                        text = reflection.encouragement,
+                                        text = stringResource(reflection.encouragementResId),
                                         style = MaterialTheme.typography.bodyMedium,
                                         fontStyle = FontStyle.Italic,
                                         color = MaterialTheme.colorScheme.onSecondaryContainer.copy(
@@ -311,7 +320,7 @@ fun InsightsScreen() {
                                         }
                                     }
                                     Text(
-                                        text = article.title,
+                                        text = stringResource(article.titleResId),
                                         style = MaterialTheme.typography.bodyMedium,
                                         fontWeight = FontWeight.SemiBold,
                                         maxLines = 3,
@@ -367,7 +376,7 @@ fun InsightsScreen() {
                             )
 
                             Text(
-                                text = safety.text,
+                                text = stringResource(safety.textResId),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onSurface,
                                 lineHeight = 22.sp
@@ -378,7 +387,7 @@ fun InsightsScreen() {
                                 color = MaterialTheme.colorScheme.primary.copy(alpha = 0.1f)
                             ) {
                                 Text(
-                                    text = safety.suggestion,
+                                    text = stringResource(safety.suggestionResId),
                                     style = MaterialTheme.typography.bodyMedium,
                                     fontWeight = FontWeight.SemiBold,
                                     color = MaterialTheme.colorScheme.primary,

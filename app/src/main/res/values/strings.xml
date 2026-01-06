@@ -70,6 +70,7 @@
     <string name="home_error_no_data">No cycle data available</string>
     <string name="home_error_something_wrong">Something went wrong</string>
     <string name="home_try_again">Try Again</string>
+    <string name="home_help_button">Need Help? Call 181</string>
     
     <!-- Today Guide Screen -->
     <string name="guide_title">Today\'s Guide</string>

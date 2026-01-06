@@ -1,5 +1,6 @@
 package com.example.syncd.screen.guide
 
+import androidx.annotation.StringRes
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -111,7 +112,7 @@ fun TodayGuideScreen() {
                     Text(
                         text = stringResource(
                             R.string.guide_phase_day,
-                            state.phaseName,
+                            stringResource(state.phaseNameResId),
                             state.cycleDay
                         ),
                         style = MaterialTheme.typography.labelLarge,
@@ -147,7 +148,7 @@ fun TodayGuideScreen() {
                         }
                         Spacer(modifier = Modifier.width(14.dp))
                         Text(
-                            text = state.phaseInsight,
+                            text = stringResource(state.phaseInsightResId),
                             style = MaterialTheme.typography.bodyMedium,
                             color = MaterialTheme.colorScheme.onPrimaryContainer,
                             lineHeight = 22.sp,
@@ -156,30 +157,30 @@ fun TodayGuideScreen() {
                     }
                 }
 
-                GuideSection(
+                GuideSectionComposable(
                     emoji = "🍲",
-                    title = state.nutritionSection.title,
-                    items = state.nutritionSection.items,
-                    footer = state.nutritionSection.footer
+                    titleResId = state.nutritionSection.titleResId,
+                    itemResIds = state.nutritionSection.itemResIds,
+                    footerResId = state.nutritionSection.footerResId
                 )
 
-                GuideSection(
+                GuideSectionComposable(
                     emoji = "🏃",
-                    title = state.movementSection.title,
-                    items = state.movementSection.items,
-                    footer = state.movementSection.footer
+                    titleResId = state.movementSection.titleResId,
+                    itemResIds = state.movementSection.itemResIds,
+                    footerResId = state.movementSection.footerResId
                 )
 
-                DosDontsSection(dosDonts = state.dosDonts)
+                DosDontsSectionComposable(dosDonts = state.dosDonts)
 
-                GuideSection(
+                GuideSectionComposable(
                     emoji = "💡",
-                    title = stringResource(R.string.guide_gentle_tips),
-                    items = state.gentleTips,
-                    footer = null
+                    titleResId = R.string.guide_gentle_tips,
+                    itemResIds = state.gentleTipsResIds,
+                    footerResId = null
                 )
 
-                if (state.isAthlete && state.athleteNote != null) {
+                if (state.isAthlete && state.athleteNoteResId != null) {
                     Surface(
                         modifier = Modifier.fillMaxWidth(),
                         shape = RoundedCornerShape(20.dp),
@@ -212,7 +213,7 @@ fun TodayGuideScreen() {
                             }
                             Spacer(modifier = Modifier.height(12.dp))
                             Text(
-                                text = state.athleteNote!!,
+                                text = stringResource(state.athleteNoteResId!!),
                                 style = MaterialTheme.typography.bodyMedium,
                                 color = MaterialTheme.colorScheme.onTertiaryContainer,
                                 lineHeight = 22.sp
@@ -249,12 +250,16 @@ fun TodayGuideScreen() {
 }
 
 @Composable
-fun GuideSection(
+fun GuideSectionComposable(
     emoji: String,
-    title: String,
-    items: List<String>,
-    footer: String? = null
+    @StringRes titleResId: Int,
+    itemResIds: List<Int>,
+    @StringRes footerResId: Int? = null
 ) {
+    val title = stringResource(titleResId)
+    val items = itemResIds.map { stringResource(it) }
+    val footer = footerResId?.let { stringResource(it) }
+    
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
@@ -377,7 +382,10 @@ fun GuideSection(
 }
 
 @Composable
-fun DosDontsSection(dosDonts: DosDonts) {
+fun DosDontsSectionComposable(dosDonts: DosDonts) {
+    val dos = dosDonts.dosResIds.map { stringResource(it) }
+    val donts = dosDonts.dontsResIds.map { stringResource(it) }
+    
     ElevatedCard(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(24.dp),
@@ -458,7 +466,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                         }
                     }
 
-                    dosDonts.dos.forEach { item ->
+                    dos.forEach { item ->
                         Surface(
                             shape = RoundedCornerShape(12.dp),
                             color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.15f)
@@ -523,7 +531,7 @@ fun DosDontsSection(dosDonts: DosDonts) {
                         }
                     }
 
-                    dosDonts.donts.forEach { item ->
+                    donts.forEach { item ->
                         Surface(
                             shape = RoundedCornerShape(12.dp),
                             color = MaterialTheme.colorScheme.surfaceContainerLow
